@@ -17,5 +17,6 @@
 /tmp
 /.idea
 /.ruby-version
+/.ruby-gemset
 /config/application.yml
 /public/uploads/**/*
