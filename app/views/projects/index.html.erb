@@ -1,2 +1,122 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<div class="container-layer" id="project">
+  <div class="container-content project-top">
+    <div class="nav">
+      <div class="logo">
+        <a href="/"><%= image_tag('home/logo.png') %></a>
+      </div>
+      <div class="menu">
+        <%= link_to 'PROJECT', projects_index_path, class: 'menu-btn' %>
+
+        <%= link_to 'ABOUT', about_index_path, class: 'menu-btn' %>
+
+        <a href="/#contact" class="menu-btn">CONTACT</a>
+      </div>
+    </div>
+  </div>
+  <div class="container-content project-content">
+    <div class="case-list">
+      <ul class="items">
+        <li class="item active">案例一</li>
+        <li class="item">案例二</li>
+        <li class="item">案例三</li>
+        <li class="item">案例四</li>
+      </ul>
+    </div>
+    <div class="title">
+      上海市某学校
+    </div>
+    <div class="list pull-down-70">
+      <ul class="items">
+        <li class="item">
+          <div class="item-title active">
+            实验室设计
+          </div>
+          <div class="image">
+
+            <%= image_tag('project/case00.fw.png') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            课程设计
+          </div>
+          <div class="image">
+
+            <%= image_tag('project/case02.fw.png') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            活动设计
+          </div>
+          <div class="image">
+
+            <%= image_tag('project/case01.fw.png') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            信息化管理平台
+          </div>
+          <div class="image">
+
+            <%= image_tag('project/case03.fw.png') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            器材推荐
+          </div>
+          <div class="image">
+            <%= image_tag('project/case04.fw.png') %>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="content text-center">
+      <ul class="items">
+        <li class="item active">
+          <p class="t-34 pull-down-30">实验室采取环形分组设计方案，</p>
+
+          <p class="t-34 pull-down-30">一组五桌、共20桌，</p>
+
+          <p class="t-34 pull-down-30">每个桌子配一个常规座椅和一个带收纳功能的临时座</p>
+
+          <p class="t-34 pull-down-30">椅，可以在有限的空间内，</p>
+
+          <p class="t-34 pull-down-30">为40人的科普班和20人内的兴趣小班之间自由切换。</p>
+
+          <p class="t-34 pull-down-30">教师讲课区留出了足够的空间放置比赛或展示场地，</p>
+
+          <p class="t-34 pull-down-70">4组环形桌中间也预留了设备展示区域</p>
+
+          <%= image_tag('project/content01.jpg', class: 'pull-down-40') %>
+          <%= image_tag('project/content02.jpg', class: 'pull-down-70') %>
+        </li>
+        <li class="item">
+          <p class="t-34 pull-down-40">授课方案</p>
+          <%= image_tag('project/content03.jpg', class: 'pull-down-70') %>
+        </li>
+        <li class="item">
+          <%= image_tag('project/content04.fw.png', class: 'pull-down-70') %>
+        </li>
+        <li class="item">
+          <%= image_tag('project/content05.jpg', class: 'pull-down-40') %>
+          <br/>
+          <%= image_tag('project/content06.jpg', class: 'pull-down-40') %>
+          <br/>
+          <%= image_tag('project/content07.jpg', class: 'pull-down-40', style: 'margin-right:"20px"') %>
+          <%= image_tag('project/content08.jpg', class: 'pull-down-40') %>
+          <%= image_tag('project/content09.jpg', class: 'pull-down-40', style: 'margin-right:"20px"') %>
+          <%= image_tag('project/content10.jpg', class: 'pull-down-40') %>
+        </li>
+        <li class="item">
+          <%= image_tag('project/content11.jpg', class: 'pull-down-40') %>
+          <%= image_tag('project/content12.jpg', class: 'pull-down-40') %>
+          <%= image_tag('project/content13.jpg', class: 'pull-down-40') %>
+          <%= image_tag('project/content14.jpg', class: 'pull-down-40') %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

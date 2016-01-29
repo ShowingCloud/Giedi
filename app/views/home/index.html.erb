@@ -1,2 +1,113 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container-layer" id="banner">
+  <div class="container-content">
+    <div class="nav">
+      <div class="logo">
+
+        <a href="/"><%= image_tag('home/logo.png') %></a>
+      </div>
+      <div class="menu">
+        <%= link_to 'PROJECT', projects_index_path, class: 'menu-btn' %>
+
+        <%= link_to 'ABOUT', about_index_path, class: 'menu-btn' %>
+
+        <%= link_to 'CONTACT', '/#contact', class: 'menu-btn' %>
+
+      </div>
+    </div>
+  </div>
+  <div class="sliders">
+    <ul class="items">
+
+      <li data-src="<%= image_path('home/banner-01.jpg') %>" class="item"></li>
+      <li data-src="<%= image_path('home/banner-02.jpg') %>" class="item"></li>
+      <li data-src="<%= image_path('home/banner-03.jpg') %>" class="item"></li>
+    </ul>
+    <div class="switch">
+      <div class="article"></div>
+    </div>
+  </div>
+</div>
+<div class="container-layer" id="floor">
+  <div class="container-content" id="service">
+    <div class="service-title">
+      学校服务
+    </div>
+    <div class="service-item">
+      <ul class="items">
+        <li class="item">
+          <div class="service-item-img">
+
+            <%= image_tag('home/service01.png') %>
+          </div>
+          <div class="service-item-text">
+            <p class="t-30 orange text-center pull-down-20">共建实验室</p>
+
+            <p class="t-18 text-left pull-down-20"><i class="fa fa-circle"></i> 实验室设计</p>
+
+            <p class="t-18 text-left pull-down-20"><i class="fa fa-circle"></i> 设备器材推荐</p>
+          </div>
+        </li>
+        <li class="item">
+          <div class="service-item-img">
+
+            <%= image_tag('home/service02.png') %>
+          </div>
+          <div class="service-item-text">
+            <p class="t-30 orange text-center pull-down-20">授课服务</p>
+
+            <p class="t-18 text-left pull-down-20"><i class="fa fa-circle"></i> 常规授课服务</p>
+
+            <p class="t-18 text-left pull-down-20"><i class="fa fa-circle"></i> 定制课程研发</p>
+          </div>
+        </li>
+        <li class="item">
+          <div class="service-item-img">
+
+            <%= image_tag('home/service03.png') %>
+          </div>
+          <div class="service-item-text">
+            <p class="t-30 orange text-center pull-down-20">比赛辅导</p>
+
+            <p class="t-18 text-left pull-down-20"><i class="fa fa-circle"></i> 主流官方竞赛服务</p>
+
+            <p class="t-18 text-left pull-down-20"><i class="fa fa-circle"></i> 一对一课题辅导</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-content double-arrow"></div>
+  <div class="container-content" id="map">
+    <ul class="items">
+      <li class="item">
+        <div class="map-item-img">
+
+          <%= image_tag('home/map01.png') %>
+        </div>
+        <div class="map-item-text">
+          <p class="t-18">从第六人民医院住院部门口，穿过马路，笔直行走，路经过光耀大厦，穿过停车场，到达黑色密码大门，输入9999进入，到达豆姆。</p>
+        </div>
+      </li>
+      <li class="item">
+        <div class="map-item-img">
+
+          <%= image_tag('home/map02.png') %>
+        </div>
+        <div class="map-item-text">
+          <p class="t-18">9号线宜山路站3号口出，穿越马路，经过中华门大厦后，笔直行走，走过一个小斜坡后，行走到白色大门进入铭天下创意园，到达豆姆。</p>
+        </div>
+      </li>
+      <li class="item">
+        <div class="map-item-img">
+
+          <%= image_tag('home/map03.png') %>
+        </div>
+        <div class="map-item-text">
+          <p class="t-18">从梦公园门口进入，笔直行驶，路经足球场，走过一个小斜坡，行走到白色大门进入铭天下创意园，到达豆姆。</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="container-content" id="contact"></div>
+</div>
+

@@ -3,22 +3,15 @@
 <head>
   <%= render_page_title %>
   <meta charset='utf-8'/>
-  <link rel="icon" href="<%= cached_asset_path('icon.png') %>"/>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= link_to '项目', projects_index_path %>
-
-<%= link_to '关于', about_index_path %>
-
-<a href="#">联系</a>
-
-
 <%= yield %>
 
 </body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </html>
 
