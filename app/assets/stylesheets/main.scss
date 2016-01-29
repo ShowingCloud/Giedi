@@ -584,6 +584,9 @@ ul {
 #project .project-content .case-list .items .item.active {
   color: #FF6F00;
 }
+#project .project-content .case-list .items :hover {
+  cursor: pointer;
+}
 #project .project-content .title {
   font-size: 38px;
   text-align: center;
@@ -608,6 +611,9 @@ ul {
 }
 #project .project-content .list .items .item .item-title.active {
   color: #FF6F00;
+}
+#project .project-content .list .items .item :hover {
+  cursor: pointer;
 }
 #project .project-content .content .items {
   display: block;
