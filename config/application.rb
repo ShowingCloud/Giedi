@@ -38,4 +38,4 @@ module Domelab
   end
 end
 
-$memory_store = ActiveSupport::Cache::MemoryStore.new
+# $memory_store = ActiveSupport::Cache::MemoryStore.new
