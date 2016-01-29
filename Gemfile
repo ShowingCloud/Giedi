@@ -46,4 +46,4 @@ group :development, :test do
 end
 gem 'settingslogic', '~> 2.0.9'
 gem 'puma'
-
+gem 'thin'
