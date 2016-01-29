@@ -2,5 +2,5 @@
 
 set -x
 
-thin -p 3250 -e production stop
-thin -d -p 3250 -e production --tag "Domelab Production" start
+thin -p 3260 -e production stop
+thin -d -p 3260 -e production --tag "Domelab Production" start
