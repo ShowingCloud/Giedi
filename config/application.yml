@@ -1,10 +1,13 @@
+defaults: &defaults
+  site_name: "豆姆科技"
+  secret_key: "586c206b58a75d0306f434eeb9215645f2112abf95ae713f36f438e4bd018346a1051fc8304a6128af7a93d4111405086d2b76dc4079b2a1975c640b7d389954"
+  https: false
+
 development:
-   # Secret tokens. Generate them with `rake secret`
-   secret_key: "586c206b58a75d0306f434eeb9215645f2112abf95ae713f36f438e4bd018346a1051fc8304a6128af7a93d4111405086d2b76dc4079b2a1975c640b7d389954"
-#   site_name: '豆姆科技'
- test:
-   <<: development
+  <<: *defaults
 
+test:
+  <<: *defaults
 
- production:
-   <<: development
+production:
+  <<: *defaults
