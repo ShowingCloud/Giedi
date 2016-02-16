@@ -1,6 +1,6 @@
 $(function () {
         var action = function () {
-            slider.init('.slider-item', 5000);
+            slider.init('.slider-item', 5000);//start
             $('.list').find('.item').on('click', function () {
                 var index = $(this).index();
                 $(this).find('.item-title').addClass('active');
@@ -67,15 +67,21 @@ $(function () {
                     return index;
                 } else {
                     slider.option.currentIndex = index;
-                    slider.option.article.css({'margin-left': index * slider.option.step});
+                    slider.option.article.css({
+                        'margin-left': index * slider.option.step,
+                        'background': slider.randomColor()
+                    });
                     var items = $(slider.option.selector);
                     items.eq(index).fadeIn();
                     items.eq(index).siblings().fadeOut();
                 }
+            },
+            randomColor: function () {
+                console.log(Math.random() * 0x1000000);
+                return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6);
             }
         };
 
         action();
     }
-)
-;
+);
