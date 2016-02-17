@@ -1,118 +1,85 @@
-<div class="container-layer" id="banner">
-  <div class="container-content">
-    <div class="nav">
-      <div class="logo">
-
-        <a href="/"><%= image_tag('home/logo.png') %></a>
+<nav class="navbar navbar-default nav-white">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu"
+                aria-expanded="false">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <%= image_tag('home/logo-active.png') %>
+        </a>
       </div>
-      <div class="menu">
-        <%= link_to 'PROJECT', projects_index_path, class: 'menu-btn' %>
-
-        <%= link_to 'ABOUT', about_index_path, class: 'menu-btn' %>
-
-        <%= link_to 'CONTACT', '/#contact', class: 'menu-btn' %>
-
+      <div class="collapse navbar-collapse" id="nav-menu">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Home <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="#">Activity</a></li>
+          <li><a href="#">Job&Contact</a></li>
+        </ul>
       </div>
     </div>
   </div>
-  <div class="sliders">
-    <ul class="items">
+</nav>
 
-      <li data-src="<%= image_path('home/banner-001.png') %>" class="item slider-item"></li>
-      <li data-src="<%= image_path('home/banner-002.png') %>" class="item slider-item"></li>
-      <li data-src="<%= image_path('home/banner-003.png') %>" class="item slider-item"></li>
-    </ul>
-    <div class="switch">
-      <div class="article"></div>
+<div class="banner">
+  <div class="banner-text">
+    <p>专注机器人领域的知识传播，</p>
+    <p>为孩子们科学思维的孵化培育个性化的丰厚土壤；</p>
+    <p>拥抱互联网、立足科技研发，</p>
+    <p>在虚拟的互动社区中构建起孩子、老师和科技的无线联结</p>
+  </div>
+</div>
+
+<div class="feature">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="feature-title">
+          公司特点
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="feature-item">
+          <%= image_tag('home/feature-item01.jpg') %>
+          <div class="feature-dec">我们打造专业的运营、技术和培训团队</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="feature-item">
+          <%= image_tag('home/feature-item02.jpg') %>
+          <div class="feature-dec">我们为您搜罗和推荐先进的器材和设备</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="feature-item">
+          <%= image_tag('home/feature-item03.jpg') %>
+          <div class="feature-dec">我们提供多元的服务和机器人爱好者社群</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<div class="container-layer" id="floor">
-  <div class="container-content" id="service">
-    <div class="service-title">
-      学校服务
-    </div>
-    <h3 class="text-center"> (让孩子们在学校就可以体验有趣的机器人课程)
-    </h3>
 
-    <div class="service-item">
-      <ul class="items">
-        <li class="item">
-          <div class="service-item-img">
-
-            <%= image_tag('home/service01.png') %>
-          </div>
-          <div class="service-item-text">
-            <p class="t-30 orange text-center pull-down-20">共建实验室</p>
-
-            <p class="t-18 text-center pull-down-20"><i class="fa fa-circle"></i> 实验室设计</p>
-
-            <p class="t-18 text-center pull-down-20"><i class="fa fa-circle"></i> 设备器材推荐</p>
-          </div>
-        </li>
-        <li class="item">
-          <div class="service-item-img">
-
-            <%= image_tag('home/service02.png') %>
-          </div>
-          <div class="service-item-text">
-            <p class="t-30 orange text-center pull-down-20">授课服务</p>
-
-            <p class="t-18 text-center pull-down-20"><i class="fa fa-circle"></i> 常规授课服务</p>
-
-            <p class="t-18 text-center pull-down-20"><i class="fa fa-circle"></i> 定制课程研发</p>
-          </div>
-        </li>
-        <li class="item">
-          <div class="service-item-img">
-
-            <%= image_tag('home/service03.png') %>
-          </div>
-          <div class="service-item-text">
-            <p class="t-30 orange text-center pull-down-20">比赛辅导</p>
-
-            <p class="t-18 text-center pull-down-20"><i class="fa fa-circle"></i> 主流官方竞赛服务</p>
-
-            <p class="t-18 text-center pull-down-20"><i class="fa fa-circle"></i> 一对一课题辅导</p>
-          </div>
-        </li>
-      </ul>
+<div class="site-footer">
+  <div class="partner">
+    <div class="container">
+      <%= image_tag('home/partner-inner.png') %>
     </div>
   </div>
-  <div class="container-content double-arrow"></div>
-  <div class="container-content" id="map">
-    <ul class="items">
-      <li class="item">
-        <div class="map-item-img">
-
-          <%= image_tag('home/map01.png') %>
-        </div>
-        <div class="map-item-text">
-          <p class="t-18">从第六人民医院住院部门口，穿过马路，笔直行走，路经过光耀大厦，穿过停车场，到达黑色密码大门，输入9999进入，到达豆姆。</p>
-        </div>
-      </li>
-      <li class="item">
-        <div class="map-item-img">
-
-          <%= image_tag('home/map02.png') %>
-        </div>
-        <div class="map-item-text">
-          <p class="t-18">9号线宜山路站3号口出，穿越马路，经过中华门大厦后，笔直行走，走过一个小斜坡后，行走到白色大门进入铭天下创意园，到达豆姆。</p>
-        </div>
-      </li>
-      <li class="item">
-        <div class="map-item-img">
-
-          <%= image_tag('home/map03.png') %>
-        </div>
-        <div class="map-item-text">
-          <p class="t-18">从梦公园门口进入，笔直行驶，路经足球场，走过一个小斜坡，行走到白色大门进入铭天下创意园，到达豆姆。</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="container-content" id="contact">
-    <%= image_tag('home/contact.png', size: '1200x756') %>
+  <div class="contact">
+    <div class="container">
+      <div class="contact-inner">
+        Contact：&nbsp; 王磊 &nbsp; 137-6474-3656 &nbsp; wanglei@robodou.cn &nbsp; 上海市钦州北路68号B3栋101室 &nbsp; COPYRIGHT&copy;2015-2016
+        <br>
+        沪ICP备15036141号
+      </div>
+    </div>
   </div>
 </div>
 
