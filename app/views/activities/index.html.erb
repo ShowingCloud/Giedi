@@ -1,79 +1,89 @@
-<div class="container-layer" id="about">
-  <div class="container-content">
-    <div class="nav">
-      <div class="logo">
-        <a href="/"><%= image_tag('home/logo.png') %></a></div>
-      <%= link_to 'SERVICE', services_index_path, class: 'menu-btn' %>
-
-      <%= link_to 'ACTIVITY', activities_index_path, class: 'menu-btn' %>
-
-      <%= link_to 'CONTACT', '/#contact', class: 'menu-btn' %>
-
+<div id="activity">
+  <nav class="navbar navbar-default nav-orange">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu"
+                  aria-expanded="false">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <%= image_tag('home/logo-orange.png') %>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="nav-menu">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Service</a></li>
+            <li class="active-item"><a href="#">Activity</a></li>
+            <li><a href="#">Job&Contact</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="container-content banner"></div>
-  <div class="container-content team">
-    <div class="title">
-      我们的团队
-    </div>
-    <div class="content">
-      <ul class="items">
-        <li class="item">
-          <div class="pao">
-            <%= image_tag('about/pao01.fw.png') %>
-          </div>
-          <div class="avatar">
-            <%= image_tag('about/avatar_wzk.png', size: '210x210') %>
+  </nav>
+  <div class="activity-inner">
+    <div class="container">
+      <div class="activity-menu">
+        <ul class="items tabs-top" data-tabs=".activity-content">
+          <li class="item active">
+            机器人社群
+          </li>
+          <li class="item">
+            嘉年华
+          </li>
+        </ul>
+      </div>
+      <div class="activity-content">
+        <div class="tabs-item active">
+          <!--机器人社群-->
+          <div class="img-c">
+            <%= image_tag('activity/item01.png') %>
+            <%= image_tag('activity/item02.png') %>
           </div>
           <div class="dec">
-            <p>魏宗凯</p>
-
-            <p>（总经理）</p>
+            <p>我们用随时、随地的线上交流，</p>
+            <p>串联起对科技知识的无穷探知。</p>
+            <p>在这个机器人社群里，</p>
+            <p>我们鼓励分享和开源，</p>
+            <p>你可以是受教者，也可以是授教者，</p>
+            <p>在线课程、项目交流、课题展示……</p>
+            <p>让畅通无阻的知识传递在社群中实现。</p>
           </div>
-        </li>
-        <li class="item">
-          <div class="pao">
-
-            <%= image_tag('about/pao02.fw.png') %>
-
-          </div>
-          <div class="avatar">
-
-            <%= image_tag('about/avatar_htq.png', size: '210x210') %>
-          </div>
-          <div class="dec">
-            <p>何天起</p>
-
-            <p>（市场总监）</p>
-          </div>
-        </li>
-        <li class="item">
-          <div class="pao">
-
-            <%= image_tag('about/pao03.fw.png') %>
-          </div>
-          <div class="avatar">
-
-            <%= image_tag('about/avatar_wl.png', size: '210x210') %>
+        </div>
+        <div class="tabs-item ">
+          <!--嘉年华-->
+          <div class="img-c">
+            <%= image_tag('activity/carnival.png',class:'fancy-left') %>
+            <%= image_tag('activity/wukong.png',class:'fancy-wukong') %>
+            <%= image_tag('activity/bang.png',class:'fancy-bang') %>
           </div>
           <div class="dec">
-            <p>王 磊</p>
-
-            <p>（技术总监）</p>
+            <p>这是一场机器人爱好者的盛会，</p>
+            <p>“展示、分享、互动”是贯穿始终的主题。</p>
+            <p>这里有是时代前沿的高科技产品、</p>
+            <p>这里有爱好者们创作的优秀作品、</p>
+            <p>也有精彩的主题邀请赛……</p>
+            <p>我们将机器人元素融入娱乐、游艺与交流</p>
+            <p>让孩子们感受竞技之外的创意体验。</p>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="container-content partner text-center">
-    <div class="title">
-      合作伙伴
-    </div>
-    <%= image_tag('about/partner.fw.png') %>
-  </div>
-  <div class="container-content">
-    <div class="join-in">
-
+  <div class="site-footer">
+    <div class="contact">
+      <div class="container">
+        <div class="contact-inner">
+          Contact：&nbsp; 王磊 &nbsp; 137-6474-3656 &nbsp; wanglei@robodou.cn &nbsp; 上海市钦州北路68号B3栋101室 &nbsp;
+          COPYRIGHT&copy;2015-2016
+          <br>
+          沪ICP备15036141号
+        </div>
+      </div>
     </div>
   </div>
 </div>
