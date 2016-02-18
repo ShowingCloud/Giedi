@@ -48,7 +48,7 @@ $(function () {
 
                 });
 
-                if (arguments.length >= 2 && typeof arguments[1]) {
+                if (arguments.length >= 2 && typeof arguments[1] === 'number') {
                     console.log('auto');
                     window.setInterval(function () {
                         var cI = slider.option.currentIndex;
@@ -82,6 +82,6 @@ $(function () {
             }
         };
 
-        action();
+        //action();
     }
 );
