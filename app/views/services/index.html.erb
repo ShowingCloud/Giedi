@@ -4,13 +4,12 @@
       <div class="logo">
         <a href="/"><%= image_tag('home/logo.png') %></a>
       </div>
-      <div class="menu">
-        <%= link_to 'PROJECT', projects_index_path, class: 'menu-btn' %>
+      <%= link_to 'SERVICE', services_index_path, class: 'menu-btn' %>
 
-        <%= link_to 'ABOUT', about_index_path, class: 'menu-btn' %>
+      <%= link_to 'ACTIVITY', activities_index_path, class: 'menu-btn' %>
 
-        <a href="/#contact" class="menu-btn">CONTACT</a>
-      </div>
+      <%= link_to 'CONTACT', '/#contact', class: 'menu-btn' %>
+
     </div>
   </div>
   <div class="container-content project-content">
