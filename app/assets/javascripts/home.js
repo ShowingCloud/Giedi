@@ -95,12 +95,13 @@ $(function () {
 
         var activityTabs = {
             init: function () {
-                $('.activity-menu').find('.item').on('click', function () {
+                $('.tabs-top').find('.item').on('click', function () {
                     var index = $(this).index();
                     $(this).addClass('active');
                     $(this).siblings().removeClass('active');
-                    $('.activity-content').find('.tabs-item.active').removeClass('active');
-                    $('.activity-content').find('.tabs-item').eq(index).addClass('active');
+                    var target = $($('.tabs-top').attr('data-tabs'));
+                    target.find('.tabs-item.active').removeClass('active');
+                    target.find('.tabs-item').eq(index).addClass('active');
                 });
             }
         }

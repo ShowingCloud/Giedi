@@ -10,15 +10,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
             <%= image_tag('home/logo-orange.png') %>
           </a>
         </div>
         <div class="collapse navbar-collapse" id="nav-menu">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="#">Service</a></li>
-            <li class="active-item"><a href="#">Activity</a></li>
+            <li><%= link_to 'Service', services_index_path %></li>
+            <li><%= link_to 'Activity', activities_index_path ,class:'active-item' %></li>
             <li><a href="#">Job&Contact</a></li>
           </ul>
         </div>

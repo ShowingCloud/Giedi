@@ -1,121 +1,159 @@
-<div class="container-layer" id="project">
-  <div class="container-content project-top">
-    <div class="nav">
-      <div class="logo">
-        <a href="/"><%= image_tag('home/logo.png') %></a>
+<div id="service">
+  <nav class="navbar navbar-default nav-orange">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu"
+                  aria-expanded="false">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <%= image_tag('home/logo-orange.png') %>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="nav-menu">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><%= link_to 'Service', services_index_path, class: 'active-item' %></li>
+            <li><%= link_to 'Activity', activities_index_path %></li>
+            <li><a href="#">Job&Contact</a></li>
+          </ul>
+        </div>
       </div>
-      <%= link_to 'SERVICE', services_index_path, class: 'menu-btn' %>
+    </div>
+  </nav>
+  <div class="service-inner">
+    <div class="container">
+      <div class="service-menu">
+        <ul class="items tabs-top" data-tabs=".service-content">
+          <li class="item active">
+            学校服务
+          </li>
+          <li class="item">
+            社区服务
+          </li>
+        </ul>
+      </div>
+      <div class="service-content">
+        <div class="tabs-item active">
+          <div class="title">学校服务</div>
+          <div class="title-dec">让孩子们在学校就能体验有趣的机器人课程</div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <div class="service-img">
+                <%= image_tag('service/service01.png') %>
+              </div>
+              <div class="dec-title">
+                提供专业的实验室设计解决方案
+              </div>
+              <div class="dec">
+                <p>灵活的空间布局，实现个性化的教学、</p>
 
-      <%= link_to 'ACTIVITY', activities_index_path, class: 'menu-btn' %>
+                <p>比赛及展示场景；专业的器材推荐，</p>
 
-      <%= link_to 'CONTACT', '/#contact', class: 'menu-btn' %>
+                <p>让逻辑化思考的启蒙教育</p>
 
+                <p>对接时代前沿的机器人与3D技术</p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="service-img">
+                <%= image_tag('service/service02.png') %>
+              </div>
+              <div class="dec">
+                <div class="dec-title">
+                  提供专属定制的授课服务方案
+                </div>
+                <div class="dec">
+                  <p>常规授课服务，以系统的教学课程，</p>
+
+                  <p>将机器人领域的理念导入与自主实操相结合</p>
+
+                  <p>定制课程研发，充分满足学校的</p>
+
+                  <p>个性化需求和孩子们智力的发散性开发</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="service-img">
+                <%= image_tag('service/service03.png') %>
+              </div>
+              <div class="dec">
+                <div class="dec-title">
+                  提供主流官方竞赛的辅导方案
+                </div>
+                <div class="dec">
+                  <p>为机械奥运、未来工程师、DI等官方竞赛</p>
+
+                  <p>做好赛前知识储备，定制比赛辅导方案</p>
+
+                  <p>提供专业师资和一对一的辅导课题等，</p>
+
+                  <p>为主流官方竞赛大号准备战</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tabs-item">
+          <div class="title">社区服务</div>
+          <div class="title-dec">让科技引领构建更广阔的社群网络</div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <div class="service-img">
+                <%= image_tag('service/service04.png') %>
+              </div>
+              <div class="dec-title">
+                社区文化中心的品牌建设和推广
+              </div>
+              <div class="dec">
+                <p>打造线上品牌效应</p>
+
+                <p>比赛及展示场景；专业的器材推荐，</p>
+
+                <p>让逻辑化思考的启蒙教育</p>
+
+                <p>对接时代前沿的机器人与3D技术</p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <div class="service-img">
+                <%= image_tag('service/service05.png') %>
+              </div>
+              <div class="dec">
+                <div class="dec-title">
+                  开展主题日科普专场活动
+                </div>
+                <div class="dec">
+                  <p>常规授课服务，以系统的教学课程，</p>
+
+                  <p>将机器人领域的理念导入与自主实操相结合</p>
+
+                  <p>定制课程研发，充分满足学校的</p>
+
+                  <p>个性化需求和孩子们智力的发散性开发</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="container-content project-content">
-    <!--<div class="case-list">-->
-    <!--<ul class="items">-->
-    <!--<li class="item active">案例一</li>-->
-    <!--<li class="item">案例二</li>-->
-    <!--<li class="item">案例三</li>-->
-    <!--<li class="item">案例四</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <div class="title">
-      上海市某学校
-    </div>
-    <div class="list pull-down-70">
-      <ul class="items">
-        <li class="item">
-          <div class="item-title active">
-            实验室设计
-          </div>
-          <div class="image">
-
-            <%= image_tag('project/case00.fw.png') %>
-          </div>
-        </li>
-        <li class="item">
-          <div class="item-title">
-            课程设计
-          </div>
-          <div class="image">
-
-            <%= image_tag('project/case02.fw.png') %>
-          </div>
-        </li>
-        <li class="item">
-          <div class="item-title">
-            活动设计
-          </div>
-          <div class="image">
-
-            <%= image_tag('project/case01.fw.png') %>
-          </div>
-        </li>
-        <li class="item">
-          <div class="item-title">
-            信息化管理平台
-          </div>
-          <div class="image">
-
-            <%= image_tag('project/case03.fw.png') %>
-          </div>
-        </li>
-        <li class="item">
-          <div class="item-title">
-            器材推荐
-          </div>
-          <div class="image">
-            <%= image_tag('project/case04.fw.png') %>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="content text-center">
-      <ul class="items">
-        <li class="item active">
-          <p class="t-34 pull-down-30">实验室采取环形分组设计方案，</p>
-
-          <p class="t-34 pull-down-30">一组五桌、共20桌，</p>
-
-          <p class="t-34 pull-down-30">每个桌子配一个常规座椅和一个带收纳功能的临时座</p>
-
-          <p class="t-34 pull-down-30">椅，可以在有限的空间内，</p>
-
-          <p class="t-34 pull-down-30">为40人的科普班和20人内的兴趣小班之间自由切换。</p>
-
-          <p class="t-34 pull-down-30">教师讲课区留出了足够的空间放置比赛或展示场地，</p>
-
-          <p class="t-34 pull-down-70">4组环形桌中间也预留了设备展示区域</p>
-
-          <%= image_tag('project/content01.jpg', class: 'pull-down-40') %>
-          <%= image_tag('project/content02.jpg', class: 'pull-down-70') %>
-        </li>
-        <li class="item">
-          <p class="t-34 pull-down-40">授课方案</p>
-          <%= image_tag('project/content03.jpg', class: 'pull-down-70') %>
-        </li>
-        <li class="item">
-          <%= image_tag('project/content04.fw.png', class: 'pull-down-70') %>
-        </li>
-        <li class="item">
-          <%= image_tag('project/content05.jpg', class: 'pull-down-40') %>
-          <br/>
-          <%= image_tag('project/content06.jpg', class: 'pull-down-40') %>
-          <br/>
-          <%= image_tag('project/content07.jpg', class: 'pull-down-40', style: 'margin-right:"20px"') %>
-          <%= image_tag('project/content08.jpg', class: 'pull-down-40') %>
-          <%= image_tag('project/content09.jpg', class: 'pull-down-40', style: 'margin-right:"20px"') %>
-          <%= image_tag('project/content10.jpg', class: 'pull-down-40') %>
-        </li>
-        <li class="item">
-          <%= image_tag('project/content11.jpg', class: 'pull-down-40') %>
-          <%= image_tag('project/content12.jpg', class: 'pull-down-40') %>
-          <%= image_tag('project/content13.jpg', class: 'pull-down-40') %>
-          <%= image_tag('project/content14.jpg', class: 'pull-down-40') %>
-        </li>
-      </ul>
+  <div class="site-footer">
+    <div class="contact">
+      <div class="container">
+        <div class="contact-inner">
+          Contact：&nbsp; 王磊 &nbsp; 137-6474-3656 &nbsp; wanglei@robodou.cn &nbsp; 上海市钦州北路68号B3栋101室 &nbsp;
+          COPYRIGHT&copy;2015-2016
+          <br>
+          沪ICP备15036141号
+        </div>
+      </div>
     </div>
   </div>
 </div>
