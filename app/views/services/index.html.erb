@@ -1,0 +1,159 @@
+<div id="service">
+  <nav class="navbar navbar-default nav-orange">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu"
+                  aria-expanded="false">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <%= image_tag('home/logo-orange.png') %>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="nav-menu">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><%= link_to 'Service', services_index_path, class: 'active-item' %></li>
+            <li><%= link_to 'Activity', activities_index_path %></li>
+            <li><%= link_to 'Job&Contact', contacts_index_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="service-inner">
+    <div class="container">
+      <div class="service-menu">
+        <ul class="items tabs-top" data-tabs=".service-content">
+          <li class="item active">
+            学校服务
+          </li>
+          <li class="item">
+            社区服务
+          </li>
+        </ul>
+      </div>
+      <div class="service-content">
+        <div class="tabs-item active">
+          <div class="title">学校服务</div>
+          <div class="title-dec">让孩子们在学校就能体验有趣的机器人课程</div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <div class="service-img">
+                <%= image_tag('service/service01.png') %>
+              </div>
+              <div class="dec-title">
+                提供专业的实验室设计解决方案
+              </div>
+              <div class="dec">
+                <p>灵活的空间布局，实现个性化的教学、</p>
+
+                <p>比赛及展示场景；专业的器材推荐，</p>
+
+                <p>让逻辑化思考的启蒙教育</p>
+
+                <p>对接时代前沿的机器人与3D技术</p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="service-img">
+                <%= image_tag('service/service02.png') %>
+              </div>
+              <div class="dec">
+                <div class="dec-title">
+                  提供专属定制的授课服务方案
+                </div>
+                <div class="dec">
+                  <p>常规授课服务，以系统的教学课程，</p>
+
+                  <p>将机器人领域的理念导入与自主实操相结合</p>
+
+                  <p>定制课程研发，充分满足学校的</p>
+
+                  <p>个性化需求和孩子们智力的发散性开发</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="service-img">
+                <%= image_tag('service/service03.png') %>
+              </div>
+              <div class="dec">
+                <div class="dec-title">
+                  提供主流官方竞赛的辅导方案
+                </div>
+                <div class="dec">
+                  <p>为机械奥运、未来工程师、DI等官方竞赛</p>
+
+                  <p>做好赛前知识储备，定制比赛辅导方案</p>
+
+                  <p>提供专业师资和一对一的辅导课题等，</p>
+
+                  <p>为主流官方竞赛大号准备战</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tabs-item">
+          <div class="title">社区服务</div>
+          <div class="title-dec">让科技引领构建更广阔的社群网络</div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <div class="service-img">
+                <%= image_tag('service/service04.png') %>
+              </div>
+              <div class="dec-title">
+                社区文化中心的品牌建设和推广
+              </div>
+              <div class="dec">
+                <p>打造线上品牌效应</p>
+
+                <p>比赛及展示场景；专业的器材推荐，</p>
+
+                <p>让逻辑化思考的启蒙教育</p>
+
+                <p>对接时代前沿的机器人与3D技术</p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <div class="service-img">
+                <%= image_tag('service/service05.png') %>
+              </div>
+              <div class="dec">
+                <div class="dec-title">
+                  开展主题日科普专场活动
+                </div>
+                <div class="dec">
+                  <p>常规授课服务，以系统的教学课程，</p>
+
+                  <p>将机器人领域的理念导入与自主实操相结合</p>
+
+                  <p>定制课程研发，充分满足学校的</p>
+
+                  <p>个性化需求和孩子们智力的发散性开发</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer">
+    <div class="contact">
+      <div class="container">
+        <div class="contact-inner">
+          Contact：&nbsp; 王磊 &nbsp; 137-6474-3656 &nbsp; wanglei@robodou.cn &nbsp; 上海市钦州北路68号B3栋101室 &nbsp;
+          COPYRIGHT&copy;2015-2016
+          <br>
+          沪ICP备15036141号
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

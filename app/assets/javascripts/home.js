@@ -1,13 +1,8 @@
 $(function () {
         var action = function () {
-            slider.init('.slider-item', 5000);//start
-            $('.list').find('.item').on('click', function () {
-                var index = $(this).index();
-                $(this).find('.item-title').addClass('active');
-                $(this).siblings().find('.item-title').removeClass('active');
-                $('.content').find('.item.active').removeClass('active');
-                $('.content').find('.item').eq(index).addClass('active');
-            });
+            //slider.init('.slider-item', 5000);//start
+            navFixed.init();
+            activityTabs.init();
         };
 
         var slider = {
@@ -82,6 +77,35 @@ $(function () {
             }
         };
 
-        //action();
+
+
+
+        var navFixed = {
+            init: function () {
+                $(window).on('scroll', function (event) {
+                    var y = window.scrollY;
+                    var nav = $('.navbar');
+                    nav.css({top: 0 - y + 'px'});
+                    if (y > 500) {
+                        nav.css({top: 0});
+                    }
+                })
+            }
+        };
+
+        var activityTabs = {
+            init: function () {
+                $('.tabs-top').find('.item').on('click', function () {
+                    var index = $(this).index();
+                    $(this).addClass('active');
+                    $(this).siblings().removeClass('active');
+                    var target = $($('.tabs-top').attr('data-tabs'));
+                    target.find('.tabs-item.active').removeClass('active');
+                    target.find('.tabs-item').eq(index).addClass('active');
+                });
+            }
+        }
+
+        action();
     }
 );
