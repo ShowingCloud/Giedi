@@ -104,7 +104,9 @@ $(function () {
                     target.find('.tabs-item').eq(index).addClass('active');
                 });
             }
-        }
+        };
+
+
 
         action();
     }
