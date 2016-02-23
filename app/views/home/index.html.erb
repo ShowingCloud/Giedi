@@ -10,7 +10,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">
-          <%= image_tag('home/logo-active.png') %>
+          <img src="" alt="" data-src="<%= image_path('home/logo-active.png') %>"/>
         </a>
       </div>
       <div class="collapse navbar-collapse" id="nav-menu">
@@ -25,11 +25,14 @@
   </div>
 </nav>
 
-<div class="banner">
+<div class="banner" data-src="<%= image_path('home/banner-active.png') %>">
   <div class="banner-text">
     <p>专注机器人领域的知识传播，</p>
+
     <p>为孩子们科学思维的孵化培育个性化的丰厚土壤；</p>
+
     <p>拥抱互联网、立足科技研发，</p>
+
     <p>在虚拟的互动社区中构建起孩子、老师和科技的无限联结</p>
   </div>
 </div>
@@ -46,19 +49,22 @@
     <div class="row">
       <div class="col-xs-12 col-sm-4">
         <div class="feature-item">
-          <%= image_tag('home/feature-item01.jpg') %>
+          <img src="" alt="" data-src="<%= image_path('home/feature-item01.jpg') %>"/>
+
           <div class="feature-dec">我们打造专业的运营、技术和培训团队</div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-4">
         <div class="feature-item">
-          <%= image_tag('home/feature-item02.jpg') %>
+          <img src="" alt="" data-src="<%= image_path('home/feature-item02.jpg') %>"/>
+
           <div class="feature-dec">我们为您搜罗和推荐先进的器材和设备</div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-4">
         <div class="feature-item">
-          <%= image_tag('home/feature-item03.jpg') %>
+          <img src="" alt="" data-src="<%= image_path('home/feature-item03.jpg') %>"/>
+
           <div class="feature-dec">我们提供多元的服务和机器人爱好者社群</div>
         </div>
       </div>
@@ -69,7 +75,7 @@
 <div class="site-footer">
   <div class="partner">
     <div class="container">
-      <%= image_tag('home/partner-inner.png') %>
+      <img src="" alt="" data-src="<%= image_path('home/partner-inner.png') %>"/>
     </div>
   </div>
   <div class="contact">
