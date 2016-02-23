@@ -36,11 +36,11 @@ body {
   text-shadow: 0 0 3px #ff7900;
 }
 
-.nav-orange .navbar-nav > li.active-item > a {
+.nav-orange .navbar-nav > li > a.active-item {
   color: #a2988d;
 }
 
-.nav-orange .navbar-nav > li.active-item > a:hover {
+.nav-orange .navbar-nav > li > a.active-item:hover {
   color: #a2988d;
   text-shadow: 0 0 3px #a2988d;
 }
@@ -95,7 +95,6 @@ body {
 }
 
 .site-footer .partner {
-  background: image-url('home/partner.png');
   height: 155px;
   text-align: center;
 }
@@ -112,7 +111,6 @@ body {
 }
 
 #activity {
-  background: image-url('activity/activity-bk.jpg');
 }
 
 #activity .activity-inner, #service .service-inner {
@@ -121,7 +119,7 @@ body {
 
 #activity .activity-inner .activity-menu, #service .service-inner .service-menu {
   color: #a2988d;
-  width: 400px;
+//  width: 400px;
   margin: 160px auto 40px;
 }
 
@@ -233,6 +231,7 @@ body {
 #contact .contact-job {
   margin-top: 170px;
   background: center no-repeat;
+  background-size: cover;
   width: 100%;
   height: 704px;
   position: relative;
@@ -250,6 +249,10 @@ body {
 #contact .contact-map {
   text-align: center;
   margin: 40px auto;
+}
+
+#contact .contact-map img{
+  max-width: 100%;
 }
 
 @keyframes wukong {
@@ -322,4 +325,8 @@ body {
   100% {
     top: 65px;
   }
+}
+
+.img-cover{
+  max-width: 100%;
 }

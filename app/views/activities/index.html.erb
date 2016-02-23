@@ -16,10 +16,10 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-menu">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">Home</a></li>
-            <li><%= link_to 'Service', services_index_path %></li>
-            <li><%= link_to 'Activity', activities_index_path, class: 'active-item' %></li>
-            <li><%= link_to 'Job&Contact', contacts_index_path %></li>
+            <li><a href="/">首页</a></li>
+            <li><%= link_to '服务', services_index_path %></li>
+            <li><%= link_to '活动', activities_index_path, class: 'active-item' %></li>
+            <li><%= link_to '工作&联系', contacts_index_path %></li>
           </ul>
         </div>
       </div>
@@ -37,13 +37,15 @@
           </li>
         </ul>
       </div>
-      <div class="activity-content">
-        <div class="tabs-item active">
-          <!--机器人社群-->
-          <div class="img-c">
-            <img src="" alt="" data-src="<%= image_path('activity/item01.png') %>"/>
-            <img src="" alt="" data-src="<%= image_path('activity/item02.png') %>"/>
-          </div>
+    </div>
+    <div class="activity-content">
+      <div class="tabs-item active">
+        <!--机器人社群-->
+        <div class="img-c">
+          <img src="" alt="" class="img-cover" data-src="<%= image_path('activity/item01.png') %>"/>
+          <img src="" alt="" class="img-cover" data-src="<%= image_path('activity/item02.png') %>"/>
+        </div>
+        <div class="container">
           <div class="dec">
             <p>我们用随时、随地的线上交流，</p>
 
@@ -60,13 +62,15 @@
             <p>让畅通无阻的知识传递在社群中实现。</p>
           </div>
         </div>
-        <div class="tabs-item ">
-          <!--嘉年华-->
-          <div class="img-c">
-            <img src="" alt="" class="fancy-left" data-src="<%= image_path('activity/carnival.png') %>"/>
-            <img src="" alt="" class="fancy-wukong" data-src="<%= image_path('activity/wukong.png') %>"/>
-            <img src="" alt="" class="fancy-bang" data-src="<%= image_path('activity/bang.png') %>"/>
-          </div>
+      </div>
+      <div class="tabs-item ">
+        <!--嘉年华-->
+        <div class="img-c">
+          <img src="" alt="" class="fancy-left img-cover" data-src="<%= image_path('activity/carnival.png') %>"/>
+          <img src="" alt="" class="fancy-wukong" data-src="<%= image_path('activity/wukong.png') %>"/>
+          <img src="" alt="" class="fancy-bang" data-src="<%= image_path('activity/bang.png') %>"/>
+        </div>
+        <div class="container">
           <div class="dec">
             <p>这是一场机器人爱好者的盛会，</p>
 
