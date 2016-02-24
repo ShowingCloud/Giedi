@@ -3,6 +3,7 @@ $(function () {
             //slider.init('.slider-item', 5000);//start
             navFixed.init();
             activityTabs.init();
+            lazyload.init();
         };
 
         var slider = {
@@ -10,7 +11,7 @@ $(function () {
                 var items = $(selector);
                 $.each(items, function (k, v) {
                     var _self = $(v);
-                    _self.css({"background-image": "url(" + _self.attr('data-src') + ")"});//lazy load
+
                     if (k === 0) {
                         _self.show();
                     } else {
@@ -78,8 +79,6 @@ $(function () {
         };
 
 
-
-
         var navFixed = {
             init: function () {
                 $(window).on('scroll', function (event) {
@@ -104,8 +103,21 @@ $(function () {
                     target.find('.tabs-item').eq(index).addClass('active');
                 });
             }
-        }
+        };
 
+        var lazyload = {
+            init: function () {
+                var tag = $('[data-src]');
+                $.each(tag, function (k, v) {
+                    var $self = $(v);
+                    if ($self[0].tagName === 'IMG') {
+                        $self.attr({src: $self.attr('data-src')});
+                    } else {
+                        $self.css({"background-image": "url(" + $self.attr('data-src') + ")"});//lazy load
+                    }
+                });
+            }
+        };
         action();
     }
 );

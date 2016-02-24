@@ -11,15 +11,15 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/">
-            <%= image_tag('home/logo-orange.png') %>
+            <img src="" alt="" data-src="<%= image_path('home/logo-orange.png') %>"/>
           </a>
         </div>
         <div class="collapse navbar-collapse" id="nav-menu">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">Home</a></li>
-            <li><%= link_to 'Service', services_index_path %></li>
-            <li><%= link_to 'Activity', activities_index_path ,class:'active-item' %></li>
-            <li><%= link_to 'Job&Contact', contacts_index_path %></li>
+            <li><a href="/">首页</a></li>
+            <li><%= link_to '服务', services_index_path %></li>
+            <li><%= link_to '活动', activities_index_path, class: 'active-item' %></li>
+            <li><%= link_to '工作&联系', contacts_index_path %></li>
           </ul>
         </div>
       </div>
@@ -37,37 +37,51 @@
           </li>
         </ul>
       </div>
-      <div class="activity-content">
-        <div class="tabs-item active">
-          <!--机器人社群-->
-          <div class="img-c">
-            <%= image_tag('activity/item01.png') %>
-            <%= image_tag('activity/item02.png') %>
-          </div>
+    </div>
+    <div class="activity-content">
+      <div class="tabs-item active">
+        <!--机器人社群-->
+        <div class="img-c add-bk">
+          <img src="" alt="" class="img-cover" data-src="<%= image_path('activity/item01.png') %>"/>
+          <img src="" alt="" class="img-cover" data-src="<%= image_path('activity/item02.png') %>"/>
+        </div>
+        <div class="container">
           <div class="dec">
             <p>我们用随时、随地的线上交流，</p>
+
             <p>串联起对科技知识的无穷探知。</p>
+
             <p>在这个机器人社群里，</p>
+
             <p>我们鼓励分享和开源，</p>
+
             <p>你可以是受教者，也可以是授教者，</p>
+
             <p>在线课程、项目交流、课题展示……</p>
+
             <p>让畅通无阻的知识传递在社群中实现。</p>
           </div>
         </div>
-        <div class="tabs-item ">
-          <!--嘉年华-->
-          <div class="img-c">
-            <%= image_tag('activity/carnival.png',class:'fancy-left') %>
-            <%= image_tag('activity/wukong.png',class:'fancy-wukong') %>
-            <%= image_tag('activity/bang.png',class:'fancy-bang') %>
-          </div>
+      </div>
+      <div class="tabs-item ">
+        <!--嘉年华-->
+        <div class="img-c add-bk2">
+          <img src="" alt="" class="" data-src="<%= image_path('activity/carnival.png') %>"/>
+        </div>
+        <div class="container">
           <div class="dec">
             <p>这是一场机器人爱好者的盛会，</p>
+
             <p>“展示、分享、互动”是贯穿始终的主题。</p>
+
             <p>这里有是时代前沿的高科技产品、</p>
+
             <p>这里有爱好者们创作的优秀作品、</p>
+
             <p>也有精彩的主题邀请赛……</p>
+
             <p>我们将机器人元素融入娱乐、游艺与交流</p>
+
             <p>让孩子们感受竞技之外的创意体验。</p>
           </div>
         </div>
