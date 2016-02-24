@@ -162,8 +162,16 @@ body {
 #activity .activity-inner .activity-content .tabs-item .img-c {
   margin-bottom: 50px;
   position: relative;
-  height: 507px;
   overflow: hidden;
+  padding: 20px 0;
+}
+
+#activity .activity-inner .activity-content .tabs-item .add-bk{
+  background: #dbe8f1;
+}
+
+#activity .activity-inner .activity-content .tabs-item .add-bk2{
+  background: #f8eae2;
 }
 
 #activity .activity-inner .activity-content .tabs-item .dec {
@@ -206,6 +214,20 @@ body {
   font-weight: bold;
 }
 
+#service .service-inner .service-content .tabs-item .service-bk{
+  background: center;
+  padding: 70px 0;
+  margin-bottom: 70px;
+}
+
+#service .service-inner .service-content .tabs-item .service-item-white{
+  background: #FFFFFF;
+  width: 320px;
+  height: 390px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
 #service .service-inner .service-content .tabs-item .title-dec {
   display: inline-block;
   color: #cccccc;
@@ -226,6 +248,27 @@ body {
 
 #service .service-inner .service-content .tabs-item .dec {
   margin-bottom: 120px;
+}
+
+#service .service-inner .service-content .tabs-item .earth{
+  width: 325px;
+  height: 88px;
+  margin: 10px auto 0;
+}
+
+#service .service-inner .service-content .tabs-item .service-item-green{
+  background: #21d1b5;
+}
+
+#service .service-inner .service-content .tabs-item .service-item-grey{
+  background: #a2a0c0;
+}
+
+#service .service-inner .service-content .tabs-item .double-bk{
+  background: repeat-y;
+  background-size: 100% 100%;
+  margin-bottom: 70px;
+  padding: 70px 0 0;
 }
 
 #contact .contact-job {
