@@ -95,12 +95,20 @@ body {
 }
 
 .site-footer .partner {
-  height: 155px;
   text-align: center;
+  padding: 30px 0;
+}
+
+.site-footer .partner .logo-c {
+}
+
+.site-footer .partner .title {
+  color: #fff;
 }
 
 .site-footer .partner img {
-  margin-top: 55px;
+  display: inline-block;
+  margin: 5px 10px;
 }
 
 .site-footer .contact {
@@ -119,7 +127,7 @@ body {
 
 #activity .activity-inner .activity-menu, #service .service-inner .service-menu {
   color: #a2988d;
-//  width: 400px;
+  //  width: 400px;
   margin: 160px auto 40px;
 }
 
@@ -166,11 +174,11 @@ body {
   padding: 20px 0;
 }
 
-#activity .activity-inner .activity-content .tabs-item .add-bk{
+#activity .activity-inner .activity-content .tabs-item .add-bk {
   background: #dbe8f1;
 }
 
-#activity .activity-inner .activity-content .tabs-item .add-bk2{
+#activity .activity-inner .activity-content .tabs-item .add-bk2 {
   background: #f8eae2;
 }
 
@@ -214,13 +222,13 @@ body {
   font-weight: bold;
 }
 
-#service .service-inner .service-content .tabs-item .service-bk{
+#service .service-inner .service-content .tabs-item .service-bk {
   background: center;
   padding: 70px 0;
   margin-bottom: 70px;
 }
 
-#service .service-inner .service-content .tabs-item .service-item-white{
+#service .service-inner .service-content .tabs-item .service-item-white {
   background: #FFFFFF;
   width: 320px;
   height: 390px;
@@ -250,21 +258,21 @@ body {
   margin-bottom: 120px;
 }
 
-#service .service-inner .service-content .tabs-item .earth{
+#service .service-inner .service-content .tabs-item .earth {
   width: 325px;
   height: 88px;
   margin: 10px auto 0;
 }
 
-#service .service-inner .service-content .tabs-item .service-item-green{
+#service .service-inner .service-content .tabs-item .service-item-green {
   background: #21d1b5;
 }
 
-#service .service-inner .service-content .tabs-item .service-item-grey{
+#service .service-inner .service-content .tabs-item .service-item-grey {
   background: #a2a0c0;
 }
 
-#service .service-inner .service-content .tabs-item .double-bk{
+#service .service-inner .service-content .tabs-item .double-bk {
   background: repeat-y;
   background-size: 100% 100%;
   margin-bottom: 70px;
@@ -294,7 +302,7 @@ body {
   margin: 40px auto;
 }
 
-#contact .contact-map img{
+#contact .contact-map img {
   max-width: 100%;
 }
 
@@ -370,6 +378,6 @@ body {
   }
 }
 
-.img-cover{
+.img-cover {
   max-width: 100%;
 }
