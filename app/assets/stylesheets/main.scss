@@ -263,18 +263,20 @@ body {
   margin: 10px auto 0;
 }
 
+#service .service-inner .service-content {
+  margin-bottom: 70px;
+}
+
 #service .service-inner .service-content .tabs-item .bk-green {
   overflow: hidden;
   background: #21d1b5;
   padding: 0;
-  margin-bottom: 70px;
 }
 
 #service .service-inner .service-content .tabs-item .bk-grey {
   background: #a2a0c0;
   overflow: hidden;
   padding: 0;
-  margin-bottom: 70px;
 }
 
 #service .service-inner .service-content .tabs-item .double-bk {
