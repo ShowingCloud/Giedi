@@ -172,6 +172,7 @@ body {
   position: relative;
   overflow: hidden;
   padding: 20px 0;
+  text-align: center;
 }
 
 #activity .activity-inner .activity-content .tabs-item .add-bk {
@@ -230,10 +231,8 @@ body {
 
 #service .service-inner .service-content .tabs-item .service-item-white {
   background: #FFFFFF;
-  width: 320px;
-  height: 390px;
   padding: 20px;
-  margin: 0 auto;
+  margin: 20px;
 }
 
 #service .service-inner .service-content .tabs-item .title-dec {
@@ -246,7 +245,7 @@ body {
 
 #service .service-inner .service-content .tabs-item .service-img {
   height: 155px;
-  margin-bottom: 20px;
+  margin: 70px auto 20px;
 }
 
 #service .service-inner .service-content .tabs-item .dec-title {
@@ -264,12 +263,18 @@ body {
   margin: 10px auto 0;
 }
 
-#service .service-inner .service-content .tabs-item .service-item-green {
+#service .service-inner .service-content .tabs-item .bk-green {
+  overflow: hidden;
   background: #21d1b5;
+  padding: 0;
+  margin-bottom: 70px;
 }
 
-#service .service-inner .service-content .tabs-item .service-item-grey {
+#service .service-inner .service-content .tabs-item .bk-grey {
   background: #a2a0c0;
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 70px;
 }
 
 #service .service-inner .service-content .tabs-item .double-bk {
@@ -289,12 +294,12 @@ body {
 }
 
 #contact .contact-job .job {
-  position: absolute;
-  top: 140px;
-  width: 400px;
-  right: 0;
+  margin-top: 50px;
+  float: right;
+  width: 340px;
   color: #FFFFFF;
   font-size: 18px;
+  text-shadow: 0 0 3px #000;
 }
 
 #contact .contact-map {
