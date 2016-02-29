@@ -108,12 +108,25 @@ $(function () {
         var lazyload = {
             init: function () {
                 var tag = $('[data-src]');
+                var default_src = '';
                 $.each(tag, function (k, v) {
                     var $self = $(v);
                     if ($self[0].tagName === 'IMG') {
-                        $self.attr({src: $self.attr('data-src')});
+                        $self.attr({src: default_src});
                     } else {
-                        $self.css({"background-image": "url(" + $self.attr('data-src') + ")"});//lazy load
+                        $self.css({"background-image": "url(" + default_src + ")"});//default image
+                    }
+                    lazyload.loading($self,$self.attr('data-src'));
+                });
+            },
+            loading: function (jqObj,src) {
+                var img = new Image();
+                img.src = src;
+                $(img).on('load', function () {
+                    if (jqObj[0].tagName === 'IMG') {
+                        jqObj.attr({src: src});
+                    } else {
+                        jqObj.css({"background-image": "url(" + src + ")"});//lazy load
                     }
                 });
             }
