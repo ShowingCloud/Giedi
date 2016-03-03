@@ -118,9 +118,6 @@ body {
   padding: 8px 0;
 }
 
-#activity {
-}
-
 #activity .activity-inner, #service .service-inner {
   text-align: center;
 }
@@ -311,78 +308,6 @@ body {
 
 #contact .contact-map img {
   max-width: 100%;
-}
-
-@keyframes wukong {
-  0% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 30px;
-  }
-  100% {
-    bottom: 0;
-  }
-}
-
-@-webkit-keyframes wukong {
-  0% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 30px;
-  }
-  100% {
-    bottom: 0;
-  }
-}
-
-@-moz-keyframes wukong {
-  0% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 30px;
-  }
-  100% {
-    bottom: 0;
-  }
-}
-
-@keyframes bang {
-  0% {
-    top: 65px;
-  }
-  50% {
-    top: 45px;
-  }
-  100% {
-    top: 65px;
-  }
-}
-
-@-moz-keyframes bang {
-  0% {
-    top: 65px;
-  }
-  50% {
-    top: 45px;
-  }
-  100% {
-    top: 65px;
-  }
-}
-
-@-webkit-keyframes bang {
-  0% {
-    top: 65px;
-  }
-  50% {
-    top: 45px;
-  }
-  100% {
-    top: 65px;
-  }
 }
 
 .img-cover {
