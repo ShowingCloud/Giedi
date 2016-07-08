@@ -14,7 +14,7 @@ defaults: &defaults
 development:
   <<: *defaults
   authenticators:
-    auth_user_by_email:
+    auth_user_by_name:
       authenticator: "ActiveRecord"
       options:
         connection:
@@ -24,15 +24,15 @@ development:
           password: "your_password"
           database: "dome_sso_dev"
         table: "users"
-        username_column: "email"
-        password_column: "encrypted_password"
+        username_column: "name"
+        password_column: "password_digest"
         extra_attributes:
           email: "email"
 
 test:
   <<: *defaults
   authenticators:
-    auth_user_by_email:
+    auth_user_by_name:
       authenticator: "ActiveRecord"
       options:
         connection:
@@ -42,15 +42,15 @@ test:
           password: "your_password"
           database: "dome_sso_dev"
         table: "users"
-        username_column: "email"
-        password_column: "encrypted_password"
+        username_column: "name"
+        password_column: "password_digest"
         extra_attributes:
           email: "email"
 
 production:
   <<: *defaults
   authenticators:
-    auth_user_by_email:
+    auth_user_by_name:
       authenticator: "ActiveRecord"
       options:
         connection:
@@ -60,7 +60,7 @@ production:
           password: "your_password"
           database: "dome_sso_dev"
         table: "users"
-        username_column: "email"
-        password_column: "encrypted_password"
+        username_column: "name"
+        password_column: "password_digest"
         extra_attributes:
           email: "email"
