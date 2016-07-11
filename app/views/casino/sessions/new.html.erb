@@ -26,9 +26,9 @@
       <% end %>
     </div>
       <% if params[:service].nil? %>
-        <%= link_to "Sign Up", "/users/new"%>
+        <%= link_to "注册", "/users/new"%>
       <% else %>
-        <%= link_to "Sign Up", "/users/new?service="+params[:service]%>
+        <%= link_to "注册", "/users/new?service="+params[:service]%>
       <% end %>
   </div>
   <%= render 'footer' %>

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if verify_rucaptcha?(@user) && @user.save
+      UserMailer.email_confirmation(@user).deliver_later
       data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:email]}}
       sign_in(data)
     else

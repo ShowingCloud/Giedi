@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users, only: [:edit, :new, :create]
+  resources :email_confirmations, only: [:edit]
   mount CASino::Engine => '/', :as => 'casino'
   mount RuCaptcha::Engine => "/rucaptcha"
 
