@@ -11,4 +11,25 @@ function refreshCapture(e){
 }
 window.onload = function () {
   addEventListenerByClass('captcha', 'click', refreshCapture);
+  var phone_verification = document.getElementById('phone_verification');
+  function get_phone_verification(){
+    var request = new XMLHttpRequest();
+    var phone = document.getElementById('user_phone').value;
+    var captcha = document.getElementById('captcha').value;
+    if(phone&&captcha){
+      var data = new FormData();
+      data.append( 'phone',phone);
+      data.append("captcha",captcha);
+      for(var pair of data.entries()) {
+         console.log(pair[0]+ ', '+ pair[1]);
+      }
+    }else{
+      return false;
+    }
+    request.open('POST', '/phone_verifications', true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.setRequestHeader('X-CSRF-Token', document.getElementsByName('csrf-token')[0].content);
+    request.send(data);
+  }
+  phone_verification.onclick='get_phone_verification();';
 }

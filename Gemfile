@@ -36,6 +36,8 @@ gem 'rucaptcha'
 
 gem 'phonelib'
 
+gem 'sidekiq'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

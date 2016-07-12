@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :phone_verifications,only: [:new, :create]
+  get "users/new_by_phone" => 'users#new_by_phone'
   resources :users, only: [:edit, :new, :create]
   resources :email_confirmations, only: [:edit]
   mount CASino::Engine => '/', :as => 'casino'
