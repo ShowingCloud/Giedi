@@ -17,19 +17,18 @@ window.onload = function () {
     var phone = document.getElementById('user_phone').value;
     var captcha = document.getElementById('captcha').value;
     if(phone&&captcha){
-      var data = new FormData();
-      data.append( 'phone',phone);
-      data.append("captcha",captcha);
-      for(var pair of data.entries()) {
-         console.log(pair[0]+ ', '+ pair[1]);
-      }
+      var data = {phone:phone,_rucaptcha:captcha};
+      var url = '/phone_verifications?' + Object.keys(data).map(function(k) {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+}).join('&');
+
     }else{
       return false;
     }
-    request.open('POST', '/phone_verifications', true);
+    request.open('POST', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.setRequestHeader('X-CSRF-Token', document.getElementsByName('csrf-token')[0].content);
-    request.send(data);
+    request.send();
   }
-  phone_verification.onclick='get_phone_verification();';
+  phone_verification.addEventListener('click', get_phone_verification, false);
 }

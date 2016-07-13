@@ -14,12 +14,12 @@
       <%= image_tag "logo.png" %>
     </div>
 
-      <h3><%= t('two_factor_authenticators.title') %></h3>
+      <!-- <h3><%= t('two_factor_authenticators.title') %></h3>
       <% if @two_factor_authenticators.blank? %>
         <%= t('two_factor_authenticators.disabled') %> - <%= link_to t('two_factor_authenticators.enable'), new_two_factor_authenticator_path %>
       <% else %>
         <%= t('two_factor_authenticators.enabled') %> - <%= button_to t('two_factor_authenticators.disable'), two_factor_authenticator_path(@two_factor_authenticators.first.id), method: :delete %>
-      <% end %>
+      <% end %> -->
 
       <h3><%= t('sessions.your_active_sessions') %></h3>
       <table width="100%" class="tickets">
@@ -59,10 +59,10 @@
         </tbody>
       </table>
 
-      <h3><%= t('sessions.last_login_attempts') %></h3>
+      <!-- <h3><%= t('sessions.last_login_attempts') %></h3>
       <%= render partial: 'casino/login_attempts/table' %>
 
-      <%= link_to t('sessions.all_login_attempts'), login_attempts_path, class: 'all_login_attempts' %>
+      <%= link_to t('sessions.all_login_attempts'), login_attempts_path, class: 'all_login_attempts' %> -->
   </div>
   <%= render 'footer' %>
 </div>

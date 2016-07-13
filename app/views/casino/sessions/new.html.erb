@@ -18,6 +18,7 @@
         <%= label_tag :username, t('login.label_username') %>
         <%= text_field_tag :username, params[:username], autofocus:true %>
         <%= label_tag :password, t('login.label_password') %>
+        <%= link_to "(忘记密码)", '/password_resets/new' %>
         <%= password_field_tag :password %>
         <%= label_tag :rememberMe do %>
           <%= check_box_tag :rememberMe, 1, params[:rememberMe] %> <%= t('login.label_remember_me') %>
