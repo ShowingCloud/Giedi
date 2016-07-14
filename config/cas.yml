@@ -43,6 +43,20 @@ development:
         extra_attributes:
           phone: "phone"
 
+    auth_user_by_email:
+      authenticator: "ActiveRecord"
+      options:
+        connection:
+          adapter: "mysql2"
+          host: "localhost"
+          username: "root"
+          password: "your_password"
+          database: "dome_sso_dev"
+        table: "users"
+        username_column: "email"
+        password_column: "password_digest"
+        extra_attributes:
+          email: "email"
 test:
   <<: *defaults
   authenticators:

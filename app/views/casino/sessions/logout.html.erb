@@ -2,10 +2,10 @@
   <div class="logout box">
 
     <div class="info">
-      <h1><%= t('logout.title') %></h1>
+      <h1><%= '再见' %></h1>
       <p>
         <% if @url.nil? %>
-          <%= t('logout.logged_out_without_url') %>
+          <%= '你已成功登出' %>
         <% else %>
           <%= t('logout.logged_out_with_url') %> <a href="<%= @url %>"><%= @url %></a>
         <% end %>

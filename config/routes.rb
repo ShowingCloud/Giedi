@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-  get 'password_resets/edit'
+  mount CASino::Engine => '/', :as => 'casino'
+  mount RuCaptcha::Engine => "/rucaptcha"
+  get 'password_resets/new_by_phone' => "password_resets#new_by_phone"
+  patch 'password_reset_by_phone' => "password_resets#update_by_phone"
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :phone_verifications,only: [:new, :create]
   get "users/new_by_phone" => 'users#new_by_phone'
   post "users/new_by_phone" => "users#create_by_phone"
   resources :users, only: [:edit, :new, :create]
   resources :email_confirmations, only: [:edit]
-  mount CASino::Engine => '/', :as => 'casino'
-  mount RuCaptcha::Engine => "/rucaptcha"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

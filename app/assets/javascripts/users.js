@@ -12,6 +12,7 @@ function refreshCapture(e){
 window.onload = function () {
   addEventListenerByClass('captcha', 'click', refreshCapture);
   var phone_verification = document.getElementById('phone_verification');
+  var phone_reset = document.getElementById('phone_reset');
   function get_phone_verification(){
     var request = new XMLHttpRequest();
     var phone = document.getElementById('user_phone').value;
@@ -19,8 +20,8 @@ window.onload = function () {
     if(phone&&captcha){
       var data = {phone:phone,_rucaptcha:captcha};
       var url = '/phone_verifications?' + Object.keys(data).map(function(k) {
-    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-}).join('&');
+          return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+      }).join('&');
 
     }else{
       return false;
@@ -30,5 +31,26 @@ window.onload = function () {
     request.setRequestHeader('X-CSRF-Token', document.getElementsByName('csrf-token')[0].content);
     request.send();
   }
+
+  function reset_phone_verification(){
+    var request = new XMLHttpRequest();
+    var phone = document.getElementById('user_phone').value;
+    var captcha = document.getElementById('captcha').value;
+    if(phone&&captcha){
+      var data = {phone:phone,_rucaptcha:captcha};
+      var url = '/phone_verifications/reset?' + Object.keys(data).map(function(k) {
+          return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+      }).join('&');
+
+    }else{
+      return false;
+    }
+    request.open('POST', url, true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.setRequestHeader('X-CSRF-Token', document.getElementsByName('csrf-token')[0].content);
+    request.send();
+  }
+
+  phone_reset.addEventListener('click', reset_phone_verification, false);
   phone_verification.addEventListener('click', get_phone_verification, false);
 }
