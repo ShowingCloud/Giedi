@@ -29,7 +29,7 @@ class PasswordResetsController < ApplicationController
       @user = User.find_by(phone: params[:phone])
       if @user
         pin = rand(1000..9999)
-        @user.update(reset_pin:pin,reset_pin_sent_at:Time.zone.now)
+        @user.update_attributes(reset_pin:pin,reset_pin_sent_at:Time.zone.now)
         send_sms params[:phone],pin
         head :no_content
       else
@@ -64,7 +64,7 @@ class PasswordResetsController < ApplicationController
       @user.errors.add(:password, "不能为空")
       render 'new_by_phone'
     elsif @user.update_attributes(user_params)
-      data = { authenticator: 'ActiveRecord', user_data: { username: params[:email]}}
+      data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:phone]}}
       flash[:success] = "密码已重置."
       sign_in(data)
     else

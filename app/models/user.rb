@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
                     :unless => :phone?
   validates :phone, phone: { types: :mobile }, uniqueness:true, :unless => :email?
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago

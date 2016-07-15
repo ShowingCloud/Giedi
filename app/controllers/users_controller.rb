@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  def show
-     @user = User.find(params[:id])
+  def profile
+    username = current_user.username
+    @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
+  end
+
+  def add_phone
+    username = current_user.username
+    @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
   end
 
   def new
@@ -37,6 +43,17 @@ class UsersController < ApplicationController
 
 
   def edit
+  end
+
+  def update
+    return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin
+    username = current_user.username
+    @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
+    if @user.update_attributes(user_params)
+      render 'profile'
+    else
+      render 'add_phone'
+    end
   end
 
   private

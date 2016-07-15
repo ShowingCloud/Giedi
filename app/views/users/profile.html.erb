@@ -1,0 +1,13 @@
+<ul>
+<li>用户名：<%= @user.name %></li>
+<% if @user.email? %>
+<li>邮箱：<%= @user.email %><%= link_to "修改","/"%></li>
+<% else %>
+<li><%= link_to "添加邮箱","/"%></li>
+<% end %>
+<% if @user.phone? %>
+<li>手机号：<%= @user.phone %><%= link_to "修改", profile_phone_path %></li>
+<% else %>
+<li><%= link_to "添加手机号", profile_phone_path %></li>
+<% end %>
+</ul>

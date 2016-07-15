@@ -38,7 +38,7 @@ window.onload = function () {
     var captcha = document.getElementById('captcha').value;
     if(phone&&captcha){
       var data = {phone:phone,_rucaptcha:captcha};
-      var url = '/phone_verifications/reset?' + Object.keys(data).map(function(k) {
+      var url = '/password_resets_by_phone?' + Object.keys(data).map(function(k) {
           return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
       }).join('&');
 

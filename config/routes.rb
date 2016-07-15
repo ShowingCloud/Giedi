@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   mount CASino::Engine => '/', :as => 'casino'
-  mount RuCaptcha::Engine => "/rucaptcha"
-  get 'password_resets/new_by_phone' => "password_resets#new_by_phone"
-  patch 'password_reset_by_phone' => "password_resets#update_by_phone"
+  mount RuCaptcha::Engine => '/rucaptcha'
+  post 'password_resets_by_phone' => 'password_resets#create_by_phone'
+  get 'password_resets_by_phone' => 'password_resets#new_by_phone'
+  patch 'password_resets_by_phone' => 'password_resets#update_by_phone'
   resources :password_resets,     only: [:new, :create, :edit, :update]
+
   resources :phone_verifications,only: [:new, :create]
-  get "users/new_by_phone" => 'users#new_by_phone'
-  post "users/new_by_phone" => "users#create_by_phone"
-  resources :users, only: [:edit, :new, :create]
+  get 'users/new_by_phone' => 'users#new_by_phone'
+  post 'users/new_by_phone' => 'users#create_by_phone'
+  resources :users, only: [:edit, :new, :create, :update]
+
+  get 'profile' => 'users#profile'
+  get 'profile/phone' => 'users#add_phone'
+
   resources :email_confirmations, only: [:edit]
 
 

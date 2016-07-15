@@ -21,8 +21,5 @@ class PhoneVerificationsController < ApplicationController
   end
 
   private
-    def send_sms (phone,pin)
-      logger.info phone
-      logger.info pin
-    end
+
 end
