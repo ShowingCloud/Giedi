@@ -11,6 +11,12 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "DOMELAB邮箱验证"
   end
 
+  def new_email_confirmation(user)
+    @user = user
+
+    mail to: user.new_email, subject: "DOMELAB邮箱验证"
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

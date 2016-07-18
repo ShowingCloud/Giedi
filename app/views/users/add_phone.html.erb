@@ -1,11 +1,10 @@
 <div class="container">
-  <h1>注册</h1>
+  <h1>添加／修改手机号</h1>
 
   <div class="form">
     <div class="col-md-6 col-md-offset-3">
       <%= form_for @user do |f| %>
         <%= render 'shared/error_messages' %>
-        <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
         <%= f.label :phone, '新手机号' %>
         <%= f.text_field :phone , class: 'form-control'%>
         <%= rucaptcha_input_tag(id:'captcha',class: 'form-control', placeholder: '图形验证码') %>

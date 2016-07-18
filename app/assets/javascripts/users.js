@@ -24,7 +24,7 @@ window.onload = function () {
       }).join('&');
 
     }else{
-      return false;
+      alert("something is missing");
     }
     request.open('POST', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -43,7 +43,7 @@ window.onload = function () {
       }).join('&');
 
     }else{
-      return false;
+      alert("something is missing");
     }
     request.open('POST', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');

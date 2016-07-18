@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714082142) do
+ActiveRecord::Schema.define(version: 20160718091035) do
 
   create_table "casino_auth_token_tickets", force: :cascade do |t|
     t.string   "ticket",     limit: 255, null: false
@@ -130,6 +130,15 @@ ActiveRecord::Schema.define(version: 20160714082142) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "user_extras", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "avatar",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "user_extras", ["user_id"], name: "index_user_extras_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name",                limit: 255
     t.string   "email",               limit: 255
@@ -144,10 +153,12 @@ ActiveRecord::Schema.define(version: 20160714082142) do
     t.datetime "reset_sent_at"
     t.string   "reset_pin",           limit: 255
     t.datetime "reset_pin_sent_at"
+    t.string   "new_email",           limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["phone"], name: "index_users_on_phone", using: :btree
 
+  add_foreign_key "user_extras", "users"
 end

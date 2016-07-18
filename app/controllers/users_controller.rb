@@ -1,13 +1,30 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
+  before_action :ensure_signed_in, only: [:profile, :edit, :update]
   def profile
     username = current_user.username
-    @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
+    @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
   end
 
   def add_phone
     username = current_user.username
-    @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
+    @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+  end
+
+  def add_email
+  end
+
+  def add_email_sent
+    if verify_rucaptcha?
+      username = current_user.username
+      @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+      @user.create_new_email_digest
+      @user.update_attribute(:new_email, params[:user][:new_email])
+      UserMailer.new_email_confirmation(@user).deliver_now
+      render :profile
+    else
+      render :add_email
+    end
   end
 
   def new
@@ -22,6 +39,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if verify_rucaptcha?(@user) && @user.save
       UserMailer.email_confirmation(@user).deliver_now
+
       data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:email]}}
       sign_in(data)
     else
@@ -46,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin
+    return unless params[:pin]&params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin
     username = current_user.username
     @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
     if @user.update_attributes(user_params)
@@ -76,6 +94,10 @@ class UsersController < ApplicationController
       end
       redirect_to '/sessions', status: :see_other
     end
+  end
+
+  def ensure_signed_in
+    redirect_to '/login' unless signed_in?
   end
 
 end

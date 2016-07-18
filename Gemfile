@@ -38,6 +38,8 @@ gem 'phonelib'
 
 gem 'sidekiq'
 
+gem 'carrierwave'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

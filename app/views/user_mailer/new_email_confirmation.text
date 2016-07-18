@@ -1,0 +1,5 @@
+你好 <%= @user.name %>,
+
+欢迎来到豆姆的世界! 点击下方的链接认证你的邮箱:
+
+<%= edit_email_confirmation_url(@user.confirmation_token, email: @user.new_email) %>
