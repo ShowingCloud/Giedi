@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_one :user_extra
+  accepts_nested_attributes_for :user_extra
+  mount_uploader :avatar, AvatarUploader
     attr_accessor :confirmation_token, :pin, :activation_token, :reset_token
     before_create :create_confirmation_digest, if: :email
     before_save   :downcase_email
@@ -12,6 +14,9 @@ class User < ActiveRecord::Base
     validates :phone, phone: { types: :mobile }, uniqueness: true, unless: :email?
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+    validates_integrity_of  :avatar
+    validates_processing_of :avatar
+    validate :avatar_size_validation
 
     def password_reset_expired?
         reset_sent_at < 2.hours.ago
@@ -57,6 +62,10 @@ class User < ActiveRecord::Base
     end
 
     private
+
+    def avatar_size_validation
+      errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
+    end
 
     def downcase_email
         self.email = email.downcase

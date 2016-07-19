@@ -61,22 +61,28 @@ class UsersController < ApplicationController
 
 
   def edit
+    @user = User.find(params[:id])
+  end
+
+  def edit_avatar
+    username = current_user.username
+    @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
   end
 
   def update
-    return unless params[:pin]&params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin
+    return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin if params[:pin]
     username = current_user.username
     @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
     if @user.update_attributes(user_params)
-      render 'profile'
+      redirect_to '/profile'
     else
-      render 'add_phone'
+      render Rails.application.routes.recognize_path(request.referer)[:action]
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :phone)
+    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, :user_extra_attributes => [:fullname, :gender, :birthday, :identity_card])
   end
 
   def handle_signed_in(tgt, options = {})

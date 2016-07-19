@@ -14,7 +14,12 @@
 
         <%= f.label :password, '密码' %>
         <%= f.password_field :password , class: 'form-control'%>
-
+        <div class="field">
+            <%= f.label :avatar do %>
+              <%= f.file_field :avatar %>
+              <%= f.hidden_field :avatar_cache %>
+            <% end %>
+          </div>
         <%= rucaptcha_input_tag(class: 'form-control', placeholder: '输入验证码') %>
         <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
 

@@ -1,7 +1,8 @@
 <ul>
-
-  <% if current_user.avatar.url.present? %>
-  <li><%= image_tag(current_user.avatar.url) %></li>
+  <% if @user.avatar.small.url.present? %>
+    <li>头像<%= image_tag(@user.avatar.small.url) %> <%= link_to "设置", profile_avatar_path %> </li>
+<% else %>
+    <li>头像 <%= link_to "设置", profile_avatar_path %> </li>
 <% end %>
 <li>用户名：<%= @user.name %></li>
 <% if @user.email? %>

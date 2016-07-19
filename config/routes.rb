@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'profile' => 'users#profile'
   get 'profile/phone' => 'users#add_phone'
   get 'profile/email' => 'users#add_email'
+  get 'profile/avatar' => 'users#edit_avatar'
   post 'profile/add_email' => 'users#add_email_sent'
 
   resources :email_confirmations, only: [:edit]
