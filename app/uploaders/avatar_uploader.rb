@@ -56,8 +56,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
+  def md5
+    @md5 ||= Digest::MD5.hexdigest model.send(mounted_as).read.to_s
+  end
+
   def filename
-    "avatar.jpg" if original_filename
+    @name ||= "#{md5}#{File.extname(super)}" if super
   end
 
 end
