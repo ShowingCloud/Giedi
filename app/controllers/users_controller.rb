@@ -2,13 +2,11 @@ class UsersController < ApplicationController
   include CASino::SessionsHelper
   before_action :ensure_signed_in, only: [:profile, :edit, :update]
   def profile
-    username = current_user.username
-    @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+    set_user
   end
 
   def add_phone
-    username = current_user.username
-    @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+    set_user
   end
 
   def add_email
@@ -16,8 +14,7 @@ class UsersController < ApplicationController
 
   def add_email_sent
     if verify_rucaptcha?
-      username = current_user.username
-      @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+      set_user
       @user.create_new_email_digest
       @user.update_attribute(:new_email, params[:user][:new_email])
       UserMailer.new_email_confirmation(@user).deliver_now
@@ -71,8 +68,7 @@ class UsersController < ApplicationController
 
   def update
     return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin if params[:pin]
-    username = current_user.username
-    @user=User.where('name = :query OR email = :query OR phone = :query', query: username).take
+    set_user
     if @user.update_attributes(user_params)
       redirect_to '/profile'
     else
@@ -82,7 +78,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, :user_extra_attributes => [:fullname, :gender, :birthday, :identity_card])
+    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:fullname, :gender, :birthday, :identity_card])
   end
 
   def handle_signed_in(tgt, options = {})
@@ -103,7 +99,19 @@ class UsersController < ApplicationController
   end
 
   def ensure_signed_in
-    redirect_to '/login' unless signed_in?
+      unless session[:user_id]
+        if  signed_in?
+          username = current_user.username
+          @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+          session[:user_id]=@user.id
+        else
+          redirect_to '/login'
+        end
+
+      end
   end
 
+  def set_user
+    @user||=User.find(session[:user_id])
+  end
 end

@@ -23,24 +23,26 @@ gem 'jquery-rails'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'casino', github: 'rbCAS/CASino'
-
+gem 'bcrypt', '~> 3.1.7'
 gem 'mysql2'
 
+#CAS SSO
+gem 'casino', github: 'rbCAS/CASino'
 gem 'casino-activerecord_authenticator'
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
-
+#captcha
 gem 'rucaptcha'
 
+#phone validation
 gem 'phonelib'
 
+#background processing
 gem 'sidekiq'
 
+#file uploads
 gem 'carrierwave'
-
 gem 'mini_magick'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

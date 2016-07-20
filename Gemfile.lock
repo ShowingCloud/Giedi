@@ -189,7 +189,7 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
-    redis (3.3.0)
+    redis (3.3.1)
     rotp (2.1.2)
     rqrcode (0.10.1)
       chunky_png (~> 1.0)

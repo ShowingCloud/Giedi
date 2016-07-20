@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_one :user_extra
-  accepts_nested_attributes_for :user_extra
+  accepts_nested_attributes_for :user_extra, :reject_if => :reject_tour
   mount_uploader :avatar, AvatarUploader
     attr_accessor :confirmation_token, :pin, :activation_token, :reset_token
     before_create :create_confirmation_digest, if: :email
@@ -17,6 +17,13 @@ class User < ActiveRecord::Base
     validates_integrity_of  :avatar
     validates_processing_of :avatar
     validate :avatar_size_validation
+
+    def reject_tour(attributes)
+      exists = attributes['id'].present?
+      empty = attributes.slice(:when, :where).values.all?(&:blank)
+      attributes.merge!({:_destroy => 1}) if exists and empty # destroy empty tour
+      return (!exists and empty) # reject empty attributes
+    end
 
     def password_reset_expired?
         reset_sent_at < 2.hours.ago
