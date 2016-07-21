@@ -45,6 +45,7 @@ gem 'mini_magick'
 
 #json api
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'jwt'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

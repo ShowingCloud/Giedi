@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_one :user_extra
-  accepts_nested_attributes_for :user_extra, :reject_if => :reject_tour
+  accepts_nested_attributes_for :user_extra
   mount_uploader :avatar, AvatarUploader
     attr_accessor :confirmation_token, :pin, :activation_token, :reset_token
     before_create :create_confirmation_digest, if: :email

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
   before_action :ensure_signed_in, only: [:profile, :edit, :update]
+  before_action :authenticate_request!, only:[:show]
   def profile
     set_user
   end
@@ -30,6 +31,15 @@ class UsersController < ApplicationController
 
   def new_by_phone
     @user = User.new
+  end
+
+
+  def show
+      @user = User.find(params[:id])
+      respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @user}
+    end
   end
 
   def create

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'users/new_by_phone' => 'users#new_by_phone'
   post 'users/new_by_phone' => 'users#create_by_phone'
 
-  resources :users, only: [:edit, :new, :create, :update]
+  resources :users, only: [:edit, :new, :create, :update, :show]
 
   get 'profile' => 'users#profile'
   get 'profile/phone' => 'users#add_phone'

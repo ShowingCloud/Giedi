@@ -12,7 +12,7 @@
             <%= f.hidden_field :avatar_cache %>
           <% end %>
         </div>
-      <%= f.fields_for :user_extra_attributes,@user.build_user_extra  do |ff| %>
+      <%= f.fields_for :user_extra_attributes,@user.user_extra  do |ff| %>
         <%= ff.label :fullname %>
         <%= ff.text_field :fullname, class: 'form-control' %>
 <div class="field">
