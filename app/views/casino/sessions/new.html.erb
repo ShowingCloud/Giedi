@@ -26,11 +26,11 @@
         <%= button_tag '登录', :class => 'button' %>
       <% end %>
     </div>
-      <% if params[:service].nil? %>
-        <%= link_to "注册", "/users/new"%>
-      <% else %>
-        <%= link_to "注册", "/users/new?service="+params[:service]%>
-      <% end %>
+      <%=
+         link_to_if(params[:service].nil?, "注册", "/users/new") do
+          link_to("注册","/users/new?service="+params[:service])
+        end
+      %>
   </div>
   <%= render 'footer' %>
 </div>

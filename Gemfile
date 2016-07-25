@@ -47,6 +47,10 @@ gem 'mini_magick'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
 
+gem "administrate", "~> 0.2.2"
+
+gem 'bourbon'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :phone_verifications
+resources :service_permissions
+resources :users
+resources :user_extras
+
+    root to: "phone_verifications#index"
+  end
+
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
   get 'password_resets_by_phone' => 'password_resets#new_by_phone'
   patch 'password_resets_by_phone' => 'password_resets#update_by_phone'

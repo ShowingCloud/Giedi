@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  
   def send_sms (phone,pin)
     logger.info phone
     logger.info pin
@@ -14,7 +15,9 @@ class ApplicationController < ActionController::Base
        render json: { errors: ['Not Authenticated'] }, status: :unauthorized
        return
      end
+
      @current_service = auth_token[:service]
+
    rescue JWT::VerificationError, JWT::DecodeError
      render json: { errors: ['Not Authenticated'] }, status: :unauthorized
    end
@@ -31,6 +34,6 @@ class ApplicationController < ActionController::Base
    end
 
    def user_id_in_token?
-     http_token && auth_token && auth_token[:service].to_i
+     http_token && auth_token && auth_token[:service].to_s
    end
 end

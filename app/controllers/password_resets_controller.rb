@@ -13,13 +13,13 @@ class PasswordResetsController < ApplicationController
 
     def create
         @user = User.find_by(email: params[:password_reset][:email].downcase)
-        if @user
+        if @user && @user.confirmed
             @user.create_reset_digest
             @user.send_password_reset_email
             flash[:info] = "重置邮件已发送到你的邮箱"
             redirect_to '/'
         else
-            flash.now[:danger] = "该邮箱未注册"
+            flash.now[:notice] = "该邮箱未注册或未认证"
             render 'new'
         end
     end

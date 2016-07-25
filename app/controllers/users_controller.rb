@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
   before_action :ensure_signed_in, only: [:profile, :edit, :update]
-  before_action :authenticate_request!, only:[:show]
+  before_action :authenticate_request!, only:[:show], :if => :format_json?
+  before_action :authenticate_admin!,only:[:index]
+
+  def index
+    
+  end
+
   def profile
     set_user
   end
@@ -38,7 +44,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       respond_to do |format|
       format.html { render :show }
-      format.json { render json: @user}
+      format.json { render json: @user,service_permission: ServicePermission.find_by_name("robodou.cn")}
     end
   end
 
@@ -60,7 +66,6 @@ class UsersController < ApplicationController
     if @user.save
       data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:phone]}}
       sign_in(data)
-
     else
       render '/users/new_by_phone'
     end
@@ -87,7 +92,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
+  def user_params()
     params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:fullname, :gender, :birthday, :identity_card])
   end
 
@@ -123,5 +128,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user||=User.find(session[:user_id])
+  end
+
+  def format_json?
+    request.format.json?
   end
 end
