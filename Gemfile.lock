@@ -115,6 +115,12 @@ GEM
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    devise (4.2.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.1)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     enumerable-lazy (0.0.1)
     equalizer (0.0.11)
@@ -125,7 +131,7 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
-    faker (1.6.5)
+    faker (1.6.6)
       i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -184,6 +190,7 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     normalize-rails (3.0.3)
+    orm_adapter (0.5.0)
     phonelib (0.6.2)
     phpass-ruby (0.1.2)
     pkg-config (1.1.7)
@@ -222,6 +229,8 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     redis (3.3.1)
+    responders (2.2.0)
+      railties (>= 4.2.0, < 5.1)
     rotp (2.1.2)
     rqrcode (0.10.1)
       chunky_png (~> 1.0)
@@ -293,6 +302,8 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    warden (1.2.6)
+      rack (>= 1.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -315,6 +326,7 @@ DEPENDENCIES
   casino!
   casino-activerecord_authenticator
   database_cleaner
+  devise
   factory_girl_rails
   faker
   jquery-rails

@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-
+  
   namespace :admin do
-    resources :phone_verifications
-resources :service_permissions
-resources :users
-resources :user_extras
-
-    root to: "phone_verifications#index"
+    resources :admin_users
+    resources :service_permissions
+    resources :service_rules
+    resources :users
+    resources :user_extras
+    root to: "admin_users#index"
   end
+
+  devise_for :admin_users, path: 'admin', skip: :registrations
 
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
   get 'password_resets_by_phone' => 'password_resets#new_by_phone'
@@ -25,6 +27,7 @@ resources :user_extras
   get 'profile/email' => 'users#add_email'
   get 'profile/avatar' => 'users#edit_avatar'
   post 'profile/add_email' => 'users#add_email_sent'
+  get 'profile/password' => 'users#edit_password'
 
   resources :email_confirmations, only: [:edit]
   mount CASino::Engine => '/', :as => 'casino'

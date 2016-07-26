@@ -51,6 +51,8 @@ gem "administrate", "~> 0.2.2"
 
 gem 'bourbon'
 
+gem 'devise'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

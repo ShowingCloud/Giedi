@@ -1,12 +1,8 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  before_action :ensure_signed_in, only: [:profile, :edit, :update]
-  before_action :authenticate_request!, only:[:show], :if => :format_json?
-  before_action :authenticate_admin!,only:[:index]
-
-  def index
-    
-  end
+  before_action :ensure_signed_in, except:[:new, :new_by_phone]
+  skip_before_action :ensure_signed_in, only:[:show,:update], :if => :format_json?
+  before_action :authenticate_request!, only:[:show,:update], :if => :format_json?
 
   def profile
     set_user
@@ -41,10 +37,10 @@ class UsersController < ApplicationController
 
 
   def show
-      @user = User.find(params[:id])
+    @user = User.find(params[:id])
       respond_to do |format|
       format.html { render :show }
-      format.json { render json: @user,service_permission: ServicePermission.find_by_name("robodou.cn")}
+      format.json { render json: @user,service_permission: ServicePermission.find_by_name(@current_service)}
     end
   end
 
@@ -71,9 +67,12 @@ class UsersController < ApplicationController
     end
   end
 
-
   def edit
     @user = User.find(params[:id])
+  end
+
+  def edit_password
+    set_user
   end
 
   def edit_avatar
@@ -82,13 +81,21 @@ class UsersController < ApplicationController
   end
 
   def update
-    return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin if params[:pin]
+    return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin if params[:phone]
     set_user
-    if @user.update_attributes(user_params)
-      redirect_to '/profile'
-    else
-      render Rails.application.routes.recognize_path(request.referer)[:action]
+    
+     return unless params.has_key?[:current_password] && @user.authenticate(params[:current_password]) if params[:password]
+
+    respond_to do |format|
+      if @user.update_attributes(user_params)
+        format.html { redirect_to '/profile' }
+        format.json { head :no_content }
+      else
+        format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
+
   end
 
   private
