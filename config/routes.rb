@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
   
+  get 'user_extras/show'
+
+  get 'user_extras/update'
+
+  resources :user_extras
+  get 'user_extra/show'
+
+  get 'user_extra/update'
+
   namespace :admin do
     resources :admin_users
     resources :service_permissions
     resources :service_rules
     resources :users
-    resources :user_extras
-    root to: "admin_users#index"
+      root to: "admin_users#index"
   end
 
   devise_for :admin_users, path: 'admin', skip: :registrations
@@ -21,6 +29,7 @@ Rails.application.routes.draw do
   post 'users/new_by_phone' => 'users#create_by_phone'
 
   resources :users, only: [:edit, :new, :create, :update, :show]
+  resources :user_extras, only: [:update, :show]
 
   get 'profile' => 'users#profile'
   get 'profile/phone' => 'users#add_phone'

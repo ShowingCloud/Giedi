@@ -26,6 +26,7 @@ class PasswordResetsController < ApplicationController
 
     def create_by_phone
         if verify_rucaptcha?
+            render(json: { msg: 'invalid phone number', code: 'E001' }, status: 422) && return unless phone = Phonelib.parse(params[:phone]).valid?
             @user = User.find_by(phone: params[:phone])
             if @user
                 pin = rand(1000..9999)
@@ -33,8 +34,7 @@ class PasswordResetsController < ApplicationController
                 send_sms params[:phone], pin
                 head :no_content
             else
-                flash.now[:danger] = "该手机未注册"
-                render 'new_by_phone'
+                render json: { msg: 'unregisted phone number', code: 'E003' }, status: 422
             end
         else
             head :forbidden
