@@ -28,6 +28,9 @@ development:
         password_column: "password_digest"
         extra_attributes:
           email: "email"
+          nickname: "name"
+          mobile: "phone"
+          guid: "id"
     auth_user_by_phone:
       authenticator: "ActiveRecord"
       options:
@@ -41,8 +44,10 @@ development:
         username_column: "phone"
         password_column: "password_digest"
         extra_attributes:
-          phone: "phone"
-
+          email: "email"
+          nickname: "name"
+          mobile: "phone"
+          guid: "id"
     auth_user_by_email:
       authenticator: "ActiveRecord"
       options:
@@ -57,6 +62,9 @@ development:
         password_column: "password_digest"
         extra_attributes:
           email: "email"
+          nickname: "name"
+          mobile: "phone"
+          guid: "id"
 test:
   <<: *defaults
   authenticators:

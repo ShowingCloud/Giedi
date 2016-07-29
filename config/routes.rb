@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'user_extras/show'
-
-  get 'user_extras/update'
-
-  resources :user_extras
-  get 'user_extra/show'
-
-  get 'user_extra/update'
 
   namespace :admin do
     resources :admin_users
@@ -29,7 +20,7 @@ Rails.application.routes.draw do
   post 'users/new_by_phone' => 'users#create_by_phone'
 
   resources :users, only: [:edit, :new, :create, :update, :show]
-  resources :user_extras, only: [:update, :show]
+  resources :users, only: [:update, :show],path:"userinfos" 
 
   get 'profile' => 'users#profile'
   get 'profile/phone' => 'users#add_phone'
