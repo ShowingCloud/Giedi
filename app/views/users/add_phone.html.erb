@@ -1,20 +1,19 @@
 <div class="container">
-  <h1>添加／修改手机号</h1>
+    <h1>添加／修改手机号</h1>
 
-  <div class="form">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_for @user do |f| %>
-        <%= render 'shared/error_messages' %>
-        <%= f.label :phone, '新手机号' %>
-        <%= f.text_field :phone , class: 'form-control'%>
-        <%= rucaptcha_input_tag(id:'captcha',class: 'form-control', placeholder: '图形验证码') %>
-        <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
-        <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn", :id => "phone_verification" %>
-        <%= text_field_tag :pin, params[:pin], placeholder: '手机验证码'%>
+    <div class="form">
+        <div class="col-md-6 col-md-offset-3">
+            <%= form_for @user do |f| %>
+            <%= render 'shared/error_messages' %>
+            <%= f.label :phone, '新手机号' %>
+            <%= f.text_field :phone , class: 'form-control'%>
+            <%= rucaptcha_input_tag(id:'captcha',class: 'form-control', placeholder: '图形验证码') %>
+            <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+            <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn", :id => "phone_verification" %>
+            <%= text_field_tag :pin, params[:pin], placeholder: '手机验证码'%>
 
-        <%= f.submit "添加／修改手机", class: "btn btn-primary" %>
-      <% end %>
+            <%= f.submit "添加／修改手机", class: "btn btn-primary" %>
+            <% end %>
+        </div>
     </div>
-  </div>
-<%= link_to "手机注册",users_new_by_phone_path %>
-<div>
+    <div>

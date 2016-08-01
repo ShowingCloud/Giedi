@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+<%= link_to "返回",@referrer %><span>3秒后自动跳转</span>
+
+<script language="javascript" type="text/javascript">
+  setTimeout(function(){window.location=$('a').attr('href')},3000);
+</script>

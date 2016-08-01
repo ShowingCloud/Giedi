@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :ensure_signed_in, except:[:new, :new_by_phone]
   skip_before_action :ensure_signed_in, only:[:show,:update], :if => :format_json?
   before_action :authenticate_request!, only:[:show,:update], :if => :format_json?
-
+  before_action :set_referrer,only:[:update,:add_phone,:add_email,:edit_password]
   def profile
     set_user
   end
@@ -21,7 +21,8 @@ class UsersController < ApplicationController
       @user.create_new_email_digest
       @user.update_attribute(:new_email, params[:user][:new_email])
       UserMailer.new_email_confirmation(@user).deliver_now
-      render :profile
+      flash[:notice] = "验证邮件已发送"
+      handle_redirect_back
     else
       render :add_email
     end
@@ -83,12 +84,15 @@ class UsersController < ApplicationController
   def update
     return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin if params[:phone]
     set_user
-    
+
      return unless params.has_key?[:current_password] && @user.authenticate(params[:current_password]) if params[:password]
 
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to '/profile' }
+        format.html {
+          flash[:notice] = "修改成功"
+          handle_redirect_back
+        }
         format.json { head :no_content }
       else
         format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
@@ -101,6 +105,15 @@ class UsersController < ApplicationController
   private
   def user_params()
     params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:fullname, :gender, :birthday, :identity_card])
+  end
+
+  def handle_redirect_back
+    @referrer  = session.delete(:referrer)
+    if @referrer.present?
+      render 'users/transfer_stop.html'
+    else
+      redirect_to '/profile'
+    end
   end
 
   def handle_signed_in(tgt, options = {})
@@ -139,5 +152,9 @@ class UsersController < ApplicationController
 
   def format_json?
     request.format.json?
+  end
+
+  def set_referrer
+    session[:referrer]=request.referrer unless request.host == URI.parse(request.referrer).host
   end
 end

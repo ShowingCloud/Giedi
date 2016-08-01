@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
+
   def send_sms (phone,pin)
     logger.info phone
     logger.info pin
@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
 
   protected
    def authenticate_request!
+      if request.headers['Authorization'].present?
+         logger.info request.headers['Authorization']
+      else
+        logger.info "no Authorization"
+      end
      unless user_id_in_token?
        render json: { errors: ['Not Authenticated'] }, status: :unauthorized
        return

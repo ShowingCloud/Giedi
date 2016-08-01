@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post 'users/new_by_phone' => 'users#create_by_phone'
 
   resources :users, only: [:edit, :new, :create, :update, :show]
-  resources :users, only: [:update, :show],path:"userinfos" 
+  resources :users, only: [:update, :show], path:"user_infos"
 
   get 'profile' => 'users#profile'
   get 'profile/phone' => 'users#add_phone'
