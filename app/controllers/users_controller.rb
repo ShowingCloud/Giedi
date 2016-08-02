@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   include CASino::SessionsHelper
   before_action :ensure_signed_in, except:[:new, :new_by_phone]
   skip_before_action :ensure_signed_in, only:[:show,:update], :if => :format_json?
-  before_action :authenticate_request!, only:[:show,:update], :if => :format_json?
-  before_action :set_referrer,only:[:update,:add_phone,:add_email,:edit_password]
+  before_action :authenticate_request!, :if => :format_json?
+  before_action :set_referrer,only:[:update,:add_phone,:add_email,:edit_password], :unless => :format_json?
   def profile
     set_user
   end
@@ -147,7 +147,11 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user||=User.find(session[:user_id])
+    unless format_json?
+      @user||=User.find(session[:user_id])
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def format_json?

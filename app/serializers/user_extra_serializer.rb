@@ -1,5 +1,5 @@
 class UserExtraSerializer < ActiveModel::Serializer
-  attribute :fullname,key: :username , if: :fullname?
+  attribute :fullname, if: :fullname?
   attribute :gender, if: :gender?
   attribute :birthday, if: :birthday?
   attribute :identity_card
