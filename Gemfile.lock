@@ -327,7 +327,7 @@ DEPENDENCIES
   casino-activerecord_authenticator
   database_cleaner
   devise
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   faker
   jquery-rails
   jwt
