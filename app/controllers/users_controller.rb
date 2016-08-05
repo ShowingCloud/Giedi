@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  before_action :ensure_signed_in, except:[:new, :new_by_phone]
+  before_action :ensure_signed_in, except:[:new, :new_by_phone, :create, :create_by_phone]
   skip_before_action :ensure_signed_in, only:[:show,:update], :if => :format_json?
   before_action :authenticate_request!, :if => :format_json?
   before_action :set_referrer,only:[:update,:add_phone,:add_email,:edit_password], :unless => :format_json?
@@ -20,7 +20,8 @@ class UsersController < ApplicationController
       set_user
       @user.create_new_email_digest
       @user.update_attribute(:new_email, params[:user][:new_email])
-      UserMailer.new_email_confirmation(@user).deliver_now
+      @token = {:token=>@user.confirmation_token}
+      UserMailer.new_email_confirmation(@user,@token).deliver_later
       flash[:notice] = "验证邮件已发送"
       handle_redirect_back
     else
@@ -48,7 +49,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if verify_rucaptcha?(@user) && @user.save
-      UserMailer.email_confirmation(@user).deliver_now
+      @token = {:token=>@user.confirmation_token}
+      UserMailer.email_confirmation(@user,@token).deliver_later
 
       data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:email]}}
       sign_in(data)
@@ -77,8 +79,7 @@ class UsersController < ApplicationController
   end
 
   def edit_avatar
-    username = current_user.username
-    @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+    set_user
   end
 
   def update
@@ -159,6 +160,6 @@ class UsersController < ApplicationController
   end
 
   def set_referrer
-    session[:referrer]=request.referrer unless request.host == URI.parse(request.referrer).host
+    session[:referrer]=request.referrer unless request.host == URI.parse(request.referrer).host if request.referrer
   end
 end

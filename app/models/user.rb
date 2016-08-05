@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     accepts_nested_attributes_for :user_extra
     mount_uploader :avatar, AvatarUploader
     before_create :create_confirmation_digest, if: :email
-    before_save   :downcase_email
+    before_save   :downcase_email, if: :email
     validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, length: { maximum: 100 },

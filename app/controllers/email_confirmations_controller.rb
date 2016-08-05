@@ -15,7 +15,7 @@ class EmailConfirmationsController < ApplicationController
       end
     elsif params[:new_email]
       user = User.find_by(new_email: params[:new_email])
-      if user && !user.confirmed? && user.authenticated?(params[:id])
+      if user && user.authenticated?(params[:id])
         user.update_attribute(:email,params[:new_email])
         user.update_attribute(:confirmed,true)
         user.update_attribute(:confirmed_at, Time.zone.now)

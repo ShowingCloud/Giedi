@@ -5,15 +5,15 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.email_confirmation.subject
   #
-  def email_confirmation(user)
+  def email_confirmation(user,token)
     @user = user
-
+    @token = token
     mail to: user.email, subject: "DOMELAB邮箱验证"
   end
 
-  def new_email_confirmation(user)
+  def new_email_confirmation(user,token)
     @user = user
-
+    @token = token
     mail to: user.new_email, subject: "DOMELAB邮箱验证"
   end
 
