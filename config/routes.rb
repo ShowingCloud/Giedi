@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :phone_verifications,only: [:new, :create]
   get 'users/new_by_phone' => 'users#new_by_phone'
   post 'users/new_by_phone' => 'users#create_by_phone'
+  get 'users/resend_email' => 'users#resend_email'
 
   resources :users, only: [:edit, :new, :create, :update, :show]
   resources :users, only: [:update, :show], path:"user_infos" do

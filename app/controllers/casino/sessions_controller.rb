@@ -26,7 +26,15 @@ class CASino::SessionsController < CASino::ApplicationController
       log_failed_login params[:username]
       show_login_error I18n.t('login_credential_acceptor.invalid_login_credentials')
     else
-      sign_in(validation_result, long_term: params[:rememberMe], credentials_supplied: true)
+      extra_attributes = validation_result[:user_data][:extra_attributes]
+      if  extra_attributes[:confirmed] || extra_attributes[:phone]
+        sign_in(validation_result, long_term: params[:rememberMe], credentials_supplied: true)
+      else
+        @user_name = extra_attributes[:name]
+        @email = extra_attributes[:email]
+        session[:user_id]=extra_attributes[:guid]
+        render "users/before_confirmed"
+      end
     end
   end
 

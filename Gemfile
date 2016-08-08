@@ -53,6 +53,8 @@ gem 'bourbon'
 
 gem 'devise'
 
+gem 'config'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

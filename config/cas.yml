@@ -30,6 +30,7 @@ development:
           email: "email"
           nickname: "name"
           mobile: "phone"
+          confirmed: "confirmed"
           guid: "id"
     auth_user_by_phone:
       authenticator: "ActiveRecord"
@@ -64,6 +65,7 @@ development:
           email: "email"
           nickname: "name"
           mobile: "phone"
+          confirmed: "confirmed"
           guid: "id"
 test:
   <<: *defaults

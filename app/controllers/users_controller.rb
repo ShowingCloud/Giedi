@@ -51,9 +51,10 @@ class UsersController < ApplicationController
     if verify_rucaptcha?(@user) && @user.save
       @token = {:token=>@user.confirmation_token}
       UserMailer.email_confirmation(@user,@token).deliver_later
-
-      data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:email]}}
-      sign_in(data)
+      # data = { authenticator: 'create_by_email', user_data: { username: params[:user][:email]}}
+      # sign_in(data)
+      @user_name = @user.name
+      render "users/before_confirmed"
     else
       render "users/new"
     end
@@ -63,7 +64,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin
     if @user.save
-      data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:phone]}}
+      data = { authenticator: 'create_by_phone', user_data: { username: params[:user][:phone]}}
       sign_in(data)
     else
       render '/users/new_by_phone'
@@ -80,6 +81,17 @@ class UsersController < ApplicationController
 
   def edit_avatar
     set_user
+  end
+
+  def resend_email
+    @user=User.find_by(email:params[:email])
+    if @user && !@user.confirmed
+      @user.send:create_confirmation_digest
+      @user.save
+      @token = {:token=>@user.confirmation_token}
+      UserMailer.email_confirmation(@user,@token).deliver_later
+      render "users/confirmation_send"
+    end
   end
 
   def update
@@ -137,9 +149,9 @@ class UsersController < ApplicationController
   def ensure_signed_in
       unless session[:user_id]
         if  signed_in?
-          username = current_user.username
-          @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
-          session[:user_id]=@user.id
+          guid = current_user.extra_attributes[:guid]
+          # @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+          session[:user_id]=guid
         else
           redirect_to '/login'
         end

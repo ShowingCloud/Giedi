@@ -2,6 +2,7 @@ class EmailConfirmationsController < ApplicationController
   include CASino::SessionsHelper
 
   def edit
+    session.clear
     if params[:email]
       user = User.find_by(email: params[:email])
       if user && !user.confirmed? && user.authenticated?(params[:id])

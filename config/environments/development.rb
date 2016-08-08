@@ -24,9 +24,9 @@ Rails.application.configure do
     :address        => 'smtp.163.com',
     :port           => '25',
     :authentication => :plain,
-    :user_name      => ENV['emailusername'],
-    :password       => ENV['emailpassword'],
-    :domain         => '163.com'
+    :user_name      => Settings.email.account,
+    :password       => Settings.email.password,
+    :domain         => Settings.email.domain
 }
 
   # Print deprecation notices to the Rails logger.

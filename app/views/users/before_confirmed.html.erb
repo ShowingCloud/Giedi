@@ -1,0 +1,3 @@
+<p>你好，<%= @user_name %></p>
+<p>你的邮箱<%= @email %>还未验证，请先验证邮箱</p>
+<%= link_to "重新发送验证邮件" ,"users/resend_email?email="+@email %>

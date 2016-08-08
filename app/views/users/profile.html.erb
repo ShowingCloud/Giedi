@@ -8,7 +8,7 @@
 <% if @user.email? %>
   <li>邮箱：<%= @user.email %>
     <% unless @user.confirmed? %>
-    （未验证）
+    （未验证）<%= link_to "重新发送验证邮件", users_resend_email_path(email:@user.email) %>
     <% end %>
     <%= link_to "修改","/profile/email"%></li>
 <% else %>
