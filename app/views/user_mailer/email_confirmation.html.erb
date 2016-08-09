@@ -2,4 +2,4 @@
 <p>
 欢迎来到豆姆的世界! 点击下方的链接认证你的邮箱:
 </p>
-<%= link_to "验证邮箱", edit_email_confirmation_url(@token[:token], email: @user.email) %>
+<%= link_to "验证邮箱", edit_email_confirmation_url(@token, email: @user.email) %>

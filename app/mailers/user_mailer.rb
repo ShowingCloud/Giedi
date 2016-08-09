@@ -22,8 +22,9 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.password_reset.subject
   #
-  def password_reset(user)
+  def password_reset(user,reset_token)
     @user = user
+    @reset_token = reset_token
     mail to: user.email, subject: "DOMELAB重置密码"
   end
 end

@@ -34,8 +34,8 @@ class AdminUserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :email,
-    :current_sign_in_at,
-    :current_sign_in_ip,
+    :encrypted_password,
+    :reset_password_token,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -63,7 +63,19 @@ class AdminUserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :email
+    :email,
+    :encrypted_password,
+    :reset_password_token,
+    :reset_password_sent_at,
+    :remember_created_at,
+    :sign_in_count,
+    :current_sign_in_at,
+    :last_sign_in_at,
+    :current_sign_in_ip,
+    :last_sign_in_ip,
+    :failed_attempts,
+    :unlock_token,
+    :locked_at,
   ].freeze
 
   # Overwrite this method to customize how admin users are displayed

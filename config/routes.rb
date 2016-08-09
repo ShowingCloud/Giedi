@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :service_permissions
     resources :service_rules
     resources :users
+    resources :user_extras
       root to: "admin_users#index"
   end
 

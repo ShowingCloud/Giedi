@@ -47,13 +47,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_create_params)
+    params[:user][:register_from] = params[:service] if params[:service]
     if verify_rucaptcha?(@user) && @user.save
-      @token = {:token=>@user.confirmation_token}
+      @token=@user.confirmation_token
       UserMailer.email_confirmation(@user,@token).deliver_later
       # data = { authenticator: 'create_by_email', user_data: { username: params[:user][:email]}}
       # sign_in(data)
       @user_name = @user.name
+      @email = @user.email
       render "users/before_confirmed"
     else
       render "users/new"
@@ -61,7 +63,8 @@ class UsersController < ApplicationController
   end
 
   def create_by_phone
-    @user = User.new(user_params)
+    params[:user][:register_from] = params[:service] if params[:service]
+    @user = User.new(user_create_params)
     return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin
     if @user.save
       data = { authenticator: 'create_by_phone', user_data: { username: params[:user][:phone]}}
@@ -88,9 +91,11 @@ class UsersController < ApplicationController
     if @user && !@user.confirmed
       @user.send:create_confirmation_digest
       @user.save
-      @token = {:token=>@user.confirmation_token}
+      @token = @user.confirmation_token
       UserMailer.email_confirmation(@user,@token).deliver_later
       render "users/confirmation_send"
+    else
+      render(:status => 404)
     end
   end
 
@@ -118,6 +123,10 @@ class UsersController < ApplicationController
   private
   def user_params()
     params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:fullname, :gender, :birthday, :identity_card])
+  end
+
+  def user_create_params()
+    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache,:register_from)
   end
 
   def handle_redirect_back

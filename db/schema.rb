@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726025023) do
+ActiveRecord::Schema.define(version: 20160809082818) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -176,34 +176,24 @@ ActiveRecord::Schema.define(version: 20160726025023) do
 
   add_index "user_extras", ["user_id"], name: "index_user_extras_on_user_id", using: :btree
 
-  create_table "user_infos", force: :cascade do |t|
-    t.integer  "user_id_id",    limit: 4
-    t.string   "realname",      limit: 255
-    t.integer  "gender",        limit: 4
-    t.date     "birthday"
-    t.string   "identity_card", limit: 18
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  add_index "user_infos", ["user_id_id"], name: "index_user_infos_on_user_id_id", using: :btree
-
   create_table "users", force: :cascade do |t|
-    t.string   "name",                limit: 255
-    t.string   "email",               limit: 255
-    t.string   "phone",               limit: 255
-    t.string   "password_digest",     limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "confirmation_digest", limit: 255
-    t.boolean  "confirmed",                       default: false
+    t.string   "name",                 limit: 255
+    t.string   "email",                limit: 255
+    t.string   "phone",                limit: 255
+    t.string   "password_digest",      limit: 255
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "confirmation_digest",  limit: 255
+    t.boolean  "confirmed",                        default: false
     t.datetime "confirmed_at"
-    t.string   "reset_digest",        limit: 255
+    t.string   "reset_digest",         limit: 255
     t.datetime "reset_sent_at"
-    t.string   "reset_pin",           limit: 255
+    t.string   "reset_pin",            limit: 255
     t.datetime "reset_pin_sent_at"
-    t.string   "new_email",           limit: 255
-    t.string   "avatar",              limit: 255
+    t.string   "new_email",            limit: 255
+    t.string   "avatar",               limit: 255
+    t.string   "register_from",        limit: 255
+    t.date     "confirmation_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

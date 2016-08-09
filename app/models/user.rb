@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
         reset_sent_at < 2.hours.ago
     end
 
+    def confirmation_expired?
+        confirmation_sent_at < 2.hours.ago
+    end
+
     def authenticated?(confirmation_token)
         return false if confirmation_digest.nil?
         BCrypt::Password.new(confirmation_digest).is_password?(confirmation_token)
@@ -62,10 +66,12 @@ class User < ActiveRecord::Base
     def create_new_email_digest
         self.confirmation_token = User.new_token
         update_attribute(:confirmation_digest, User.digest(confirmation_token))
+        update_attribute(:confirmation_sent_at, Time.zone.now)
     end
 
     def send_password_reset_email
-        UserMailer.password_reset(self).deliver_now
+        @reset_token = self.reset_token
+        UserMailer.password_reset(self,@reset_token).deliver_later
     end
 
     private
@@ -81,5 +87,6 @@ class User < ActiveRecord::Base
     def create_confirmation_digest
         self.confirmation_token = User.new_token
         self.confirmation_digest = User.digest(confirmation_token)
+        self.confirmation_sent_at = Time.zone.now
     end
 end

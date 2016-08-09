@@ -26,7 +26,7 @@ class PasswordResetsController < ApplicationController
 
     def create_by_phone
         if verify_rucaptcha?
-            render(json: { msg: 'invalid phone number', code: 'E001' }, status: 422) && return unless phone = Phonelib.parse(params[:phone]).valid?
+            render(json: { msg: 'invalid phone number', code: 'E001' }, status: 422) && return unless Phonelib.parse(params[:phone]).valid?
             @user = User.find_by(phone: params[:phone])
             if @user
                 pin = rand(1000..9999)

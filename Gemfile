@@ -28,7 +28,7 @@ gem 'mysql2'
 
 #CAS SSO
 gem 'casino', github: 'rbCAS/CASino'
-gem 'casino-activerecord_authenticator'
+gem 'casino-activerecord_authenticator',github:'Bikeman18/dome-activerecord_authenticator'
 
 #captcha
 gem 'rucaptcha'
