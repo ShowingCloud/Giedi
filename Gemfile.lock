@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Bikeman18/dome-activerecord_authenticator.git
-  revision: 61d416896a92605eb5cf8d565a2d2f7e4cba10fa
+  revision: ea5f06c6b10d05e61076f727b716d1e2e996944f
   specs:
     casino-activerecord_authenticator (4.0.1)
       activerecord (>= 4.1.0, < 4.3.0)
@@ -200,7 +200,7 @@ GEM
       pkg-config (~> 1.1.7)
     normalize-rails (3.0.3)
     orm_adapter (0.5.0)
-    phonelib (0.6.2)
+    phonelib (0.6.3)
     phpass-ruby (0.1.2)
     pkg-config (1.1.7)
     rack (1.6.4)

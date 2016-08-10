@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :authenticate_request!, :if => :format_json?
   before_action :set_referrer,only:[:update,:add_phone,:add_email,:edit_password], :unless => :format_json?
   def profile
+    response.headers.delete "X-Frame-Options"
     set_user
   end
 
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
       set_user
       @user.create_new_email_digest
       @user.update_attribute(:new_email, params[:user][:new_email])
-      @token = {:token=>@user.confirmation_token}
+      @token = @user.confirmation_token
       UserMailer.new_email_confirmation(@user,@token).deliver_later
       flash[:notice] = "验证邮件已发送"
       handle_redirect_back

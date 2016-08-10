@@ -193,7 +193,7 @@ ActiveRecord::Schema.define(version: 20160809082818) do
     t.string   "new_email",            limit: 255
     t.string   "avatar",               limit: 255
     t.string   "register_from",        limit: 255
-    t.date     "confirmation_sent_at"
+    t.datetime "confirmation_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
