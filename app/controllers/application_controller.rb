@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery unless: -> { request.format.json? }
 
   def send_sms (phone,pin)
-    logger.info phone
-    logger.info pin
+    require 'submail'
+    submail=Submail.new
+    submail.sms(phone,pin).parsed_response
   end
 
   protected

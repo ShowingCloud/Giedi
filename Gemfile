@@ -55,6 +55,8 @@ gem 'devise'
 
 gem 'config'
 
+gem 'httparty'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
