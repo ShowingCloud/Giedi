@@ -12,3 +12,14 @@ zh-CN:
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
+  phone_verification:
+    invalid: "无效的短信验证码"
+    blank: "短信验证码不能为空"
+  date:
+    order:
+      - :year
+      - :month
+      - :day
+
+  current_password:
+    wrong: "原密码错误"

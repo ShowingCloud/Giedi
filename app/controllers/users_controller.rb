@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  before_action :ensure_signed_in, except:[:new, :new_by_phone, :create, :create_by_phone]
-  skip_before_action :ensure_signed_in, only:[:show,:update], :if => :format_json?
-  before_action :authenticate_request!, :if => :format_json?
-  before_action :set_referrer,only:[:update,:add_phone,:add_email,:edit_password], :unless => :format_json?
+  before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone]
+  skip_before_action :ensure_signed_in, only: [:show, :update], if: :format_json?
+  before_action :authenticate_request!, if: :format_json?
+  before_action :set_referrer, only: [:update, :add_phone, :add_email, :edit_password], unless: :format_json?
   before_action :set_x_frame_option
   def profile
     set_user
@@ -22,10 +22,10 @@ class UsersController < ApplicationController
       @user.create_new_email_digest
       @user.update_attribute(:new_email, params[:user][:new_email])
       @token = @user.confirmation_token
-      UserMailer.new_email_confirmation(@user,@token).deliver_later
+      UserMailer.new_email_confirmation(@user, @token).deliver_later
       flash[:notice] = "验证邮件已发送"
-      render "users/notice"
-      #handle_redirect_back
+      render 'users/notice'
+    # handle_redirect_back
     else
       render :add_email
     end
@@ -39,12 +39,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
   def show
     @user = User.find(params[:id])
-      respond_to do |format|
+    respond_to do |format|
       format.html { render :show }
-      format.json { render json: @user,service_permission: ServicePermission.find_by_name(@current_service)}
+      format.json { render json: @user, service_permission: ServicePermission.find_by_name(@current_service) }
     end
   end
 
@@ -52,24 +51,31 @@ class UsersController < ApplicationController
     @user = User.new(user_create_params)
     params[:user][:register_from] = params[:service] if params[:service]
     if verify_rucaptcha?(@user) && @user.save
-      @token=@user.confirmation_token
-      UserMailer.email_confirmation(@user,@token).deliver_later
-      # data = { authenticator: 'create_by_email', user_data: { username: params[:user][:email]}}
-      # sign_in(data)
+      @token = @user.confirmation_token
+      UserMailer.email_confirmation(@user, @token).deliver_later
       @user_name = @user.name
       @email = @user.email
-      render "users/before_confirmed"
+      render 'users/before_confirmed'
     else
-      render "users/new"
+      render 'users/new'
     end
   end
 
   def create_by_phone
     params[:user][:register_from] = params[:service] if params[:service]
     @user = User.new(user_create_params)
-    return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin
+    if params[:pin].blank?
+      @user.errors.add(:base, t('phone_verification.blank'))
+      render('/users/new_by_phone') && return
+    end
+
+    unless verify_sms? params[:phone]
+      @user.errors.add(:base, t('phone_verification.invalid'))
+      render('/users/new_by_phone') && return
+    end
+
     if @user.save
-      data = { authenticator: 'create_by_phone', user_data: { username: params[:user][:phone]}}
+      data = { authenticator: 'create_by_phone', user_data: { username: @user.phone, extra_attributes: { email: @user.email, nickname: @user.name, mobile: @user.phone, guid: @user.id } } }
       sign_in(data)
     else
       render '/users/new_by_phone'
@@ -89,50 +95,61 @@ class UsersController < ApplicationController
   end
 
   def resend_email
-    @user=User.find_by(email:params[:email])
+    @user = User.find_by(email: params[:email])
     if @user && !@user.confirmed
       @user.send:create_confirmation_digest
       @user.save
       @token = @user.confirmation_token
-      UserMailer.email_confirmation(@user,@token).deliver_later
-      render "users/confirmation_send"
+      UserMailer.email_confirmation(@user, @token).deliver_later
+      render 'users/confirmation_send'
     else
-      render(:status => 404)
+      render(status: 404)
     end
   end
 
   def update
-    return unless params[:pin] == PhoneVerification.find_by(phone: params[:user][:phone]).pin if params[:phone]
     set_user
+    unless params[:user][:phone].blank?
+      unless verify_sms? params[:user][:phone]
+        @user.errors.add(:base, t('phone_verification.invalid'))
+        render('/users/edit_password') && return
+      end
+    end
 
-     return unless params.has_key?[:current_password] && @user.authenticate(params[:current_password]) if params[:password]
+    unless params[:user][:password].blank?
+      current_password = params[:user].delete(:current_password)
+      unless @user.authenticate(current_password)
+        @user.errors.add(:base, t('current_password.wrong'))
+        render('/users/edit_password') && return
+      end
+    end
 
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html {
+        format.html do
           flash[:notice] = "修改成功"
           handle_redirect_back
-        }
+        end
         format.json { head :no_content }
       else
         format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   private
-  def user_params()
+
+  def user_params
     params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:fullname, :gender, :birthday, :identity_card])
   end
 
-  def user_create_params()
-    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache,:register_from)
+  def user_create_params
+    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, :register_from)
   end
 
   def handle_redirect_back
-    @referrer  = session.delete(:referrer)
+    @referrer = session.delete(:referrer)
     if @referrer.present?
       render 'users/transfer_stop.html'
     else
@@ -158,24 +175,30 @@ class UsersController < ApplicationController
   end
 
   def ensure_signed_in
-      unless session[:user_id]
-        if  signed_in?
-          guid = current_user.extra_attributes[:guid]
-          # @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
-          session[:user_id]=guid
-        else
-          redirect_to '/login'
-        end
-
+    if session[:user_id].blank?
+      if  signed_in?
+        p current_user
+        guid = current_user.extra_attributes[:guid]
+        # @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
+        session[:user_id] = guid
+      else
+        redirect_to '/login'
       end
+    end
   end
 
   def set_user
-    unless format_json?
-      @user||=User.find(session[:user_id])
-    else
+    if format_json?
       @user = User.find(params[:id])
+    else
+      @user ||= User.find(session[:user_id])
     end
+  end
+
+  def verify_sms?(phone)
+    valid = false
+    verification = PhoneVerification.find_by(phone: phone)
+    valid = verification.present? && verification.pin == params[:pin] && verification.updated_at < 10.minutes.ago
   end
 
   def format_json?
@@ -183,13 +206,13 @@ class UsersController < ApplicationController
   end
 
   def set_referrer
-    session[:referrer]=request.referrer unless request.host == URI.parse(request.referrer).host if request.referrer
+    session[:referrer] = request.referrer if request.referrer && !(request.host == URI.parse(request.referrer).host)
   end
 
   def set_x_frame_option
-    baseurl = URI.join(request.referrer, "/").to_s if request.referrer
+    baseurl = URI.join(request.referrer, '/').to_s if request.referrer
     if Settings.allow_from.include? baseurl
-      response.headers["X-FRAME-OPTIONS"] = "ALLOW-FROM #{baseurl}"
+      response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}"
     end
   end
 end

@@ -136,7 +136,6 @@ $(document).ajaxError(function(event, jqxhr) {
             "E002": "该手机号已存在",
             "E003": "该手机号未注册",
             "E004": "短信发送失败，请联系网站管理员",
-            "E005": "短信获取太频繁，请稍等再试",
             "E005": "短信获取太频繁，请稍等再试"
         };
         var code = JSON.parse(jqxhr.responseText).code;

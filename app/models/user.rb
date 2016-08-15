@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
                       format: { with: VALID_EMAIL_REGEX,message: "非法的邮箱地址"},
                       uniqueness: { case_sensitive: false,message: "该邮箱地址被使用" },
                       unless: :phone?
-    validates :phone, phone: { types: :mobile ,message: "请使用中国大陆地区的手机号"}, uniqueness: {message: "该邮箱地址被使用"} , unless: :email?
+    validates :phone, phone: { types: :mobile ,message: "请使用中国大陆地区的手机号"}, uniqueness: {message: "该手机已被使用"} , unless: :email?
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 ,:too_short => '密码至少要6个字符'}, allow_nil: true,allow_blank:{message:"kkkkkkk"}
+    validates :password, presence: true, length: { minimum: 6 ,:too_short => '密码至少要6个字符'}, allow_nil: true
     validates_integrity_of  :avatar
     validates_processing_of :avatar
     validate :avatar_size_validation
@@ -38,6 +38,11 @@ class User < ActiveRecord::Base
     def authenticated?(confirmation_token)
         return false if confirmation_digest.nil?
         BCrypt::Password.new(confirmation_digest).is_password?(confirmation_token)
+    end
+
+    def authenticated_passwd?(passwd_token)
+        return false if password_digest.nil?
+        BCrypt::Password.new(password_digest).is_password?(passwd_token)
     end
 
     def authenticated_reset?(token)
