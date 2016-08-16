@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-
   namespace :admin do
     resources :admin_users
     resources :service_permissions
     resources :service_rules
     resources :users
     resources :user_extras
-      root to: "admin_users#index"
+    root to: 'admin_users#index'
   end
 
   devise_for :admin_users, path: 'admin', skip: :registrations
@@ -14,16 +13,16 @@ Rails.application.routes.draw do
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
   get 'password_resets_by_phone' => 'password_resets#new_by_phone'
   patch 'password_resets_by_phone' => 'password_resets#update_by_phone'
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
-  resources :phone_verifications,only: [:new, :create]
+  resources :phone_verifications, only: [:new, :create]
   get 'users/new_by_phone' => 'users#new_by_phone'
   post 'users/new_by_phone' => 'users#create_by_phone'
   get 'users/resend_email' => 'users#resend_email'
 
   resources :users, only: [:edit, :new, :create, :update, :show]
-  resources :users, only: [:update, :show], path:"user_infos" do
-    resource :user_extra, only:[:create, :show]
+  resources :users, only: [:update, :show], path: 'user_infos' do
+    resource :user_extra, only: [:create, :show]
   end
 
   get 'profile' => 'users#profile'

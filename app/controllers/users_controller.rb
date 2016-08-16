@@ -69,7 +69,7 @@ class UsersController < ApplicationController
       render('/users/new_by_phone') && return
     end
 
-    unless verify_sms? params[:phone]
+    unless verify_sms? params[:user][:phone],params[:pin]
       @user.errors.add(:base, t('phone_verification.invalid'))
       render('/users/new_by_phone') && return
     end
@@ -78,6 +78,7 @@ class UsersController < ApplicationController
       data = { authenticator: 'create_by_phone', user_data: { username: @user.phone, extra_attributes: { email: @user.email, nickname: @user.name, mobile: @user.phone, guid: @user.id } } }
       sign_in(data)
     else
+      logger.debug @user.errors
       render '/users/new_by_phone'
     end
   end
@@ -110,7 +111,7 @@ class UsersController < ApplicationController
   def update
     set_user
     unless params[:user][:phone].blank?
-      unless verify_sms? params[:user][:phone]
+      unless verify_sms? params[:user][:phone],params[:pin]
         @user.errors.add(:base, t('phone_verification.invalid'))
         render('/users/edit_password') && return
       end
@@ -195,10 +196,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def verify_sms?(phone)
+  def verify_sms?(phone,pin)
     valid = false
     verification = PhoneVerification.find_by(phone: phone)
-    valid = verification.present? && verification.pin == params[:pin] && verification.updated_at < 10.minutes.ago
+    valid = verification.present? && verification.pin == pin && verification.updated_at > 10.minutes.ago
+    valid
   end
 
   def format_json?

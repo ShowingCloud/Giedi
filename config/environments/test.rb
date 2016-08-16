@@ -42,7 +42,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   host = 'i.s1.com'
   config.action_mailer.default_url_options = { host: host}
-
+  config.log_level = :debug
 
 
   # Raises error for missing translations

@@ -138,12 +138,30 @@ RSpec.describe UsersController do
       context "update password" do
         context "with right old password" do
           it "change @user's password" do
-            patch :update, user:{current_password:"HtYjFp94B",password:"Nk7fWxY18"}
+            patch :update,id:@user, user:{current_password:"HtYjFp94B",password:"Nk7fWxY18"}
             @user.reload
-            expect(@user.password).to eq("Nk7fWxY18")
+            expect(@user.reload.authenticate("Nk7fWxY18").id).to eq(@user.id)
+          end
+        end
+
+        context "with wrong old password" do
+          it "does not change @user's password" do
+            patch :update,id:@user, user:{current_password:"tYjFp94B",password:"Nk7fWxY18"}
+            @user.reload
+            expect(@user.reload.authenticate("Nk7fWxY18")).to be false
           end
         end
       end
+
+      context "update name" do
+          it "change @user's name" do
+            name = Faker::Internet.user_name
+            patch :update,id:@user, user:{name:name}
+            @user.reload
+            expect(@user.name).to eq(name)
+          end
+      end
+
     end
   end
 end
