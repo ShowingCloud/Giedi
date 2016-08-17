@@ -4,6 +4,8 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
+require "email_spec"
+require "email_spec/rspec"
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

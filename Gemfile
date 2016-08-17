@@ -66,6 +66,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
   gem 'faker'
+  gem 'email_spec'
 end
 
 group :development, :test do

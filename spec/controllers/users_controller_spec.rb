@@ -36,6 +36,12 @@ RSpec.describe UsersController do
           end.to change(User, :count).by(1)
         end
 
+        it "should deliver the signup email" do
+
+          post :create, user: {"email" => "email@example.com", "name" => "Jimmy Bean", "password" =>Faker::Internet.password }
+          expect(UserMailer).to(receive(:email_confirmation).with(assigns(:user),assigns(:user).confirmation_token))
+      end
+
         it 'redirects to sessions' do
           post :create, user: attributes_for(:user)
           expect(response).to render_template "users/before_confirmed"
