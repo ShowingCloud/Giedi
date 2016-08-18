@@ -18,11 +18,12 @@ development:
       authenticator: "ActiveRecord"
       options:
         connection:
-          adapter: "mysql2"
-          host: "localhost"
-          username: "root"
-          password: "your_password"
-          database: "dome_sso_dev"
+          adapter: postgresql
+          encoding: unicode
+          database: dome_sso_development
+          pool: 5
+          username: dome_sso
+          password: lovedome
         table: "users"
         username_column: "name"
         password_column: "password_digest"
@@ -40,11 +41,12 @@ test:
       authenticator: "ActiveRecord"
       options:
         connection:
-          adapter: "mysql2"
-          host: "localhost"
-          username: "root"
-          password: "your_password"
-          database: "dome_sso_test"
+          adapter: postgresql
+          encoding: unicode
+          database: dome_sso_test
+          pool: 5
+          username: dome_sso
+          password: lovedome
         table: "users"
         username_column: "name"
         password_column: "password_digest"

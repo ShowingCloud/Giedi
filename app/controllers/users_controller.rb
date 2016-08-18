@@ -63,6 +63,7 @@ class UsersController < ApplicationController
 
   def create_by_phone
     params[:user][:register_from] = params[:service] if params[:service]
+    p params[:user]
     @user = User.new(user_create_params)
     if params[:pin].blank?
       @user.errors.add(:base, t('phone_verification.blank'))
@@ -142,11 +143,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:fullname, :gender, :birthday, :identity_card])
+    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:info])
   end
 
   def user_create_params
-    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, :register_from)
+    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache).merge(register_from: params[:service])
   end
 
   def handle_redirect_back

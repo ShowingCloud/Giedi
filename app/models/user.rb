@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :confirmation_token, :pin, :activation_token, :reset_token
-  has_one :user_extra
+  has_one :user_extra, dependent: :destroy 
   accepts_nested_attributes_for :user_extra
   mount_uploader :avatar, AvatarUploader
   before_create :create_confirmation_digest, if: :email

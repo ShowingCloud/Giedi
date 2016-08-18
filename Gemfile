@@ -24,7 +24,7 @@ gem 'jquery-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
-gem 'mysql2'
+gem 'pg'
 
 #CAS SSO
 gem 'casino', github: 'rbCAS/CASino'
