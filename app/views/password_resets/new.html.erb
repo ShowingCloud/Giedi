@@ -1,13 +1,18 @@
+<div class="container">
 
-<h1>忘记密码</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-      <%= f.label :email,"邮箱"%>
-      <%= f.email_field :email, class: 'form-control' %>
+    <div class="box">
+        <h3>忘记密码</h3>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+                <%= f.label :email,"邮箱"%>
+                <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.submit "提交", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <%= link_to "用手机重置密码", password_resets_by_phone_path %>
+                <%= f.submit "提交", class: "button" %>
+                <% end %>
+            </div>
+            <br>
+            <%= link_to "用手机重置密码", password_resets_by_phone_path %>
+        </div>
+    </div>
 </div>

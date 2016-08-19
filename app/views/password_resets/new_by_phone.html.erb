@@ -1,22 +1,30 @@
-<h1>手机重置密码</h1>
+<div class="container">
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user, url: password_resets_by_phone_path, method: :patch) do |f| %>
-      <%= render 'shared/error_messages' %>
+    <div class="box">
+        <h3>手机重置密码</h3>
 
-      <%= f.label :phone, '手机' %>
-      <%= f.phone_field :phone , class: 'form-control'%>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <%= form_for(@user, url: password_resets_by_phone_path, method: :patch) do |f| %>
+                <%= render 'shared/error_messages' %>
 
-      <%= rucaptcha_input_tag(id:'captcha',class: 'form-control', placeholder: '图形验证码') %>
-      <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
-      <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn", :id => "phone_reset" %>
-      <%= text_field_tag :reset_pin, params[:reset_pin], placeholder: '手机验证码'%>
+                <%= f.label :phone, '手机' %>
+                <%= f.phone_field :phone , class: 'form-control'%>
+                <%= label_tag 'captcha', '图形验证码' %>
+                <div class="input-wrapper">
+                  <%= rucaptcha_input_tag(id:'captcha',class: 'form-control', placeholder: '图形验证码') %>
+                  <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+                </div>
+                <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn", :id => "phone_reset" %>
+                <%= label_tag 'reset_pin', '短信验证码' %>
+                <%= text_field_tag :reset_pin, params[:reset_pin], placeholder: '手机验证码'%>
 
-      <%= f.label :password,'密码' %>
-      <%= f.password_field :password, class: 'form-control' %>
+                <%= f.label :password,'密码' %>
+                <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.submit "提交新密码", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+                <%= f.submit "提交新密码", class: "button" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
 </div>

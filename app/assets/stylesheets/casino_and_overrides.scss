@@ -12,6 +12,21 @@ $font: "Sans-serif" !default;
 
 
 @import 'casino';
+.input-wrapper{
+  padding-bottom: 6px;
+}
+#captcha{
+  display: inline-block;
+  width: 70%;
+  vertical-align: middle;
+  height: 36px;
+}
+
+.captcha{
+  vertical-align: middle;
+  height: 36px;
+  width: 110px;
+}
 
 input[type=text],
 input[type=password],

@@ -1,36 +1,41 @@
 <div class="container">
-  <h3>注册</h3>
 
-  <div class="form">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages' %>
-        <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
-        <%= f.label :name, '用户名' %>
-        <%= f.text_field :name , class: 'form-control'%>
+    <div class="box">
+      <h3>通过邮箱注册</h3>
+        <div class="form">
+            <div class="col-md-6 col-md-offset-3">
+                <%= form_for(@user) do |f| %>
+                <%= render 'shared/error_messages' %>
+                <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
+                <%= f.label :name, '用户名' %>
+                <%= f.text_field :name , class: 'form-control'%>
 
-        <%= f.label :email, '邮箱' %>
-        <%= f.email_field :email , class: 'form-control'%>
+                <%= f.label :email, '邮箱' %>
+                <%= f.email_field :email , class: 'form-control'%>
 
-        <%= f.label :password, '密码' %>
-        <%= f.password_field :password , class: 'form-control'%>
-        <div class="field">
-            <%= f.label :avatar do %>
-              <%= f.file_field :avatar %>
-              <%= f.hidden_field :avatar_cache %>
-            <% end %>
-          </div>
-        <%= rucaptcha_input_tag(class: 'form-control', placeholder: '输入验证码') %>
-        <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+                <%= f.label :password, '密码' %>
+                <%= f.password_field :password , class: 'form-control'%>
+                <!-- <div class="field">
+                    <%= f.label :avatar do %>
+                    <%= f.file_field :avatar %>
+                    <%= f.hidden_field :avatar_cache %>
+                    <% end %>
+                </div> -->
 
-        <%= f.submit "创建账户", class: "btn btn-primary" %>
-      <% end %>
+                <%= label_tag 'captcha', '图形验证码' %>
+                <div class="input-wrapper">
+                <%= rucaptcha_input_tag(id:'captcha', class: 'form-control', placeholder: '输入验证码') %>
+                <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+              </div>
+                <%= f.submit "创建账户", class: "button" %>
+                <% end %>
+            </div>
+        </div>
+        <br>
+        <%=
+           link_to_if(params[:service].nil?, "手机注册", users_new_by_phone_path) do
+             link_to("手机注册",users_new_by_phone_path(:service => params[:service]))
+           end
+        %>
     </div>
-  </div>
-<%=
-   link_to_if(params[:service].nil?, "手机注册", users_new_by_phone_path) do
-     link_to("手机注册",users_new_by_phone_path(:service => params[:service]))
-   end
-%>
-
 <div>
