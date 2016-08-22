@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessor :confirmation_token, :pin, :activation_token, :reset_token
-  has_one :user_extra, dependent: :destroy 
+  has_one :user_extra, dependent: :destroy
   accepts_nested_attributes_for :user_extra
   mount_uploader :avatar, AvatarUploader
   before_create :create_confirmation_digest, if: :email
   before_create :build_default_user_extra
   before_save   :downcase_email, if: :email
+  validate :name_cant_be_phone_or_email
   validates :name, presence:  { message: "用户名没填写" },
                    length: { maximum: 20, too_long: '用户名最长20个字符' },
                    uniqueness: { message: "该用户名被使用" }
@@ -94,5 +95,11 @@ class User < ActiveRecord::Base
     self.confirmation_token = User.new_token
     self.confirmation_digest = User.digest(confirmation_token)
     self.confirmation_sent_at = Time.zone.now
+  end
+
+  def name_cant_be_phone_or_email
+    if name.present? && (Phonelib.possible?(name) || VALID_EMAIL_REGEX.match(name))
+      errors.add(:name, "不能是电话号码或邮箱")
+    end
   end
 end

@@ -130,11 +130,13 @@ class UsersController < ApplicationController
       if @user.update_attributes(user_params)
         format.html do
           flash[:notice] = "修改成功"
-          handle_redirect_back
+          render "/users/notice"
         end
         format.json { head :no_content }
       else
-        format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
+        # format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
+        flash[:notice] = "修改失败"
+        format.html { redirect_to(:back) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -209,12 +211,14 @@ class UsersController < ApplicationController
   end
 
   def set_referrer
-    session[:referrer] = request.referrer if request.referrer && !(request.host == URI.parse(request.referrer).host)
+    @referrer_host=URI.parse(request.referrer).host
+    p @referrer_host
+    session[:referrer] = request.referrer if request.referrer && !(request.host == @referrer_host)
   end
 
   def set_x_frame_option
-    baseurl = URI.join(request.referrer, '/').to_s if request.referrer
-    if Settings.allow_from.include? baseurl
+    baseurl = URI.join(session[:referrer], '/').to_s if request.referrer
+    if Settings.allow_from.include?(baseurl)
       response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}"
     end
   end

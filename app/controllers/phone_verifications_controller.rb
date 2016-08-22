@@ -10,7 +10,7 @@ class PhoneVerificationsController < ApplicationController
             render(json: { msg: 'invalid phone number', code: 'E001' }, status: 422) && return unless phone.valid? && phone.type == :mobile
             render(json: { msg: 'phone existed', code: 'E002' }, status: 422) && return if User.find_by(phone: params[:phone]).present?
             @phone_verification = PhoneVerification.find_or_initialize_by(phone: params[:phone])
-            if @phone_verification.updated_at < 20.seconds.ago
+            if @phone_verification.updated_at.nil? || @phone_verification.updated_at < 20.seconds.ago
               pin = rand(1000..9999)
               @phone_verification.pin = pin
               @phone_verification.save
