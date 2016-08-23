@@ -49,3 +49,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'settingslogic'
 gem 'mysql2'
 gem 'simple_form'
+gem 'devise'
+gem 'devise_cas_authenticatable',github: 'nbudin/devise_cas_authenticatable'
+gem "redis-rails"
