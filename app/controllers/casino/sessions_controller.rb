@@ -7,6 +7,7 @@ class CASino::SessionsController < CASino::ApplicationController
   before_action :ensure_service_allowed, only: [:new, :create]
   before_action :load_ticket_granting_ticket_from_parameter, only: [:validate_otp]
   before_action :ensure_signed_in, only: [:index, :destroy]
+  before_action :set_referrer
 
   def index
     @ticket_granting_tickets = current_user.ticket_granting_tickets.active
@@ -70,6 +71,11 @@ class CASino::SessionsController < CASino::ApplicationController
   end
 
   private
+
+  def set_referrer
+    @referrer_host=URI.parse(request.referrer).host
+    session[:referrer] = request.referrer if request.referrer && !(request.host == @referrer_host)
+  end
 
   def show_login_error(message)
     flash.now[:error] = message

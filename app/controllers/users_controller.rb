@@ -99,7 +99,7 @@ class UsersController < ApplicationController
   def resend_email
     @user = User.find_by(email: params[:email])
     if @user && !@user.confirmed
-      @user.send:create_confirmation_digest
+      @user.create_confirmation_digest
       @user.save
       @token = @user.confirmation_token
       UserMailer.email_confirmation(@user, @token).deliver_later
@@ -212,12 +212,11 @@ class UsersController < ApplicationController
 
   def set_referrer
     @referrer_host=URI.parse(request.referrer).host
-    p @referrer_host
     session[:referrer] = request.referrer if request.referrer && !(request.host == @referrer_host)
   end
 
   def set_x_frame_option
-    baseurl = URI.join(session[:referrer], '/').to_s if request.referrer
+    baseurl = URI.join(session[:referrer], '/').to_s if session[:referrer]
     if Settings.allow_from.include?(baseurl)
       response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}"
     end

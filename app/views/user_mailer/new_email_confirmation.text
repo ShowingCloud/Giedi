@@ -2,4 +2,4 @@
 
 欢迎来到豆姆的世界! 点击下方的链接认证你的邮箱:
 
-<%= edit_email_confirmation_url(@token, new_email: @user.new_email) %>
+<%= edit_email_confirmation_url(@token, new_email: @user.new_email,email:@user.email) %>

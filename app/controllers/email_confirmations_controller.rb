@@ -19,8 +19,8 @@ class EmailConfirmationsController < ApplicationController
         end
       end
     elsif params[:new_email]
-      user = User.find_by(new_email: params[:new_email])
-      if user.confirmation_expired?
+      user = User.find_by(new_email: params[:new_email],email:params[:email])
+      if user && user.confirmation_expired?
           flash[:danger] = '验证邮件已过期'
           redirect_to '/login'
       else

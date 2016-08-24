@@ -8,3 +8,6 @@ submail:
     appid: "11647"
     signature: "7a2d779109b4cb662ca10781f967f772"
     project: "PCGQk2"
+theme:
+  "www.c1.com": "www_robodou_cn"
+  "www.c2.com": "www_domelab_com"
