@@ -48,7 +48,7 @@ class CASino::SessionsController < CASino::ApplicationController
   def destroy_others
     current_user
       .ticket_granting_tickets
-      .where('id != ?', current_ticket_granting_ticket.id)
+      .where.not(id:current_ticket_granting_ticket.id)
       .destroy_all if signed_in?
     redirect_to params[:service] || sessions_path
   end
@@ -73,8 +73,8 @@ class CASino::SessionsController < CASino::ApplicationController
   private
 
   def set_referrer
-    @referrer_host=URI.parse(request.referrer).host
-    session[:referrer] = request.referrer if request.referrer && !(request.host == @referrer_host)
+    @referrer_host=URI.parse(request.referrer).host if request.referrer
+    session[:referrer] = request.referrer if request.referrer && request.host != @referrer_host
   end
 
   def show_login_error(message)

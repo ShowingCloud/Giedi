@@ -10,7 +10,13 @@ class ApplicationController < ActionController::Base
     submail.sms(phone,pin).parsed_response
   end
 
+  rescue_from ActionController::RedirectBackError, with: :redirct_to_default
+
   protected
+    def redirect_to_default
+      redirect_to '/'
+    end
+
    def authenticate_request!
       if request.headers['Authorization'].present?
          logger.info request.headers['Authorization']

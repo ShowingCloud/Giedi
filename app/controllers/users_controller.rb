@@ -211,8 +211,8 @@ class UsersController < ApplicationController
   end
 
   def set_referrer
-    @referrer_host=URI.parse(request.referrer).host
-    session[:referrer] = request.referrer if request.referrer && !(request.host == @referrer_host)
+    @referrer_host=URI.parse(request.referrer).host if request.referrer
+    session[:referrer] = request.referrer if request.referrer && request.host != @referrer_host
   end
 
   def set_x_frame_option

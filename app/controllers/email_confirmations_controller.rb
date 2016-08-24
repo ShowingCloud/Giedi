@@ -29,11 +29,10 @@ class EmailConfirmationsController < ApplicationController
           user.update_attribute(:confirmed,true)
           user.update_attribute(:confirmed_at, Time.zone.now)
           @confirm_result = "邮箱认证成功!"
-          render "users/confirm_result"
         else
           @confirm_result = "无效的邮箱认证链接"
-          render "users/confirm_result"
         end
+        render "users/confirm_result"
       end
     end
   end
