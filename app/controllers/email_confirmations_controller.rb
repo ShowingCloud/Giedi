@@ -12,7 +12,11 @@ class EmailConfirmationsController < ApplicationController
           user.update_attribute(:confirmed, true)
           user.update_attribute(:confirmed_at, Time.zone.now)
           flash[:success] = "邮箱认证成功!"
-          redirect_to '/login?service'+URI.escape(user.register_from)
+          if user.register_from.present?
+            redirect_to '/login?service='+URI.escape(user.register_from)
+          else
+            redirect_to '/login'
+          end
         else
           flash[:danger] = "无效的邮箱认证链接"
           redirect_to casino_path

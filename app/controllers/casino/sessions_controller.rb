@@ -72,11 +72,6 @@ class CASino::SessionsController < CASino::ApplicationController
 
   private
 
-  def set_referrer
-    @referrer_host=URI.parse(request.referrer).host if request.referrer
-    session[:referrer] = request.referrer if request.referrer && request.host != @referrer_host
-  end
-
   def show_login_error(message)
     flash.now[:error] = message
     render :new, status: :forbidden

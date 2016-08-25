@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :ensure_signed_in, only: [:show, :update], if: :format_json?
   before_action :authenticate_request!, if: :format_json?
   before_action :set_referrer, only: [:update, :add_phone, :add_email, :edit_password], unless: :format_json?
-  before_action :set_x_frame_option
+  before_action :set_x_frame_option, unless: :format_json?
   def profile
     set_user
   end
@@ -210,13 +210,13 @@ class UsersController < ApplicationController
     request.format.json?
   end
 
-  def set_referrer
-    @referrer_host=URI.parse(request.referrer).host if request.referrer
-    session[:referrer] = request.referrer if request.referrer && request.host != @referrer_host
-  end
+  # def set_referrer
+  #   @referrer_host=URI.parse(request.referrer).host if request.referrer
+  #   session[:referrer] = request.referrer if request.referrer && request.host != @referrer_host
+  # end
 
   def set_x_frame_option
-    baseurl = URI.join(session[:referrer], '/').to_s if session[:referrer]
+    baseurl = session[:referrer] if session[:referrer].present?
     if Settings.allow_from.include?(baseurl)
       response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}"
     end

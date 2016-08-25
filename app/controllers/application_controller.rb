@@ -36,6 +36,11 @@ class ApplicationController < ActionController::Base
 
    private
 
+   def set_referrer
+     @referrer_host = params[:service] if params[:service].present?
+     session[:referrer] = @referrer_host if @referrer_host && request.host != @referrer_host
+   end
+
    def http_token
        @http_token ||= if request.headers['Authorization'].present?
          request.headers['Authorization'].split(' ').last
