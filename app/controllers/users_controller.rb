@@ -99,7 +99,7 @@ class UsersController < ApplicationController
   def resend_email
     @user = User.find_by(email: params[:email])
     if @user && !@user.confirmed
-      @user.create_confirmation_digest
+      @user.send:create_confirmation_digest
       @user.save
       @token = @user.confirmation_token
       UserMailer.email_confirmation(@user, @token).deliver_later

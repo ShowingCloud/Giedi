@@ -58,7 +58,7 @@ class CASino::SessionsController < CASino::ApplicationController
     session.clear
     @url = params[:url]
     if params[:service].present? && service_allowed?(params[:service])
-      redirect_to params[:service], status: :see_other
+      redirect_to URI.join(params[:service], "/").to_s, status: :see_other
     end
   end
 

@@ -82,10 +82,6 @@ class User < ActiveRecord::Base
     errors[:avatar] << 'should be less than 500KB' if avatar.size > 0.5.megabytes
   end
 
-  def downcase_email
-    self.email = email.downcase
-  end
-
   def build_default_user_extra
     build_user_extra
     true
@@ -98,8 +94,8 @@ class User < ActiveRecord::Base
   end
 
   def name_cant_be_phone_or_email
-    if name.present? && (Phonelib.possible?(name) || VALID_EMAIL_REGEX.match(name))
-      errors.add(:name, "不能是电话号码或邮箱")
+    if name.present? && (Phonelib.valid?(name) || VALID_EMAIL_REGEX.match(name))
+      errors.add(:name, "用户名不能是电话号码或邮箱")
     end
   end
 end
