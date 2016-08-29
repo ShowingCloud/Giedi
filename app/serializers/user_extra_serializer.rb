@@ -1,16 +1,5 @@
 class UserExtraSerializer < ActiveModel::Serializer
-  attribute :fullname, if: :fullname?
-  attribute :gender, if: :gender?
-  attribute :birthday, if: :birthday?
-  attribute :identity_card
-  attribute(:teacher_no) {"1"}
-  attribute(:desc) {"1"}
-  attribute(:school) {"1"}
-  attribute(:district_id) {"1"}
-  attribute(:grade) {"1"}
-  attribute(:bj) {"1"}
-  attribute(:student_code) {"1"}
-  attribute(:address) {"1"}
+  attribute :info
 
   def fullname?
     @instance_options[:service_permission].fullname > 0

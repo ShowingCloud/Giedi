@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    redirect_to(params[:service]) if signed_in?
     @user = User.new
   end
 
@@ -99,7 +100,7 @@ class UsersController < ApplicationController
   def resend_email
     @user = User.find_by(email: params[:email])
     if @user && !@user.confirmed
-      @user.send:create_confirmation_digest
+      @user.send :create_confirmation_digest
       @user.save
       @token = @user.confirmation_token
       UserMailer.email_confirmation(@user, @token).deliver_later
@@ -181,9 +182,7 @@ class UsersController < ApplicationController
   def ensure_signed_in
     if session[:user_id].blank?
       if  signed_in?
-        p current_user
         guid = current_user.extra_attributes[:guid]
-        # @user=User.find_by('name = :query OR email = :query OR phone = :query', query: username)
         session[:user_id] = guid
       else
         redirect_to '/login'
