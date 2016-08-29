@@ -104,6 +104,9 @@
   font-size: 14px;
   color: #fff;
   line-height: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   &:after {
     content: "";
     display: block;
@@ -199,7 +202,7 @@
     transition: all .6s;
     text-align: center;
     letter-spacing: .5em;
-    p{
+    p {
       margin-bottom: 5px;
     }
     &.ready {
@@ -320,4 +323,244 @@
       }
     }
   }
+
+}
+
+#history {
+  background: #f8f8f8;
+  height: 100%;
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .list {
+    float: left;
+    width: 480px;
+    padding-top: 60px;
+    .list-title {
+      font-size: 21px;
+      margin-bottom: 40px;
+      span {
+        color: #e95e21;
+      }
+      p {
+        margin-bottom: 10px;
+      }
+    }
+    .list-group {
+      .list-item {
+        margin-bottom: 40px;
+        padding-left: 50px;
+        position: relative;
+        line-height: 20px;
+        cursor: pointer;
+        transition: all .3s;
+        &.active {
+          color: #e95e21;
+          .oval {
+            background-color: #e95e21;
+          }
+        }
+        &:hover {
+          color: #e95e21;
+          .oval {
+            background-color: #e95e21;
+          }
+        }
+        .oval {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #d8d8d8;
+          position: absolute;
+          left: 5px;
+          transition: all .3s;
+          &:hover {
+            background-color: #e95e21;
+          }
+        }
+        .time {
+          font-size: 14px;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+  .center {
+    float: left;
+    width: 340px;
+    height: 420px;
+    position: relative;
+    .box {
+      position: absolute;
+      top: 80px;
+      width: 340px;
+      background: #e95e21;
+      height: 420px;
+      border-radius: 5px;
+      padding: 35px 55px 0;
+      box-shadow: 3px 3px 3px #777;
+      color: #fff;
+      transition: all .8s;
+      opacity: 0;
+      transform: rotateY(180deg);
+      &.active {
+        opacity: 1;
+        transform: rotateY(0deg);
+      }
+      .box-img {
+        background-color: #fff;
+        width: 230px;
+        height: 166px;
+        padding: 8px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .box-text {
+        letter-spacing: 3px;
+      }
+      .box-bottom {
+        font-size: 14px;
+        padding: 10px 0;
+        text-align: right;
+      }
+    }
+  }
+  .warp {
+    float: left;
+    padding: 200px 40px;
+    text-align: center;
+    width: 380px;
+    overflow: hidden;
+    position: relative;
+    .warp-win {
+      width: 300px;
+      height: 224px;
+      overflow: hidden;
+      position: relative;
+    }
+    .warp-list {
+      position: absolute;
+      transition: all .6s;
+      left: 0;
+      .warp-item {
+        width: 300px;
+        padding: 20px;
+        .year {
+          font-size: 66px;
+          margin-bottom: 10px;
+        }
+        .warp-text {
+          text-align: center;
+          font-size: 26px;
+          p {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#video {
+  height: 100%;
+  background: #d8d8d8;
+}
+
+#service {
+  height: 100%;
+  .service-title {
+    font-size: 26px;
+    text-align: center;
+    position: relative;
+    padding-top: 30px;
+    .line-left {
+      position: absolute;
+      top: 44px;
+      left: 0;
+      width: 480px;
+      border-bottom: 1px solid #333;
+    }
+    .line-right {
+      position: absolute;
+      top: 44px;
+      right: 0;
+      width: 480px;
+      border-bottom: 1px solid #333;
+    }
+  }
+  .service-content {
+    padding-top: 20px;
+    overflow: hidden;
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .left {
+      width: 50%;
+      float: left;
+      border-right: 1px solid #777;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .right {
+      width: 50%;
+      float: left;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .sub-title {
+      font-size: 18px;
+      color: #e95e21;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .service-list {
+      padding: 10px 40px;
+      .service-item {
+        width: 200px;
+        margin: 0 auto 20px;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        &:hover {
+          color: #e95e21;
+          .item-icon {
+            background-color: #e95e21;
+          }
+        }
+        .item-icon {
+          margin: 10px auto;
+          padding-top: 8px;
+          text-align: center;
+          line-height: 50px;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background: #D0DBBD;
+          transition: all .3s;
+        }
+      }
+    }
+  }
+}
+
+#case {
+  background-color: #D0DBBD;
+  height: 100%;
+}
+
+#partner {
+  padding-top: 10px;
+  .title {
+    text-align: center;
+  }
+}
+
+#lasted {
+  position: relative;
 }
