@@ -4,10 +4,14 @@ class UserSerializer < ActiveModel::Serializer
   attributes :avatar, :email
   attribute :phone, key: :mobile
   attribute :name, key: :nickname
-  has_one :user_extra, key: :profile
+  attribute :profile
 
   def avatar
-    object.avatar.small.url
+    object.avatar.as_json[:avatar]
+  end
+
+  def profile
+    object.user_extra.info
   end
 
 end
