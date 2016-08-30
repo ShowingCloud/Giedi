@@ -10,7 +10,7 @@ $(function () {
         //Navigation
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['1', '2', '3', '4', '5'],
+        navigationTooltips: ['1', '2', '3', '4', '5', '6', '7'],
 
         //Scrolling
         css3: true,
@@ -18,6 +18,8 @@ $(function () {
 
         //Accessibility
         keyboardScrolling: true,
+
+        bigSectionsDestination: 'bottom',
 
         afterLoad: function (anchorLink, index) {
             var loadedSection = $(this);
@@ -43,7 +45,7 @@ $(function () {
 
                     var a1 = window.setTimeout(function () {
                         $('.text-animate').removeClass('ready');
-                    }, 700);
+                    }, 500);
                 }
             }
         }

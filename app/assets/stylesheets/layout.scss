@@ -104,8 +104,6 @@
   font-size: 14px;
   color: #fff;
   line-height: 20px;
-  position: absolute;
-  bottom: 0;
   width: 100%;
   &:after {
     content: "";
@@ -474,90 +472,263 @@
     font-size: 26px;
     text-align: center;
     position: relative;
-    padding-top: 30px;
+    padding-top: 20px;
     .line-left {
       position: absolute;
-      top: 44px;
+      top: 34px;
       left: 0;
       width: 480px;
       border-bottom: 1px solid #333;
     }
     .line-right {
       position: absolute;
-      top: 44px;
+      top: 34px;
       right: 0;
       width: 480px;
       border-bottom: 1px solid #333;
     }
   }
-  .service-content {
-    padding-top: 20px;
-    overflow: hidden;
+  .service-upper {
+    height: 300px;
     &:after {
       content: "";
       display: block;
       clear: both;
     }
-    .left {
-      width: 50%;
-      float: left;
-      border-right: 1px solid #777;
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-    }
-    .right {
-      width: 50%;
-      float: left;
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-    }
-    .sub-title {
-      font-size: 18px;
-      color: #e95e21;
+    .upper-title {
       text-align: center;
-      padding: 10px 0;
+      width: 533px;
+      .orange {
+        font-size: 18px;
+        color: #e95e21;
+        margin-bottom: 10px;
+      }
     }
-    .service-list {
-      padding: 10px 40px;
-      .service-item {
-        width: 200px;
-        margin: 0 auto 20px;
-        cursor: pointer;
-        font-size: 14px;
+    .left {
+      width: 600px;
+      height: 260px;
+      float: left;
+      position: relative;
+      .upper-item {
+        width: 140px;
+        position: absolute;
         text-align: center;
-        &:hover {
+        cursor: pointer;
+        &.active {
           color: #e95e21;
-          .item-icon {
+          .icon {
             background-color: #e95e21;
           }
         }
-        .item-icon {
-          margin: 10px auto;
-          padding-top: 8px;
-          text-align: center;
-          line-height: 50px;
+        &:hover {
+          color: #e95e21;
+          .icon {
+            background-color: #e95e21;
+          }
+        }
+        &.first {
+          top: 30px;
+          left: 110px;
+        }
+        &.second {
+          top: 30px;
+          left: 270px;
+        }
+        &.third {
+          top: 150px;
+          left: 60px;
+        }
+        &.fourth {
+          top: 150px;
+          left: 200px;
+        }
+        &.fifth {
+          top: 150px;
+          left: 340px;
+        }
+        .icon {
           width: 50px;
           height: 50px;
-          border-radius: 50%;
           background: #D0DBBD;
-          transition: all .3s;
+          border-radius: 50%;
+          margin: 0 auto 10px;
+          padding-top: 8px;
         }
+      }
+    }
+    .right {
+      float: left;
+      width: 600px;
+      .upper-list {
+        .list-item {
+          text-align: center;
+          .title {
+            font-size: 22px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            padding: 0 20px;
+            background-color: #e95e21;
+            margin-bottom: 20px;
+            color: #fff;
+            display: inline-block;
+          }
+          .img {
+            float: left;
+            width: 276px;
+            height: 200px;
+          }
+          .dec {
+            text-align: left;
+            float: left;
+            width: 276px;
+            height: 200px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .service-lower {
+    width: 600px;
+    margin: 0 auto;
+    .lower-title {
+      text-align: center;
+      padding: 10px 0;
+      .orange {
+        color: #e95e21;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+    }
+    .tab-title {
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .item {
+        text-align: center;
+        cursor: pointer;
+        width: 25%;
+        float: left;
+        &.active {
+          color: #e95e21;
+          .icon {
+            background-color: #e95e21;
+          }
+        }
+        &:hover {
+          color: #e95e21;
+          .icon {
+            background-color: #e95e21;
+          }
+        }
+        .icon {
+          width: 50px;
+          height: 50px;
+          background: #D0DBBD;
+          border-radius: 50%;
+          margin: 0 auto 10px;
+          padding-top: 4px;
+        }
+        .name {
+
+        }
+      }
+    }
+    .tab-content {
+      padding-top: 20px;
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .img {
+        width: 300px;
+        float: left;
+      }
+      .dec {
+        width: 300px;
+        float: left;
+        line-height: 20px;
       }
     }
   }
 }
 
 #case {
-  background-color: #D0DBBD;
+  background-color: #f5f5f5;
   height: 100%;
+  .case-title {
+    font-size: 36px;
+    padding: 10px 0;
+    text-align: center;
+    letter-spacing: 20px;
+  }
+  .case {
+    width: 600px;
+    height: 300px;
+    float: left;
+    position: relative;
+    .bk-img {
+      width: 600px;
+      height: 300px;
+    }
+    .shade {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      padding: 10px 40px;
+      background: rgba(100, 100, 100, .5);
+      color: #fff;
+      .s-t {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+      .s-c {
+        line-height: 18px;
+      }
+    }
+  }
 }
 
 #partner {
   padding-top: 10px;
+  overflow: hidden;
   .title {
     text-align: center;
+    color: #e95e21;
+    font-size: 36px;
+  }
+  .p-list {
+    overflow: hidden;
+    padding: 30px 0;
+    .p-item {
+      width: 300px;
+      height: 100px;
+      float: left;
+      border-top: 1px solid #979797;
+      border-right: 1px solid #979797;
+      &:nth-child(4n) {
+        border-right: none !important;
+      }
+      &:nth-of-type(1) {
+        border-top: none !important;
+      }
+      &:nth-of-type(2) {
+        border-top: none !important;
+      }
+      &:nth-of-type(3) {
+        border-top: none !important;
+      }
+      &:nth-of-type(4) {
+        border-top: none !important;
+      }
+    }
   }
 }
 
