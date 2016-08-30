@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
+  before_action :ensure_service_allowed, only: [:new, :new_by_phone]
   before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone]
   skip_before_action :ensure_signed_in, only: [:show, :update], if: :format_json?
   before_action :authenticate_request!, if: :format_json?
@@ -32,11 +33,16 @@ class UsersController < ApplicationController
   end
 
   def new
-    redirect_to(params[:service]) if signed_in?
+    tgt = current_ticket_granting_ticket
+    return handle_signed_in(tgt) unless params[:renew] || tgt.nil?
+    redirect_to(params[:service]) if params[:gateway] && params[:service].present?
     @user = User.new
   end
 
   def new_by_phone
+    tgt = current_ticket_granting_ticket
+    return handle_signed_in(tgt) unless params[:renew] || tgt.nil?
+    redirect_to(params[:service]) if params[:gateway] && params[:service].present?
     @user = User.new
   end
 
@@ -218,6 +224,12 @@ class UsersController < ApplicationController
     baseurl = session[:referrer] if session[:referrer].present?
     if Settings.allow_from.include?(baseurl)
       response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}"
+    end
+  end
+
+  def ensure_service_allowed
+    if params[:service].present? && !service_allowed?(params[:service])
+      render 'service_not_allowed', status: :forbidden
     end
   end
 end
