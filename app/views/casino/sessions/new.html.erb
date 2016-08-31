@@ -1,36 +1,44 @@
 <% login_notice = t('login.notice', default: '') %>
 <div class="container">
   <% unless login_notice.blank? %>
-  <div class="notice box">
-    <i class="icon-info"></i> <%= login_notice %>
-  </div>
+      <div class="notice box">
+        <i class="icon-info"></i> <%= login_notice %>
+      </div>
   <% end %>
-  <div class="login box">
-    <%= render 'messages' %>
+  <div id="login-page" class="page">
     <div class="logo">
-       <%= image_tag "logo.png" %>
+      <img src="<%= image_path('logo-orange.png') %>" alt=""/>
     </div>
+    <div class="title">
+      欢迎登录豆姆
+    </div>
+    <div class="like-tabs"></div>
+    <div class="login">
+      <%= render 'messages' %>
+      <div class="form">
+        <%= form_tag(login_path, method: :post, id: 'login-form') do %>
+            <%= hidden_field_tag :lt, CASino::LoginTicket.create.ticket %>
+            <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
+            <div class="row">
+              <%= label_tag :username, '账号' %>
+              <%= text_field_tag :username, params[:username], autofocus: true, placeholder: '手机/邮箱/昵称' %>
+            </div>
+            <div class="row">
+              <%= label_tag :password, '密码' %>
 
-    <div class="form">
-      <%= form_tag(login_path, method: :post, id: 'login-form') do %>
-        <%= hidden_field_tag :lt, CASino::LoginTicket.create.ticket %>
-        <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
-        <%= label_tag :username, '用户名' %>
-        <%= text_field_tag :username, params[:username], autofocus:true %>
-        <%= label_tag :password, '密码' %>
-        <%= link_to "(忘记密码)", '/password_resets/new' %>
-        <%= password_field_tag :password %>
-        <%= label_tag :rememberMe do %>
-          <%= check_box_tag :rememberMe, 1, params[:rememberMe] %> <%= '保持登录' %>
+              <%= password_field_tag :password %>
+              <%= link_to "忘记密码", '/password_resets/new', class: 'forget' %>
+            </div>
+            <input type="hidden" name="rememberMe" id="rememberMe" value="1"/>
+
+            <div class="row">
+              <%= button_tag '登录', :class => 'button btn-dome' %>
+            </div>
         <% end %>
-        <%= button_tag '登录', :class => 'button' %>
-      <% end %>
+      </div>
     </div>
-      <%=
-         link_to_if(params[:service].nil?, "注册", "/users/new") do
-          link_to("注册","/users/new?service="+params[:service])
-        end
-      %>
   </div>
-  <%= render 'footer' %>
+</div>
+<div class="bk">
+
 </div>

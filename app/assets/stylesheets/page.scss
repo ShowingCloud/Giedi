@@ -1,0 +1,142 @@
+.page {
+  padding-top: 50px;
+  padding-left: 120px;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  color: #e95e21;
+}
+
+.like-tabs {
+  font-size: 18px;
+  height: 80px;
+  line-height: 80px;
+  div {
+    padding: 0 20px;
+    display: inline-block;
+  }
+  .active {
+    a {
+      color: #e95e21;
+    }
+  }
+}
+
+.form {
+  font-size: 14px;
+  .row {
+    width: 400px;
+    line-height: 36px;
+    height: 72px;
+    margin-bottom: 5px;
+    .input-wrapper {
+      .captcha-input {
+        width: 150px;
+        float: left;
+        margin-left: 20px;
+      }
+      .captcha {
+        width: 120px;
+        float: left;
+        margin: 0 15px;
+        cursor: pointer;
+        height: 36px;
+        border: 1px solid #444;
+      }
+    }
+    .half-input {
+      width: 150px;
+      float: left;
+      margin-left: 20px;
+    }
+    .half-btn {
+      width: 110px;
+      height: 36px;
+      font-size: 14px;
+      color: #fff;
+      line-height: 32px;
+      margin-left: 20px;
+      background: #e95e21;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+  label {
+    display: block;
+    float: left;
+    width: 80px;
+  }
+
+  input[type=text],
+  input[type=password],
+  input[type=tel],
+  input[type=email] {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    display: block;
+    font-size: 14px;
+    line-height: 36px;
+    height: 36px;
+    padding: 6px;
+    width: 300px;
+    margin-left: 100px;
+
+    &:focus {
+      background: #F5F5F4;
+      border-color: #b3b3b3;
+      outline: none !important;
+    }
+  }
+
+  .forget {
+    float: right;
+    color: #9b9b9b;
+    margin-right: 18px;
+  }
+  .btn-dome {
+    font-size: 14px;
+    color: #fff;
+    background: #e95e21;
+    border: none;
+    outline: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    margin-left: 100px;
+  }
+}
+
+.bk {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: image-url('bk.png');
+  height: 545px;
+  z-index: -1;
+}
+
+.www_robodou_cn {
+  .page {
+    .title {
+      color: #00A0E8 !important;
+    }
+    .btn-dome {
+      background: #00A0E8 !important;
+    }
+  }
+  .bk {
+    background-image: image-url('bk-2.png') !important;
+  }
+  .half-btn{
+    background-color: #00A0E8 !important;
+  }
+}

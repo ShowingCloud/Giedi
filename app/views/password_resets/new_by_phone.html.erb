@@ -1,30 +1,49 @@
 <div class="container">
 
-    <div class="box">
-        <h3>手机重置密码</h3>
-
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <%= form_for(@user, url: password_resets_by_phone_path, method: :patch) do |f| %>
-                <%= render 'shared/error_messages' %>
-
-                <%= f.label :phone, '手机' %>
-                <%= f.phone_field :phone , class: 'form-control'%>
-                <%= label_tag 'captcha', '图形验证码' %>
-                <div class="input-wrapper">
-                  <%= rucaptcha_input_tag(id:'captcha',class: 'form-control', placeholder: '图形验证码') %>
-                  <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
-                </div>
-                <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn", :id => "phone_reset" %>
-                <%= label_tag 'reset_pin', '短信验证码' %>
-                <%= text_field_tag :reset_pin, params[:reset_pin], placeholder: '手机验证码'%>
-
-                <%= f.label :password,'密码' %>
-                <%= f.password_field :password, class: 'form-control' %>
-
-                <%= f.submit "提交新密码", class: "button" %>
-                <% end %>
-            </div>
-        </div>
+  <div id="forget-page" class="page">
+    <div class="logo">
+      <img src="<%= image_path('logo-orange.png') %>" alt=""/>
     </div>
+    <div class="title">
+      重置密码
+    </div>
+    <div class="like-tabs">
+      <div class="active">
+        <%= link_to "邮箱重置", new_password_reset_path %>
+      </div>
+      <div class="disabled">
+        手机重置
+      </div>
+    </div>
+    <div class="form">
+      <%= form_for(@user, url: password_resets_by_phone_path, method: :patch) do |f| %>
+          <%= render 'shared/error_messages' %>
+
+          <div class="row">
+            <%= f.label :phone, '手机' %>
+            <%= f.phone_field :phone, class: 'form-control' %>
+          </div>
+          <div class="row">
+            <%= label_tag 'captcha', '图形验证码' %>
+            <div class="input-wrapper">
+              <%= rucaptcha_input_tag(id: 'captcha', class: 'captcha-input', placeholder: '图形验证码') %>
+              <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+            </div>
+          </div>
+          <div class="row">
+            <%= label_tag 'reset_pin', '短信验证码' %>
+            <%= text_field_tag :reset_pin, params[:reset_pin], placeholder: '手机验证码', class: 'half-input' %>
+            <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn half-btn", :id => "phone_reset" %>
+          </div>
+
+          <div class="row">
+            <%= f.label :password, '密码' %>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+
+          <%= f.submit "提交新密码", class: "button btn-dome" %>
+      <% end %>
+    </div>
+  </div>
 </div>
+<div class="bk"></div>
