@@ -1,15 +1,7 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    resources :admin_users
-    resources :service_permissions
-    resources :service_rules
-    resources :users
-    resources :user_extras
-    root to: 'admin_users#index'
-  end
 
-  devise_for :admin_users, path: 'admin', skip: :registrations
-
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
   get 'password_resets_by_phone' => 'password_resets#new_by_phone'
   patch 'password_resets_by_phone' => 'password_resets#update_by_phone'

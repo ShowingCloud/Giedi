@@ -12,10 +12,13 @@ zh-CN:
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
+      long: "%Y-%m-%d %H:%M:%S"
   phone_verification:
     invalid: "无效的短信验证码"
     blank: "短信验证码不能为空"
   date:
+    formats:
+      long: "%Y-%m-%d"
     order:
       - :year
       - :month
