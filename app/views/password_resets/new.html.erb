@@ -1,18 +1,29 @@
 <div class="container">
-
-    <div class="box">
-        <h3>忘记密码</h3>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-                <%= f.label :email,"邮箱"%>
-                <%= f.email_field :email, class: 'form-control' %>
-
-                <%= f.submit "提交", class: "button" %>
-                <% end %>
-            </div>
-            <br>
-            <%= link_to "用手机重置密码", password_resets_by_phone_path %>
-        </div>
+  <div id="forget-page" class="page">
+    <div class="logo">
+      <img src="<%= image_path('logo-orange.png') %>" alt=""/>
     </div>
+    <div class="title">
+      重置密码
+    </div>
+    <div class="like-tabs">
+      <div class="disabled">
+        邮箱重置
+      </div>
+      <div class="active">
+        <%= link_to "手机重置", password_resets_by_phone_path %>
+      </div>
+    </div>
+    <div class="form">
+      <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+          <div class="row">
+            <%= f.label :email, "邮箱" %>
+            <%= f.email_field :email %>
+          </div>
+
+          <%= f.submit "提交", class: "button btn-dome" %>
+      <% end %>
+    </div>
+  </div>
 </div>
+<div class="bk"></div>
