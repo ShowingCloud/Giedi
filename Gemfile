@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+
+gem 'rotp'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,6 +25,7 @@ gem 'jquery-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
+
 gem 'pg'
 
 #CAS SSO
@@ -47,8 +49,9 @@ gem 'mini_magick'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
 
+#admin dashboard
 gem 'activeadmin', '~> 1.0.0.pre4'
-
+gem 'activeadmin_json_editor', '~> 0.0.6'
 gem 'devise'
 
 gem 'config'
@@ -56,11 +59,7 @@ gem 'config'
 gem 'httparty'
 
 gem "puma"
-# Use Unicorn as the app server
-# gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
@@ -74,13 +73,12 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails', "~> 4.0"
-  gem 'better_errors'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
+  gem 'better_errors'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

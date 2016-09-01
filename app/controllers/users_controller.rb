@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @user, service_permission: ServicePermission.find_by_name(@current_service) }
+      format.json { render json: @user }
     end
   end
 
@@ -208,6 +208,7 @@ class UsersController < ApplicationController
     valid = false
     verification = PhoneVerification.find_by(phone: phone)
     valid = verification.present? && verification.pin == pin && verification.updated_at > 10.minutes.ago
+    verification.update_attribute(:pin,nil) if valid
     valid
   end
 
