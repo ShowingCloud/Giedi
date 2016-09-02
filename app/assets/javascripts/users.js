@@ -126,7 +126,6 @@ $(document).ready(function() {
     $('.captcha').on('click', refreshCapture);
     $('#phone_verification').on('click', get_phone_verification);
     $('#phone_reset').on('click', reset_phone_verification);
-    console.log(window.top);
 });
 
 $(document).ajaxError(function(event, jqxhr) {

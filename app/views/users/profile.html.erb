@@ -1,25 +1,24 @@
 <ul>
   <% if @user.avatar.small.url.present? %>
-    <li>头像<%= image_tag(@user.avatar.small.url) %> <%= link_to "设置", profile_avatar_path %> </li>
-<% else %>
-    <li>头像 <%= link_to "设置", profile_avatar_path %> </li>
-<% end %>
-<li>用户名：<%= @user.name %></li>
-<% if @user.email? %>
-  <li>邮箱：<%= @user.email %>
-    <% unless @user.confirmed? %>
-    （未验证）<%= link_to "重新发送验证邮件", users_resend_email_path(email:@user.email) %>
-    <% end %>
-    <%= link_to "修改","/profile/email"%></li>
-<% else %>
-  <li><%= link_to "添加邮箱","/profile/email"%></li>
-<% end %>
+      <li>头像<%= image_tag(@user.avatar.small.url) %> <%= link_to "设置", profile_avatar_path %> </li>
+  <% else %>
+      <li>头像 <%= link_to "设置", profile_avatar_path %> </li>
+  <% end %>
+  <li>用户名：<%= @user.name %></li>
+  <% if @user.email? %>
+      <li>邮箱：<%= @user.email %>
+        <% unless @user.confirmed? %>
+            （未验证）<%= link_to "重新发送验证邮件", users_resend_email_path(email: @user.email) %>
+        <% end %>
+        <%= link_to "修改", "/profile/email" %></li>
+  <% else %>
+      <li><%= link_to "添加邮箱", "/profile/email" %></li>
+  <% end %>
 
-<% if @user.phone? %>
-  <li>手机号：<%= @user.phone %><%= link_to "修改", profile_phone_path %></li>
-<% else %>
-  <li><%= link_to "添加手机号", profile_phone_path %></li>
-<% end %>
-<%= link_to "编辑个人信息", edit_user_path(@user) %>
-
+  <% if @user.phone? %>
+      <li>手机号：<%= @user.phone %><%= link_to "修改", profile_phone_path %></li>
+  <% else %>
+      <li><%= link_to "添加手机号", profile_phone_path %></li>
+  <% end %>
+  <%= link_to "编辑个人信息", edit_user_path(@user) %>
 </ul>
