@@ -52,11 +52,11 @@ function refreshCapture(e) {
 }
 
 function suspend(ele, seconds) {
-    if (!ele) return
+    if (!ele) return;
     var target = $(ele);
     target.prop('disabled', true);
     var timeleft = seconds;
-    var waite = setInterval(function() {
+    var waite = setInterval(function () {
         console.log(timeleft);
         if (timeleft <= 0) {
             clearInterval(waite);
@@ -87,7 +87,7 @@ function get_phone_verification() {
         url: "/phone_verifications",
         data: data,
         dataType: "JSON",
-        success: function() {
+        success: function () {
             alert("短信验证码已发送");
             suspend(_this, 30);
         }
@@ -114,7 +114,7 @@ function reset_phone_verification(e) {
         url: "/password_resets_by_phone",
         data: data,
         dataType: "JSON",
-        success: function() {
+        success: function () {
             alert("短信验证码已发送");
             suspend(_this, 30);
         }
@@ -122,13 +122,13 @@ function reset_phone_verification(e) {
 
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.captcha').on('click', refreshCapture);
     $('#phone_verification').on('click', get_phone_verification);
     $('#phone_reset').on('click', reset_phone_verification);
 });
 
-$(document).ajaxError(function(event, jqxhr) {
+$(document).ajaxError(function (event, jqxhr) {
     if (jqxhr.responseText) {
         var errorMsg = {
             "E000": "图形验证码无效",
