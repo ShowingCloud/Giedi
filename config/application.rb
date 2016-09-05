@@ -41,5 +41,11 @@ module DomeSso
                              request_specs: false
             g.fixture_replacement :factory_girl, dir: 'spec/factories'
         end
+
+        config.cache_store = :readthis_store, {
+          expires_in: 2.weeks.to_i,
+          namespace: 'cache',
+          redis: { url: 'redis://localhost:6379/2', driver: :hiredis }
+        }
     end
 end
