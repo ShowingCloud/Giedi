@@ -1,3 +1,7 @@
+#header {
+  height: 100%;
+}
+
 #top {
   height: 30px;
   font-size: 12px;
@@ -105,6 +109,7 @@
   color: #fff;
   line-height: 20px;
   width: 100%;
+  padding-bottom: 50px;
   &:after {
     content: "";
     display: block;
@@ -190,7 +195,6 @@
 
 #teacher {
   background: #ffcc66;
-  height: 100%;
   .text-animate {
     color: #fff;
     font-size: 14px;
@@ -321,12 +325,10 @@
       }
     }
   }
-
 }
 
 #history {
   background: #f8f8f8;
-  height: 100%;
   &:after {
     content: "";
     display: block;
@@ -336,6 +338,14 @@
     float: left;
     width: 480px;
     padding-top: 60px;
+    transition: all .6s ease;
+    position: relative;
+    left: 0;
+    opacity: 1;
+    &.ready {
+      left: -30px;
+      opacity: 0;
+    }
     .list-title {
       font-size: 21px;
       margin-bottom: 40px;
@@ -389,7 +399,14 @@
     float: left;
     width: 340px;
     height: 420px;
+    transition: all .6s ease;
     position: relative;
+    left: 0;
+    opacity: 1;
+    &.ready {
+      left: -30px;
+      opacity: 0;
+    }
     .box {
       position: absolute;
       top: 80px;
@@ -431,7 +448,14 @@
     text-align: center;
     width: 380px;
     overflow: hidden;
+    transition: all .6s ease;
     position: relative;
+    left: 0;
+    opacity: 1;
+    &.ready {
+      left: -30px;
+      opacity: 0;
+    }
     .warp-win {
       width: 300px;
       height: 224px;
@@ -467,7 +491,6 @@
 }
 
 #service {
-  height: 100%;
   .service-title {
     font-size: 26px;
     text-align: center;
@@ -490,6 +513,14 @@
   }
   .service-upper {
     height: 300px;
+    transition: all .6s ease;
+    position: relative;
+    top: 0;
+    opacity: 1;
+    &.ready {
+      top: -30px;
+      opacity: 0;
+    }
     &:after {
       content: "";
       display: block;
@@ -559,9 +590,17 @@
     .right {
       float: left;
       width: 600px;
+      overflow: hidden;
+      height: 260px;
+      position: relative;
       .upper-list {
+        height: 1300px;
+        position: absolute;
+        top: 0;
+        transition: top .6s ease;
         .list-item {
           text-align: center;
+          overflow: hidden;
           .title {
             font-size: 22px;
             height: 40px;
@@ -593,6 +632,14 @@
   .service-lower {
     width: 600px;
     margin: 0 auto;
+    transition: all .6s ease;
+    position: relative;
+    bottom: 0;
+    opacity: 1;
+    &.ready {
+      bottom: -30px;
+      opacity: 0;
+    }
     .lower-title {
       text-align: center;
       padding: 10px 0;
@@ -640,10 +687,23 @@
     }
     .tab-content {
       padding-top: 20px;
+      width: 600px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
       &:after {
         content: '';
         display: block;
         clear: both;
+      }
+      .tab-list {
+        position: absolute;
+        left: 0;
+        width: 2400px;
+        transition: left .6s ease;
+      }
+      .tab-item {
+        width: 600px;
       }
       .img {
         width: 300px;
@@ -660,22 +720,46 @@
 
 #case {
   background-color: #f5f5f5;
-  height: 100%;
+  padding-bottom: 50px;
   .case-title {
     font-size: 36px;
     padding: 10px 0;
     text-align: center;
     letter-spacing: 20px;
+    margin-bottom: 30px;
   }
-  .case {
-    width: 600px;
-    height: 300px;
-    float: left;
+  .case-win {
+    height: 500px;
+    padding: 50px 0;
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
     position: relative;
-    .bk-img {
-      width: 600px;
-      height: 300px;
+    .case-list {
+      position: absolute;
+      width: 1800px;
+      transition: all .6s ease;
+      .case-item {
+        height: 400px;
+        .bk-img {
+          position: relative;
+          top: 80px;
+          width: 350px;
+          height: 240px;
+          transition: all .6s;
+          cursor: pointer;
+        }
+        &.active {
+          .bk-img {
+            top: 0;
+            width: 585px;
+            height: 399px;
+          }
+        }
+      }
     }
+  }
+  .shade-list {
     .shade {
       position: absolute;
       left: 0;
@@ -683,8 +767,15 @@
       width: 100%;
       height: 100px;
       padding: 10px 40px;
-      background: rgba(100, 100, 100, .5);
+      background: rgba(0, 0, 0, .5);
       color: #fff;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .6s ease-in-out;
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
       .s-t {
         font-size: 18px;
         margin-bottom: 5px;
@@ -732,6 +823,6 @@
   }
 }
 
-#lasted {
+.lasted {
   position: relative;
 }

@@ -5,6 +5,9 @@ $(function () {
 
     sliderInit();
     historyWarp();
+    serviceUpper();
+    serviceLower();
+    caseSlide();
 
     $('#about').fullpage({
         //Navigation
@@ -38,13 +41,27 @@ $(function () {
                     var a3 = window.setTimeout(function () {
                         $('.weixin-icon').removeClass('ready');
                     }, 1800);
-
                 }
                 if (index == 2) {
                     $('.slider-section').removeClass('ready');
 
                     var a1 = window.setTimeout(function () {
                         $('.text-animate').removeClass('ready');
+                    }, 500);
+                }
+                if (index == 3) {
+                    $('.list').removeClass('ready');
+                    var a1 = window.setTimeout(function () {
+                        $('.center').removeClass('ready');
+                    }, 500);
+                    var a2 = window.setTimeout(function () {
+                        $('.warp').removeClass('ready');
+                    }, 1000);
+                }
+                if (index == 4) {
+                    $('.service-upper').removeClass('ready');
+                    var a1 = window.setTimeout(function () {
+                        $('.service-lower').removeClass('ready');
                     }, 500);
                 }
             }
@@ -95,19 +112,68 @@ function historyWarp() {
         event.preventDefault();
         var data = event.data;
         var space = data.space;
-
         var _self = $(this);
         _self.siblings('.active').removeClass('active');
         _self.addClass('active');
-
         var index = _self.index();
-
         var l = space.find('.warp-list');
-
         l.css('left', (0 - index) * 300 + 'px');
-
         var box = space.find('.box').eq(index);
         box.siblings('.active').removeClass('active');
         box.addClass('active');
+    })
+}
+
+function serviceUpper() {
+    var space = $('#service');
+    var btn = space.find('.upper-item');
+    btn.on('mouseenter', {space: space}, function (event) {
+        event.preventDefault();
+        var data = event.data;
+        var space = data.space;
+        var _self = $(this);
+        _self.siblings('.active').removeClass('active');
+        _self.addClass('active');
+        var index = _self.index();
+        var l = space.find('.right>.upper-list');
+        l.css('top', ((0 - index) * 260) + 'px');
+    })
+}
+
+function serviceLower() {
+    var space = $('#service');
+    var btn = space.find('.tab-title>.item');
+    btn.on('mouseenter', {space: space}, function (event) {
+        event.preventDefault();
+        var data = event.data;
+        var space = data.space;
+        var _self = $(this);
+        _self.siblings('.active').removeClass('active');
+        _self.addClass('active');
+        var index = _self.index();
+        var l = space.find('.tab-content>.tab-list');
+        l.css('left', ((0 - index) * 600) + 'px');
+    })
+}
+
+function caseSlide() {
+    var space = $('#case');
+    var btn = space.find('.case-item');
+
+    btn.on('mouseenter', {space: space}, function (event) {
+        event.preventDefault();
+        var data = event.data;
+        var space = data.space;
+        var _self = $(this);
+        _self.siblings('.active').removeClass('active');
+        _self.addClass('active');
+        var index = _self.index();
+        var l = space.find('.case-list');
+        l.css('left', ((0 - index) * 200) + 'px');
+
+        var a = space.find('.shade');
+
+        a.removeClass('active');
+        a.eq(index).addClass('active');
     })
 }
