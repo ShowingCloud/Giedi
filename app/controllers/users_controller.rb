@@ -97,6 +97,7 @@ class UsersController < ApplicationController
 
   def edit_password
     set_user
+    render layout: 'in_a_iframe'
   end
 
   def edit_avatar
@@ -121,7 +122,7 @@ class UsersController < ApplicationController
     unless params[:user][:phone].blank?
       unless verify_sms? params[:user][:phone],params[:pin]
         @user.errors.add(:base, t('phone_verification.invalid'))
-        render('/users/edit_password') && return
+        render('/profile/phone') && return
       end
     end
 
@@ -129,7 +130,7 @@ class UsersController < ApplicationController
       current_password = params[:user].delete(:current_password)
       unless @user.authenticate(current_password)
         @user.errors.add(:base, t('current_password.wrong'))
-        render('/users/edit_password') && return
+        render('/profile/password') && return
       end
     end
 
@@ -206,9 +207,9 @@ class UsersController < ApplicationController
 
   def verify_sms?(phone,pin)
     valid = false
-    verification = PhoneVerification.find_by(phone: phone)
-    valid = verification.present? && verification.pin == pin && verification.updated_at > 10.minutes.ago
-    verification.update_attribute(:pin,nil) if valid
+    verification = Rails.cache.read(phone)
+    valid = verification.present? && verification[:pin] == pin
+    Rails.cache.delete(phone) if valid
     valid
   end
 

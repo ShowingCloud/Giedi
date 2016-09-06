@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
 
-  attribute :id, key: :guid
+  attribute :id
   attributes :avatar, :email
   attribute :phone, key: :mobile
   attribute :name, key: :nickname

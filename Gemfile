@@ -44,6 +44,10 @@ gem 'mini_magick'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
 
+#redis
+gem 'readthis'
+gem 'hiredis'
+
 #admin dashboard
 gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'activeadmin_json_editor', '~> 0.0.6'
