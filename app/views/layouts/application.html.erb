@@ -8,9 +8,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= set_theme %>">
-<% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
 <div id="top" class="top container-fluid">
   <div class="container">
     <div class="left-menu">
@@ -45,6 +42,9 @@
     </div>
   </div>
 </div>
+<% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 <div id="yield">
   <%= yield %>
 </div>

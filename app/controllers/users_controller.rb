@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
+  layout 'embedded', only: [:edit_password, :add_phone, :add_email]
   before_action :ensure_service_allowed, only: [:new, :new_by_phone]
-  before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone]
-  skip_before_action :ensure_signed_in, only: [:show, :update], if: :format_json?
+  before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone], unless: :format_json?
   before_action :authenticate_request!, if: :format_json?
   before_action :set_referrer, only: [:update, :add_phone, :add_email, :edit_password], unless: :format_json?
   before_action :set_x_frame_option, unless: :format_json?
@@ -25,10 +25,10 @@ class UsersController < ApplicationController
       @token = @user.confirmation_token
       UserMailer.new_email_confirmation(@user, @token).deliver_later
       flash[:notice] = "验证邮件已发送"
-      render 'users/notice'
+      render 'users/notice',layout:'embedded'
     # handle_redirect_back
     else
-      render :add_email
+      render :add_email,layout:'embedded'
     end
   end
 
@@ -97,7 +97,6 @@ class UsersController < ApplicationController
 
   def edit_password
     set_user
-    render layout: 'in_a_iframe'
   end
 
   def edit_avatar
@@ -122,7 +121,7 @@ class UsersController < ApplicationController
     unless params[:user][:phone].blank?
       unless verify_sms? params[:user][:phone],params[:pin]
         @user.errors.add(:base, t('phone_verification.invalid'))
-        render('/profile/phone') && return
+        render('users/add_phone',layout:'embedded')  && return
       end
     end
 
@@ -130,7 +129,7 @@ class UsersController < ApplicationController
       current_password = params[:user].delete(:current_password)
       unless @user.authenticate(current_password)
         @user.errors.add(:base, t('current_password.wrong'))
-        render('/profile/password') && return
+        render('users/edit_password',layout:'embedded') && return
       end
     end
 
@@ -138,7 +137,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(user_params)
         format.html do
           flash[:notice] = "修改成功"
-          render "/users/notice"
+          render "/users/notice",layout:'embedded'
         end
         format.json { head :no_content }
       else
@@ -187,6 +186,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_signed_in
+    p 'check'
     if session[:user_id].blank?
       if  signed_in?
         guid = current_user.extra_attributes[:guid]
