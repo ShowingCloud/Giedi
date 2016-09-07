@@ -35,6 +35,7 @@ gem 'phonelib'
 
 #background processing
 gem 'sidekiq'
+gem 'sinatra', require: false
 
 #file uploads
 gem 'carrierwave'
@@ -64,6 +65,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'email_spec'
+  gem 'webmock'
 end
 
 group :development, :test do

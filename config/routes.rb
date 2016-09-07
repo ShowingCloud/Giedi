@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-
   devise_for :admin_users, ActiveAdmin::Devise.config
+  authenticate :admin_user do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
   ActiveAdmin.routes(self)
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
   get 'password_resets_by_phone' => 'password_resets#new_by_phone'

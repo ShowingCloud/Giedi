@@ -186,7 +186,6 @@ class UsersController < ApplicationController
   end
 
   def ensure_signed_in
-    p 'check'
     if session[:user_id].blank?
       if  signed_in?
         guid = current_user.extra_attributes[:guid]

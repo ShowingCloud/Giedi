@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+WebMock.stub_request(:any, "api.submail.cn")
 RSpec.describe UsersController do
   describe'guest access' do
     describe'GET#new' do
