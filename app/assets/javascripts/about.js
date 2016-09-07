@@ -9,6 +9,7 @@ $(function () {
     serviceLower();
     caseSlide();
 
+
     $('#about').fullpage({
         //Navigation
         navigation: true,
@@ -29,6 +30,8 @@ $(function () {
             if (!loadedSection.hasClass('loaded')) {
                 loadedSection.addClass('loaded');
                 if (index == 1) {
+                    fixHeight();
+
                     $('.gps-icon').removeClass('ready');
                     var a1 = window.setTimeout(function () {
                         $('.mail-icon').removeClass('ready');
@@ -176,4 +179,10 @@ function caseSlide() {
         a.removeClass('active');
         a.eq(index).addClass('active');
     })
+}
+
+function fixHeight() {
+    var h = $('.fp-tableCell').height();
+    var th = h - 169;
+    $('#banner').css({height: th + 'px'})
 }
