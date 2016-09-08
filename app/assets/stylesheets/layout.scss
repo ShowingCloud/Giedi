@@ -80,7 +80,7 @@
   }
   .nav-menu {
     float: right;
-    font-size: 24px;
+    font-size: 18px;
     color: #e95e21;
     padding-top: 22px;
     ul {
@@ -147,6 +147,9 @@
     .QR {
       float: left;
       margin: 0 20px;
+      span {
+        display: block;
+      }
     }
   }
 }
