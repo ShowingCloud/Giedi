@@ -295,6 +295,10 @@ GEM
     rqrcode_png (0.1.5)
       chunky_png
       rqrcode
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
     rspec-core (3.5.3)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -311,6 +315,9 @@ GEM
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
+    rspec-sidekiq (2.2.0)
+      rspec (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.5.0)
     rucaptcha (1.0.0)
       railties (>= 3.2)
@@ -407,6 +414,7 @@ DEPENDENCIES
   rails (~> 4.2.6)
   readthis
   rspec-rails
+  rspec-sidekiq
   rucaptcha
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

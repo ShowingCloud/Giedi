@@ -7,10 +7,9 @@ RSpec.describe PhoneVerificationsController, type: :controller do
       end
 
       context 'with valid attributes' do
-          it 'saves the new phone_verification in the database' do
-              expect {
-                post :create, phone: "18035243428"
-              }.to change(PhoneVerification, :count).by(1)
+          it 'SendSmsJob processed' do
+              post :create, phone: "180352"
+              expect(SendSmsJob).to be_processed_in :default
           end
 
           it 'get success response' do
@@ -20,10 +19,9 @@ RSpec.describe PhoneVerificationsController, type: :controller do
       end
 
       context 'with invalid attributes' do
-          it 'does not save the new phone_verification in the database' do
-              expect do
-                  post :create, phone: Faker::Number.number(9)
-              end.to_not change(User, :count)
+          it 'SendSmsJob not processed' do
+              post :create, phone: Faker::Number.number(9)
+              expect(SendSmsJob).to be_processed_in :default
           end
           it 'get http_status 422' do
               post :create, phone: Faker::Number.number(9)

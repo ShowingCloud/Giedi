@@ -63,8 +63,8 @@ RSpec.describe UsersController do
 
     describe 'POST #create_by_phone' do
       before :each do
-        phone_verification = create(:phone_verification)
-        @pin = phone_verification.pin
+        @pin = Faker::Number.number(6)
+        Rails.cache.write("18035243428", { pin: @pin, send_at: DateTime.now }, expires_in: 10.minute)
       end
 
       context 'with valid attributes' do

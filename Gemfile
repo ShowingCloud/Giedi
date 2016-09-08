@@ -66,6 +66,7 @@ group :test do
   gem 'faker'
   gem 'email_spec'
   gem 'webmock'
+  gem 'rspec-sidekiq'
 end
 
 group :development, :test do
