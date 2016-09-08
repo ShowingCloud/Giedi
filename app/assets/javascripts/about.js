@@ -99,7 +99,6 @@ function sliderInit() {
         l.css('left', (2 - n_index) * 200 + 'px');
         old.removeClass('active');
         a.eq(n_index).addClass('active');
-        console.log(n_index);
     })
 }
 
