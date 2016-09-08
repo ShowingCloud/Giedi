@@ -123,3 +123,6 @@ db/datadump/sessions.yml
 
 # jQuery map file
 jquery*.map
+
+# Ignore Byebug command history file.
+.byebug_history
