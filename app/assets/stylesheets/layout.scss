@@ -450,10 +450,12 @@
       .box-img {
         background-color: #fff;
         width: 230px;
-        height: 166px;
         padding: 8px;
         margin-bottom: 30px;
         text-align: center;
+        img {
+          width: 214px;
+        }
       }
       .box-text {
         letter-spacing: 3px;
