@@ -636,6 +636,8 @@
         .list-item {
           text-align: center;
           overflow: hidden;
+          height: 280px;
+          padding-bottom: 20px;
           .title {
             font-size: 22px;
             height: 40px;
@@ -651,6 +653,11 @@
             float: left;
             width: 276px;
             height: 200px;
+            margin-right: 10px;
+            img{
+              width: 276px;
+              height: 200px;
+            }
           }
           .dec {
             text-align: left;
