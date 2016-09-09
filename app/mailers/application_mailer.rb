@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: Settings.email.account
+  default from: "service@mail.robodou.cn"
   layout 'mailer'
 end

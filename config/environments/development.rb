@@ -21,12 +21,13 @@ Rails.application.configure do
   host = 'i.s1.com'
   config.action_mailer.default_url_options = { host: host}
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.163.com',
-    :port           => '25',
+    :address        => Settings.email.address,
+    :port           => Settings.email.port,
     :authentication => :plain,
     :user_name      => Settings.email.account,
     :password       => Settings.email.password,
-    :domain         => Settings.email.domain
+    :domain         => Settings.email.domain,
+    :enable_starttls_auto => true 
 }
 
   # Print deprecation notices to the Rails logger.

@@ -4,8 +4,7 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
-require "email_spec"
-require "email_spec/rspec"
+Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -14,16 +13,6 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-RSpec::Sidekiq.configure do |config|
-  # Clears all job queues before each example
-  config.clear_all_enqueued_jobs = true # default => true
-
-  # Whether to use terminal colours when outputting messages
-  config.enable_terminal_colours = true # default => true
-
-  # Warn when jobs are not enqueued to Redis but to a job array
-  config.warn_when_jobs_not_processed_by_sidekiq = true # default => true
-end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

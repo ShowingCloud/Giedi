@@ -37,7 +37,6 @@ RSpec.describe UsersController do
         end
 
         it "should deliver the signup email" do
-
           post :create, user: {"email" => "email@example.com", "name" => "Jimmy Bean", "password" =>Faker::Internet.password }
           expect(UserMailer).to(receive(:email_confirmation).with(assigns(:user),assigns(:user).confirmation_token))
       end

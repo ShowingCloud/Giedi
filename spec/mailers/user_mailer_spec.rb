@@ -20,7 +20,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it "should contain a link to the confirmation link" do
-      expect(@email).to have_body_text(edit_email_confirmation_url(@token, email: @user.email))
+      expect(@email).to have_body_text(/"#{edit_email_confirmation_url(@token, email: @user.email)}"/)
     end
 
     it "should have the correct subject" do

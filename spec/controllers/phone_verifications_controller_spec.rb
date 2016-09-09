@@ -4,14 +4,10 @@ RSpec.describe PhoneVerificationsController, type: :controller do
   describe 'POST #create' do
       before do
           allow_any_instance_of(ActionController::Base).to receive(:verify_rucaptcha?).and_return(true)
+
       end
 
       context 'with valid attributes' do
-          it 'SendSmsJob processed' do
-              post :create, phone: "180352"
-              expect(SendSmsJob).to be_processed_in :default
-          end
-
           it 'get success response' do
               post :create, phone: "18035243428"
               expect(response).to be_success
@@ -19,10 +15,6 @@ RSpec.describe PhoneVerificationsController, type: :controller do
       end
 
       context 'with invalid attributes' do
-          it 'SendSmsJob not processed' do
-              post :create, phone: Faker::Number.number(9)
-              expect(SendSmsJob).to be_processed_in :default
-          end
           it 'get http_status 422' do
               post :create, phone: Faker::Number.number(9)
               expect(response).to have_http_status(422)

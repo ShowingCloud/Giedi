@@ -12,7 +12,7 @@ class PhoneVerificationsController < ApplicationController
       @phone_verification = Rails.cache.read(params[:phone])
       render json: { msg: 'sms too often', code: 'E005' }, status: 403 && return if @phone_verification.present? && @phone_verification[:send_at] < 20.seconds.ago
       SendSmsJob.perform_later(params[:phone])
-      head :no_content
+      render json: { msg: 'sms send' }, status: 200
     else
       render json: { msg: 'invalid captcha', code: 'E000' }, status: 403
     end

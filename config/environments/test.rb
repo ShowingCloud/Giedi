@@ -1,5 +1,4 @@
 
-ENV['emailusername'] = 'noreply@robodou.cn'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -32,6 +31,8 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+
+  config.active_job.queue_adapter = :inline
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
