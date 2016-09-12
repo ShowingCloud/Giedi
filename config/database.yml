@@ -13,3 +13,11 @@ test:
   pool: 5
   username: dome_sso
   password: lovedome
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: dome_sso
+  pool: 5
+  username: <%= ENV['Settings.database.username'] %>
+  password: <%= ENV['Settings.database.password'] %>
