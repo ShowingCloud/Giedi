@@ -64,11 +64,12 @@ production:
       authenticator: "ActiveRecord"
       options:
         connection:
-          adapter: "mysql2"
-          host: "localhost"
-          username: "root"
-          password: "your_password"
-          database: "dome_sso"
+          adapter: postgresql
+          encoding: utf8
+          database: dome_sso
+          pool: 5
+          username: <%= ENV['Settings.database.username'] %>
+          password: <%= ENV['Settings.database.password'] %>
         table: "users"
         username_column: "name"
         password_column: "password_digest"

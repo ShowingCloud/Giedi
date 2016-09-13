@@ -26,12 +26,12 @@ RSpec.describe User do
     expect(user.confirmation_digest).not_to be_empty
   end
 
-  describe "ActiveModel validations" do
-    it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_length_of(:name).is_at_most(20) }
-    it { is_expected.to validate_presence_of(:password) }
-    it { is_expected.to validate_length_of(:password).is_at_least(6) }
-  end
+  # describe "ActiveModel validations" do
+  #   it { is_expected.to validate_presence_of(:name) }
+  #   it { is_expected.to validate_length_of(:name).is_at_most(20) }
+  #   it { is_expected.to validate_presence_of(:password) }
+  #   it { is_expected.to validate_length_of(:password).is_at_least(6) }
+  # end
 
   describe "ActiveRecord associations" do
     it { expect(build(:user)).to have_one(:user_extra) }

@@ -37,11 +37,11 @@ RSpec.describe UsersController do
         end
 
         it "should deliver the signup email" do
-          post :create, user: {"email" => "email@example.com", "name" => "Jimmy Bean", "password" =>Faker::Internet.password }
-          expect(UserMailer).to(receive(:email_confirmation).with(assigns(:user),assigns(:user).confirmation_token))
+          post :create, user: attributes_for(:user)
+          expect(enqueued_jobs.size).to eq(1)
       end
 
-        it 'redirects to sessions' do
+        it 'redirects to before_confirmed' do
           post :create, user: attributes_for(:user)
           expect(response).to render_template "users/before_confirmed"
         end

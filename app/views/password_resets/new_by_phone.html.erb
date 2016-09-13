@@ -16,9 +16,7 @@
       </div>
     </div>
     <div class="form">
-      <%= form_for(@user, url: password_resets_by_phone_path, method: :patch) do |f| %>
-          <%= render 'shared/error_messages' %>
-
+      <%= form_for(:password_reset, url: password_resets_by_phone_path, method: :patch) do |f| %>
           <div class="row">
             <%= f.label :phone, '手机' %>
             <%= f.phone_field :phone, class: 'form-control' %>

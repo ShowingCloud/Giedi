@@ -14,7 +14,6 @@
     </div>
     <div class="like-tabs"></div>
     <div class="login">
-      <%= render 'messages' %>
       <div class="form">
         <%= form_tag(login_path, method: :post, id: 'login-form') do %>
             <%= hidden_field_tag :lt, CASino::LoginTicket.create.ticket %>

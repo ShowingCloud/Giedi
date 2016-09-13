@@ -58,17 +58,22 @@ class PasswordResetsController < ApplicationController
     end
 
     def update_by_phone
-        @user = User.find_by(phone: params[:user][:phone])
-        render('new_by_phone') && return unless params[:reset_pin] == @user.reset_pin
-        if params[:user][:password].empty?
-            @user.errors.add(:password, "不能为空")
-            render 'new_by_phone'
-        elsif @user.update_attributes(user_params)
-            data = { authenticator: 'ActiveRecord', user_data: { username: params[:user][:phone] } }
-            flash[:success] = "密码已重置."
-            sign_in(data)
+        @user = User.find_by(phone: params[:password_reset][:phone])
+        if @user
+          render('new_by_phone') && return unless params[:reset_pin] == @user.reset_pin
+          if params[:password_reset][:password].empty?
+              @user.errors.add(:password, "不能为空")
+              render 'new_by_phone'
+          elsif @user.update_attributes(user_params)
+              data = { authenticator: 'ActiveRecord', user_data: { username: params[:password_reset][:phone] } }
+              flash[:success] = "密码已重置."
+              sign_in(data)
+          else
+              render 'new_by_phone'
+          end
         else
-            render 'new_by_phone'
+          flash.now[:danger] = "不存在的手机号"
+          render 'new_by_phone'
         end
     end
 

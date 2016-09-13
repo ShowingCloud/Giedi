@@ -4,7 +4,7 @@ RSpec.describe PhoneVerificationsController, type: :controller do
   describe 'POST #create' do
       before do
           allow_any_instance_of(ActionController::Base).to receive(:verify_rucaptcha?).and_return(true)
-
+          Rails.cache.clear
       end
 
       context 'with valid attributes' do
