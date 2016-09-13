@@ -2,14 +2,11 @@
  * Created by yaolin on 16/8/25.
  */
 $(function () {
-
     sliderInit();
     historyWarp();
     serviceUpper();
     serviceLower();
     caseSlide();
-
-
     $('#about').fullpage({
         //Navigation
         navigation: true,
@@ -18,11 +15,11 @@ $(function () {
         //Scrolling
         css3: true,
         loopBottom: true,
+        touchSensitivity: 15,
+        normalScrollElementTouchThreshold: 5,
 
         //Accessibility
         keyboardScrolling: true,
-
-        bigSectionsDestination: 'bottom',
 
         afterLoad: function (anchorLink, index) {
             var loadedSection = $(this);
