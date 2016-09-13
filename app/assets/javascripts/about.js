@@ -137,7 +137,7 @@ function serviceUpper() {
         _self.addClass('active');
         var index = _self.index();
         var l = space.find('.right>.upper-list');
-        l.css('top', ((0 - index) * 260) + 'px');
+        l.css('top', ((0 - index) * 280) + 'px');
     })
 }
 
