@@ -17,6 +17,7 @@ $(function () {
         loopBottom: true,
         touchSensitivity: 15,
         normalScrollElementTouchThreshold: 5,
+        bigSectionsDestination: 'top',
 
         //Accessibility
         keyboardScrolling: true,
@@ -26,7 +27,6 @@ $(function () {
             if (!loadedSection.hasClass('loaded')) {
                 loadedSection.addClass('loaded');
                 if (index == 1) {
-                    fixHeight();
 
                     $('.gps-icon').removeClass('ready');
                     var a1 = window.setTimeout(function () {
@@ -167,7 +167,7 @@ function caseSlide() {
         _self.addClass('active');
         var index = _self.index();
         var l = space.find('.case-list');
-        l.css('left', ((0 - index) * 200) + 'px');
+        l.css('left', ((0 - index) * 150) + 'px');
 
         var a = space.find('.shade');
 
