@@ -463,6 +463,9 @@
         font-size: 14px;
         padding: 10px 0;
         text-align: right;
+        a {
+          color: #F5A623;
+        }
       }
     }
   }
@@ -482,7 +485,7 @@
     }
     .warp-win {
       width: 300px;
-      height: 224px;
+      height: 260px;
       overflow: hidden;
       position: relative;
     }
@@ -654,7 +657,7 @@
             width: 276px;
             height: 200px;
             margin-right: 10px;
-            img{
+            img {
               width: 276px;
               height: 200px;
             }
