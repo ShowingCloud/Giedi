@@ -13,9 +13,10 @@ before_script:
 services:
   - postgresql
   - redis-server
-
 addons:
   postgresql: "9.4"
+  code_climate:
+    repo_token: 339a795b0e3010b4361e3739e3abd36ce628e3c0545615b67c47bfbe8240d929
 notifications:
   email:
     recipients:
