@@ -10,7 +10,7 @@ before_script:
   - sudo service postgresql start
   - bundle install
   - cp config/database.yml.travis config/database.yml
-  - psql -e 'create database dome_sso_test;' -U postgrsql
+  - psql -e 'create database dome_sso_test;' -U postgres
 services:
   - postgresql
   - redis-server
