@@ -75,30 +75,6 @@
               </li>
             </ul>
           </div>
-          <div class="mobile-show">
-            菜单
-            <span class="caret"></span>
-            <ul class="hover-menu">
-              <li>
-                <a href="">科普知识</a>
-              </li>
-              <li>
-                <a href="">机器人新闻</a>
-              </li>
-              <li>
-                <a href="">豆姆教室</a>
-              </li>
-              <li>
-                <a href="">比赛分享</a>
-              </li>
-              <li>
-                <a href="">专栏</a>
-              </li>
-              <li>
-                <a href="">豆姆公益</a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <div class="container">
@@ -178,6 +154,42 @@
           </div>
         </div>
       </div>
+      <div class="mobile-show">
+        <div class="mobile-show">
+          <ul class="horizontal-ul">
+            <li>
+              <div class="banner-icon gps-icon ready">
+                <img data-src="<%= image_path('layout/banner-icon-gps.png') %>" alt=""/>
+
+                <div class="tips">上海市钦州北路68号B3栋101室</div>
+              </div>
+            </li>
+            <li>
+              <div class="banner-icon mail-icon ready">
+                <img data-src="<%= image_path('layout/banner-icon-mail.png') %>" alt=""/>
+
+                <div class="tips">service@robodou.cn</div>
+              </div>
+            </li>
+            <li>
+              <div class="banner-icon phone-icon ready">
+                <img data-src="<%= image_path('layout/banner-icon-phone.png') %>" alt=""/>
+
+                <div class="tips">021-31653316</div>
+              </div>
+            </li>
+            <li>
+              <div class="banner-icon weixin-icon ready">
+                <img data-src="<%= image_path('layout/banner-icon-weixin.png') %>" alt=""/>
+
+                <div class="tips">
+                  <img src="<%= image_path('layout/QRcode.png') %>" alt=""/>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
   <div id="teacher" class="section">
@@ -252,6 +264,64 @@
         <p>如果你对并发小朋友的创客能力充满干劲</p>
 
         <p>豆姆欢迎你的加入</p>
+      </div>
+      <div class="mobile-show">
+        <div class="slider-section ready">
+          <div class="slider-win">
+            <ul class="horizontal-ul slider-list">
+              <li class="slider-item">
+                <div class="teacher-item">
+                  <div class="img">
+                    <img data-src="<%= image_path('teacher-01.png') %>" alt=""/>
+                  </div>
+                  <div class="name">
+                    仓铁肩
+                  </div>
+                  <div class="address">
+
+                  </div>
+                  <div class="dec">
+                    上海市科技艺术教育中心科技教育部副主任
+                  </div>
+                </div>
+              </li>
+
+              <li class="slider-item active">
+                <div class="teacher-item">
+                  <div class="img">
+                    <img data-src="<%= image_path('teacher-02.png') %>" alt=""/>
+                  </div>
+                  <div class="name">
+                    顾晓光
+                  </div>
+                  <div class="address">
+
+                  </div>
+                  <div class="dec">
+                    上海市科技艺术教育中心教师
+                  </div>
+                </div>
+              </li>
+              <li class="slider-item">
+                <div class="teacher-item">
+                  <div class="img">
+                    <img data-src="<%= image_path('teacher-03.png') %>" alt=""/>
+                  </div>
+                  <div class="name">
+                    葛智伟
+                  </div>
+                  <div class="address">
+
+                  </div>
+                  <div class="dec">
+                    上海市科技艺术教育中心教师
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -446,6 +516,201 @@
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mibile-show">
+      <div class="container">
+        <div class="list ready">
+          <div class="list-title">
+            <p>MEDIA <span>媒体</span></p>
+
+            <p>REPORT <span>报道</span></p>
+          </div>
+          <div class="list-group">
+            <div class="list-item active">
+              <div class="oval"></div>
+              <span class="time">2016/07/13</span>暑假“创新屋”机器人进社区
+            </div>
+            <div class="list-item">
+              <div class="oval"></div>
+              <span class="time">2016/07/13</span>暑假活动就是做作业? “00后"小朋友现在这样玩
+            </div>
+            <div class="list-item">
+              <div class="oval"></div>
+              <span class="time">2016/04/19</span>普陀区援黔藏学校大卡车出发
+            </div>
+            <div class="list-item">
+              <div class="oval"></div>
+              <span class="time">2016/04/18</span>普陀向黔藏贫困学校捐赠逾百万校服、3D打印机等
+            </div>
+            <div class="list-item">
+              <div class="oval"></div>
+              <span class="time">2015/11/11</span>40岁国社记者魏宗凯谈辞职 创业：不跳水永远在岸上
+            </div>
+            <div class="list-item">
+              <div class="oval"></div>
+              <span class="time">2015/09/25</span>“陪伴”机器人 智能化还不够
+            </div>
+          </div>
+        </div>
+        <div class="center ready">
+          <div class="box active">
+            <div class="box-img">
+              <img data-src="<%= image_path('history-01.png') %>" alt=""/>
+            </div>
+            <div class="box-text">
+              在上海，不少社会教育机构推出了STEM课程或主题活动，但动辄数千元甚至上万元的学费，让不少家庭望而却步。针对这一情况，南京西路社区学校联手知名机器人教育机构共建机器人课堂，降低机器人教育的门槛，让更多孩子感知科学前沿。
+            </div>
+            <div class="box-bottom">
+              <a href="http://news.hexun.com/2016-07-13/184900689.html" target="_blank">
+                青年日报
+              </a>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-img">
+              <img data-src="<%= image_path('history-02.png') %>" alt=""/>
+            </div>
+            <div class="box-text">
+              暑假期间，机器人主题的公益活动将在南京西路街道与天目西路街道等举办40次课程，可以满足400多名小朋友参加。南西街道的青少年机器人课程设在社区学校与中凯居委会中。在现场，踢足球、躲避障碍、巡线，这些复杂的机器人功能，在几乎零基础的“00后”小朋友手中，被玩得不亦乐乎。
+            </div>
+            <div class="box-bottom">
+              <a href="http://sh.eastday.com/m/20160713/u1ai9525478.html" target="_blank">
+                上海观察
+              </a>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-img">
+              <img data-src="<%= image_path('history-03.png') %>" alt=""/>
+            </div>
+            <div class="box-text">
+              4月18日上午，满载上海人民情义的两辆大卡车从上海普陀区曹杨二中附属学校出发，分别驰向贵州遵义市习水县和西藏日喀则市亚东县。普陀区教育局联合豆姆智能科技、清软海芯科技和上海鸣企服饰有限公司3家企业向当地学校捐赠价值近百万元的校服、3D打印机和机器人器材与配套课程。
+            </div>
+            <div class="box-bottom">
+              <a href="http://money.163.com/16/0419/12/BL11AL4U00253B0H.html" target="_blank">
+                东方早报
+              </a>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-img">
+              <img data-src="<%= image_path('history-04.png') %>" alt=""/>
+            </div>
+            <div class="box-text">
+              此次捐赠的机器人创新实验室由清软海芯科技与豆姆智能科技共同援建，为亚东中学提供器材、师资、课程和赛事服务，并邀请部分师生到上海和清华大学参加机器人比赛活动。清软海芯科技与豆姆智能科技负责人表示，未来两家公司还将继续联手为上海对口援建的地区中小学校捐赠机器人创新实验室。
+            </div>
+            <div class="box-bottom">
+              <a href="http://sh.eastday.com/m/20160418/u1ai9306584.html" target="_blank">
+                东方网
+              </a>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-img">
+              <img data-src="<%= image_path('history-06.png') %>" alt=""/>
+            </div>
+            <div class="box-text">
+              11月4日，小鲸来到魏宗凯的机器人公司——豆姆智能科技。公司位于钦州北路上海市六医院对面的一条弄堂里。走进弄堂，里面活像一个旧式里弄，到底有两家小旅馆。如果不是魏宗凯亲自出来接，很难想象那个公司是乍一看如同废弃厂房的一个创意园区里。
+            </div>
+            <div class="box-bottom">
+              <a href="http://toutiao.com/i6215844482303132162/" target="_blank">
+                今日头条
+              </a>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-img">
+              <img data-src="<%= image_path('history-05.png') %>" alt=""/>
+            </div>
+            <div class="box-text">
+              “这些其实都不能算陪伴机器人！真正的陪伴机器人应该是像大白和机器猫那样的。”豆姆科技CEO魏宗凯认为，现在市场上销售的智能机器人，跟影视作品里的机器人距离还非常远，因此大家都觉得机器人还不够智能。
+            </div>
+            <div class="box-bottom">
+              <a href="http://tech.hexun.com/2015-09-25/179482502.html" target="_blank">
+                青年报
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="warp ready">
+          <div class="warp-win">
+            <ul class="horizontal-ul warp-list">
+              <li class="warp-item">
+                <div class="year">
+                  2016/7
+                </div>
+                <div class="warp-text">
+                  <p>暑假</p>
+
+                  <p>“创新屋”</p>
+
+                  <p>机器人进社区</p>
+                </div>
+              </li>
+              <li class="warp-item">
+                <div class="year">
+                  2016/7
+                </div>
+                <div class="warp-text">
+                  <p>“00后"</p>
+
+                  <p>小朋友</p>
+
+                  <p>现在这样玩</p>
+                </div>
+              </li>
+              <li class="warp-item">
+                <div class="year">
+                  2016/4
+                </div>
+                <div class="warp-text">
+                  <p>普陀区</p>
+
+                  <p>援黔藏</p>
+
+                  <p>大卡车出发</p>
+                </div>
+              </li>
+              <li class="warp-item">
+                <div class="year">
+                  2016/4
+                </div>
+                <div class="warp-text">
+                  <p>普陀区</p>
+
+                  <p>向黔藏捐赠</p>
+
+                  <p>3D打印机、校服</p>
+                </div>
+              </li>
+              <li class="warp-item">
+                <div class="year">
+                  2015/11
+                </div>
+                <div class="warp-text">
+                  <p>谈创业</p>
+
+                  <p>不跳水</p>
+
+                  <p>永远在岸上</p>
+                </div>
+              </li>
+              <li class="warp-item">
+                <div class="year">
+                  2015/9
+                </div>
+                <div class="warp-text">
+                  <p>“陪伴”</p>
+
+                  <p>机器人</p>
+
+                  <p>智能化还不够</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
