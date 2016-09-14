@@ -1,1 +1,1 @@
-
+allow_from: ["http://www.c1.com/","http://www.c2.com/"]
