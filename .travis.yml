@@ -1,0 +1,24 @@
+language: ruby
+rvm:
+  - 2.3.1
+script:
+  - bin/rails db:migrate RAILS_ENV=test
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec
+cache: bundler
+before_script:
+  - bundle install
+  - cp config/database.yml.travis config/database.yml
+  - psql -e 'create database dome_sso_test;' -U postgrsql
+services:
+  - postgresql
+  - redis-server
+
+addons:
+  postgresql: "9.5"
+notifications:
+  email:
+    recipients:
+      - wanghaotian@robodou.cn
+    on_success: always
+    on_failure: always
