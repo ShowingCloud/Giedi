@@ -1,4 +1,5 @@
 require "codeclimate-test-reporter"
+WebMock.allow_net_connect!
 CodeClimate::TestReporter.start
 require 'capybara/rspec'
 require 'webmock/rspec'
