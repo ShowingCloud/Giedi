@@ -1,1 +1,6 @@
 allow_from: ["http://www.c1.com/","http://www.c2.com/"]
+submail:
+  sms_config:
+    appid: "1234"
+    signature: "12345678"
+    project: "3333"
