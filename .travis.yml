@@ -7,6 +7,7 @@ script:
   - bundle exec rspec
 cache: bundler
 before_script:
+  - sudo service postgresql start
   - bundle install
   - cp config/database.yml.travis config/database.yml
   - psql -e 'create database dome_sso_test;' -U postgrsql
