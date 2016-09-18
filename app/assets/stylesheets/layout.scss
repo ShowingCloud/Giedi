@@ -134,115 +134,6 @@
   display: table-cell;
 }
 
-@media screen and (max-width: 640px) {
-  .container {
-    max-width: 640px !important;
-    min-width: 0;
-    width: 100% !important;
-  }
-  #fp-nav {
-    display: none !important;
-  }
-  #nav {
-    padding: 30px !important;
-    .nav-menu {
-      display: none !important;
-    }
-    .mobile-show {
-      color: #e95e21;
-      float: right;
-      width: 100px;
-      text-align: right;
-      position: relative;
-      cursor: pointer;
-      line-height: 30px;
-      margin-top: 20px;
-      font-size: 18px;
-      a {
-        color: inherit;
-      }
-      .hover-menu {
-        font-size: 12px;
-        right: 0 !important;
-      }
-      &:hover {
-        .caret {
-          transform: rotateZ(180deg);
-        }
-        .hover-menu {
-          top: 29px;
-          opacity: 1;
-          visibility: visible;
-        }
-      }
-    }
-  }
-  #banner {
-    .banner {
-      height: auto !important;
-      img {
-        display: block;
-        width: 100% !important;
-      }
-    }
-    .banner-list {
-      display: none !important;
-    }
-    .mobile-show {
-      ul {
-        width: 100%;
-        li {
-          width: 50%;
-          height: 100px;
-          text-align: center;
-          color: #fff;
-          border: 1px solid #ffffff;
-          margin-bottom: 2px;
-          .banner-icon {
-            display: inline-block;
-            margin: 0 auto;
-            cursor: pointer;
-            line-height: 100px;
-            width: 100%;
-            height: 100px;
-            background: #e95e21;
-            transition: opacity 1s, top 1s, background-color .3s, transform .6s;
-            transform: rotateY(0deg);
-            padding-top: 20px;
-            position: relative;
-            top: 0;
-          }
-          &:hover {
-            .banner-icon {
-              background-color: transparent;
-              transform: rotateY(180deg);
-              & > img {
-                opacity: 0;
-              }
-              .tips {
-                opacity: 1;
-                visibility: visible;
-                transform: rotateY(180deg);
-              }
-            }
-          }
-          .tips {
-            width: 100%;
-            position: absolute;
-            top: 0;
-            visibility: hidden;
-            opacity: 0;
-            transition: all .6s;
-            font-size: 14px;
-            color: #F5A623;
-            transform: rotateY(0deg);
-          }
-        }
-      }
-    }
-  }
-}
-
 #banner {
   height: 500px;
   vertical-align: middle;
@@ -1031,4 +922,175 @@
 
 .lasted {
   position: relative;
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    max-width: 640px !important;
+    min-width: 0;
+    width: 100% !important;
+  }
+  #fp-nav {
+    display: none !important;
+  }
+  .mobile-show {
+    display: block !important;
+  }
+  .mobile-hide {
+    display: none !important;
+  }
+  #banner-m {
+    background: image-url('banner-m.png') center center;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+    .contact-us {
+      width: 50px;
+      text-align: center;
+      color: #fff;
+      background: #e95e21;
+      right: 0;
+      top: 100px;
+      font-size: 14px;
+      line-height: 14px;
+      position: absolute;
+      border-radius: 5px;
+      box-shadow: 0 0 3px 0 #ccc inset;
+      padding: 10px 5px;
+      .c-btn {
+        cursor: pointer;
+        height: 28px;
+        line-height: 28px;
+        border: 1px solid #fff;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 3px 0 #ccc inset;
+      }
+    }
+    .banner-contact {
+      width: 100%;
+      position: absolute;
+      left: 100%;
+      z-index: 10;
+      height: 100%;
+      background: #fff6f2;
+      transition: left .6s ease;
+      display: table-cell;
+      &.active {
+        left: 0;
+      }
+      .contact-part {
+        height: 100px;
+        padding: 15px;
+        width: 340px;
+        margin: 0 auto;
+        .icon {
+          display: table-cell;
+          vertical-align: middle;
+          text-align: center;
+          line-height: 70px;
+          width: 70px;
+          height: 70px;
+          background: #e95e21;
+          border-radius: 50%;
+          float: left;
+          img {
+            vertical-align: middle;
+            height: 25px;
+          }
+        }
+        .info {
+          margin-left: 100px;
+          line-height: 70px;
+          color: #e95e21;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  #teacher {
+    padding: 0 20px;
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 15px;
+      padding-top: 15px;
+    }
+    .teacher-list-m {
+      .th-m {
+        height: 99px;
+        padding: 11px;
+        background: #fff;
+        border-radius: 50px;
+        margin-bottom: 15px;
+        .icon {
+          width: 77px;
+          height: 77px;
+          border-radius: 50%;
+          background: #e95e21;
+          padding: 4px;
+          float: left;
+          img {
+            width: 69px;
+            height: 69px;
+            border-radius: 50%;
+          }
+        }
+        .info {
+          width: 150px;
+          text-align: center;
+          margin-left: 99px;
+          strong {
+            font-size: 14px;
+            margin-bottom: 25px;
+            display: block;
+          }
+        }
+      }
+    }
+    .text-m {
+      font-size: 12px;
+      text-align: center;
+      color: #fff;
+      p {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  #history {
+    .history-m {
+      .box {
+        margin: 10px auto 30px  ;
+        width: 340px;
+        background: #e95e21;
+        height: 420px;
+        border-radius: 5px;
+        padding: 35px 55px 0;
+        box-shadow: 3px 3px 3px #777;
+        color: #fff;
+        transition: all .8s;
+        .box-img {
+          background-color: #fff;
+          width: 230px;
+          padding: 8px;
+          margin-bottom: 30px;
+          text-align: center;
+          img {
+            width: 214px;
+          }
+        }
+        .box-text {
+          letter-spacing: 3px;
+        }
+        .box-bottom {
+          font-size: 14px;
+          padding: 10px 0;
+          text-align: right;
+          a {
+            color: #F5A623;
+          }
+        }
+      }
+    }
+  }
 }

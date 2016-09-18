@@ -7,6 +7,17 @@ $(function () {
     serviceUpper();
     serviceLower();
     caseSlide();
+
+    bannerMobile();
+
+    var mySwiper = new Swiper('.swiper-container', {
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    });
+
     $('#about').fullpage({
         //Navigation
         navigation: true,
@@ -40,6 +51,7 @@ $(function () {
                     var a3 = window.setTimeout(function () {
                         $('.weixin-icon').removeClass('ready');
                     }, 1800);
+                    fixHeight();
                 }
                 if (index == 2) {
                     $('.slider-section').removeClass('ready');
@@ -178,6 +190,37 @@ function caseSlide() {
 
 function fixHeight() {
     var h = $('.fp-tableCell').height();
-    var th = h - 169;
-    $('#banner').css({height: th + 'px'})
+    $('.banner-contact').css({'padding-top': (h - 400) / 2 + 'px'});
+}
+
+function bannerMobile() {
+    var space = $('#banner-m');
+    var btn = space.find('.contact-us');
+    var p = space.find('.banner-contact');
+    var _is_hide = false;
+    btn.on('click', function () {
+        $('.banner-contact').addClass('active');
+    });
+    p.on('touchstart', function (event) {
+        event.preventDefault();
+        var s_d = event.originalEvent.targetTouches[0].clientX;
+        $(this).on('touchmove', {s_d: s_d}, function (event) {
+            event.preventDefault();
+            var data = event.data;
+            var s_d = data.s_d;
+            var n_d = event.originalEvent.targetTouches[0].clientX;
+            if (n_d - s_d > 100) {
+                _is_hide = true;
+            }
+        });
+    });
+    p.on('touchend', function (event) {
+        event.preventDefault();
+        $(this).off('touchmove');
+
+        if (_is_hide) {
+            $(this).removeClass('active');
+            _is_hide = false;
+        }
+    })
 }
