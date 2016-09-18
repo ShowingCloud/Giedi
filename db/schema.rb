@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831085001) do
+ActiveRecord::Schema.define(version: 20160918042615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,6 +159,16 @@ ActiveRecord::Schema.define(version: 20160831085001) do
 
   add_index "casino_users", ["authenticator", "username"], name: "index_casino_users_on_authenticator_and_username", unique: true, using: :btree
 
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
   create_table "phone_verifications", force: :cascade do |t|
     t.string   "phone"
     t.string   "pin"
@@ -211,5 +221,6 @@ ActiveRecord::Schema.define(version: 20160831085001) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["phone"], name: "index_users_on_phone", using: :btree
 
+  add_foreign_key "identities", "users"
   add_foreign_key "user_extras", "users"
 end

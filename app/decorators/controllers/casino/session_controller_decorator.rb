@@ -17,6 +17,8 @@ CASino::SessionsController.class_eval do
       show_login_error I18n.t('login_credential_acceptor.invalid_login_credentials')
     else
       extra_attributes = validation_result[:user_data][:extra_attributes]
+      @user=User.find(extra_attributes[:guid])
+      handle_with_oauth2
       if extra_attributes[:confirmed] || extra_attributes[:mobile].present?
         sign_in(validation_result, long_term: params[:rememberMe], credentials_supplied: true)
       else

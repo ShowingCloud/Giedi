@@ -62,6 +62,7 @@ class UsersController < ApplicationController
       UserMailer.email_confirmation(@user, @token).deliver_later
       @user_name = @user.name
       @email = @user.email
+      handle_with_oauth2
       render 'users/before_confirmed'
     else
       render 'users/new'
@@ -70,7 +71,6 @@ class UsersController < ApplicationController
 
   def create_by_phone
     params[:user][:register_from] = params[:service] if params[:service]
-    p params[:user]
     @user = User.new(user_create_params)
     if params[:pin].blank?
       @user.errors.add(:base, t('phone_verification.blank'))
@@ -83,6 +83,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
+      handle_with_oauth2
       data = { authenticator: 'create_by_phone', user_data: { username: @user.phone, extra_attributes: { email: @user.email, nickname: @user.name, mobile: @user.phone, guid: @user.id } } }
       sign_in(data)
     else
@@ -233,4 +234,5 @@ class UsersController < ApplicationController
       render 'service_not_allowed', status: :forbidden
     end
   end
+
 end

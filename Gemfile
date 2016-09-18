@@ -38,6 +38,12 @@ gem 'sidekiq'
 gem 'carrierwave'
 gem 'mini_magick'
 
+#delegated authentication
+gem 'omniauth'
+gem 'omniauth-weibo-oauth2'
+gem 'omniauth-qq'
+gem 'omniauth-github'
+
 #json api
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'

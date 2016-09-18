@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   mount CASino::Engine => '/', :as => 'casino'
   mount RuCaptcha::Engine => '/rucaptcha'
 
+  match 'auth/:provider/callback', to: 'oauth_callbacks#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

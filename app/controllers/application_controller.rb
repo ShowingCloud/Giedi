@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     submail.sms(phone,pin).parsed_response
   end
 
+  def handle_with_oauth2
+    if session["oauth2-data"].present?
+      @identity = Identity.find_by_uid(session["oauth2-data"]["uid"])
+      @identity.user = @user
+      @identity.save
+    end
+  end
+
   rescue_from ActionController::RedirectBackError, with: :redirct_to_default
 
   protected
