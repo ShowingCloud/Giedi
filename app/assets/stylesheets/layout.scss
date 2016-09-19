@@ -130,10 +130,6 @@
   }
 }
 
-.table-cell-box {
-  display: table-cell;
-}
-
 #banner {
   height: 500px;
   vertical-align: middle;
@@ -924,19 +920,23 @@
   position: relative;
 }
 
+.table-cell-box {
+  display: table-cell;
+}
+
 @media screen and (max-width: 640px) {
   .container {
     max-width: 640px !important;
     min-width: 0;
     width: 100% !important;
   }
-  #fp-nav {
-    display: none !important;
-  }
   .mobile-show {
     display: block !important;
   }
   .mobile-hide {
+    display: none !important;
+  }
+  #fp-nav {
     display: none !important;
   }
   #banner-m {
@@ -1056,7 +1056,6 @@
       }
     }
   }
-
   #history {
     .history-m {
       .box {
