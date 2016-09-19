@@ -18,14 +18,13 @@ class OauthCallbacksController < ApplicationController
         sign_in(data)
       else
         session["oauth2-data"] = auth
-        redirect_to '/', notice: "请登录或注册，以完成绑定"
+        redirect_to '/login?'+URI.encode_www_form("service"=>params[:service]), notice: "请登录或注册，以完成绑定"
       end
     end
   end
 
   private
     def handle_signed_in(tgt, options = {})
-      params[:service] = session[:service]
       if tgt.awaiting_two_factor_authentication?
         @ticket_granting_ticket = tgt
         render 'casino/sessions/validate_otp'

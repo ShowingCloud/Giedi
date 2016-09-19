@@ -1,0 +1,14 @@
+<% unless session["oauth2-data"].present? %>
+<ul class="nav navbar-nav">
+    <% if params[:service].nil? %>
+    <li><%= link_to '微博', '/auth/weibo' %></li>
+    <li><%= link_to 'QQ', '/auth/QQ' %></li>
+    <li><%= link_to '微信', '/auth/wechat' %></li>
+<% else %>
+    <% addon = URI.encode_www_form("service"=>params[:service]) %>
+    <li><%= link_to '微博', '/auth/weibo?'+addon %></li>
+    <li><%= link_to 'QQ', '/auth/QQ?'+addon %></li>
+    <li><%= link_to '微信', '/auth/wechat?'+addon %></li>
+    <% end %>
+</ul>
+<% end %>
