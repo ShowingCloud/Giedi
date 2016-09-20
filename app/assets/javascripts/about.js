@@ -7,6 +7,41 @@ $(function () {
     serviceUpper();
     serviceLower();
     caseSlide();
+
+    bannerMobile();
+
+    var hisSwiper = new Swiper('.his-swiper', {
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.his-pag',
+        paginationClickable: true
+    });
+
+    var serviceSwiper = new Swiper('.service-swiper',{
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.service-pag',
+        paginationClickable: true
+    });
+
+    var moreServiceSwiper = new Swiper('.more-service-swiper',{
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.more-service-pag',
+        paginationClickable: true
+    });
+
+    var caseSwiper = new Swiper('.case-swiper',{
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.case-pag',
+        paginationClickable: true
+    });
+
     $('#about').fullpage({
         //Navigation
         navigation: true,
@@ -17,6 +52,7 @@ $(function () {
         loopBottom: true,
         touchSensitivity: 15,
         normalScrollElementTouchThreshold: 5,
+        bigSectionsDestination: 'top',
 
         //Accessibility
         keyboardScrolling: true,
@@ -26,7 +62,6 @@ $(function () {
             if (!loadedSection.hasClass('loaded')) {
                 loadedSection.addClass('loaded');
                 if (index == 1) {
-                    fixHeight();
 
                     $('.gps-icon').removeClass('ready');
                     var a1 = window.setTimeout(function () {
@@ -40,6 +75,7 @@ $(function () {
                     var a3 = window.setTimeout(function () {
                         $('.weixin-icon').removeClass('ready');
                     }, 1800);
+                    fixHeight();
                 }
                 if (index == 2) {
                     $('.slider-section').removeClass('ready');
@@ -167,7 +203,7 @@ function caseSlide() {
         _self.addClass('active');
         var index = _self.index();
         var l = space.find('.case-list');
-        l.css('left', ((0 - index) * 200) + 'px');
+        l.css('left', ((0 - index) * 150) + 'px');
 
         var a = space.find('.shade');
 
@@ -178,6 +214,37 @@ function caseSlide() {
 
 function fixHeight() {
     var h = $('.fp-tableCell').height();
-    var th = h - 169;
-    $('#banner').css({height: th + 'px'})
+    $('.banner-contact').css({'padding-top': (h - 400) / 2 + 'px'});
+}
+
+function bannerMobile() {
+    var space = $('#banner-m');
+    var btn = space.find('.contact-us');
+    var p = space.find('.banner-contact');
+    var _is_hide = false;
+    btn.on('click', function () {
+        $('.banner-contact').addClass('active');
+    });
+    p.on('touchstart', function (event) {
+        event.preventDefault();
+        var s_d = event.originalEvent.targetTouches[0].clientX;
+        $(this).on('touchmove', {s_d: s_d}, function (event) {
+            event.preventDefault();
+            var data = event.data;
+            var s_d = data.s_d;
+            var n_d = event.originalEvent.targetTouches[0].clientX;
+            if (n_d - s_d > 100) {
+                _is_hide = true;
+            }
+        });
+    });
+    p.on('touchend', function (event) {
+        event.preventDefault();
+        $(this).off('touchmove');
+
+        if (_is_hide) {
+            $(this).removeClass('active');
+            _is_hide = false;
+        }
+    })
 }
