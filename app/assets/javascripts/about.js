@@ -10,11 +10,35 @@ $(function () {
 
     bannerMobile();
 
-    var mySwiper = new Swiper('.swiper-container', {
+    var hisSwiper = new Swiper('.his-swiper', {
         speed: 400,
         spaceBetween: 100,
         paginationHide: false,
-        pagination: '.swiper-pagination',
+        pagination: '.his-pag',
+        paginationClickable: true
+    });
+
+    var serviceSwiper = new Swiper('.service-swiper',{
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.service-pag',
+        paginationClickable: true
+    });
+
+    var moreServiceSwiper = new Swiper('.more-service-swiper',{
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.more-service-pag',
+        paginationClickable: true
+    });
+
+    var caseSwiper = new Swiper('.case-swiper',{
+        speed: 400,
+        spaceBetween: 100,
+        paginationHide: false,
+        pagination: '.case-pag',
         paginationClickable: true
     });
 

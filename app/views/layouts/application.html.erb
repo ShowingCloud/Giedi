@@ -264,7 +264,7 @@
       <div class="text-animate ready mobile-hide">
         <p>如果你对机器人教育有热情 ● 如果你从事科技教育多年</p>
 
-        <p>如果你对并发小朋友的创客能力充满干劲</p>
+        <p>如果你对迸发小朋友的创客能力充满干劲</p>
 
         <p>豆姆欢迎你的加入</p>
       </div>
@@ -314,7 +314,7 @@
 
         <p>如果你从事科技教育多年</p>
 
-        <p>如果你对并发小朋友的创客能力充满干劲</p>
+        <p>如果你对迸发小朋友的创客能力充满干劲</p>
 
         <p>豆姆欢迎你的加入</p>
       </div>
@@ -515,9 +515,12 @@
         </div>
       </div>
 
-      <div class="history-m">
+      <div class="history-m mobile-show">
+        <div class="his-title">
+          媒体报道
+        </div>
         <!-- Slider main container -->
-        <div class="swiper-container">
+        <div class="swiper-container his-swiper">
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
@@ -613,7 +616,7 @@
             </div>
           </div>
           <!-- If we need pagination -->
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination his-pag"></div>
         </div>
       </div>
     </div>
@@ -760,6 +763,7 @@
 
           <p>MORE SERVICES</p>
         </div>
+
         <div class="tab-title">
           <div class="item active">
             <div class="icon">
@@ -794,6 +798,7 @@
             </div>
           </div>
         </div>
+
         <div class="tab-content">
           <ul class="tab-list horizontal-ul">
             <li class="tab-item">
@@ -830,23 +835,77 @@
             </li>
           </ul>
         </div>
+
       </div>
 
       <div class="s-m mobile-show">
-        <div class="tabs-title">
-          <div class="tabs-i">
-            学校服务
-          </div>
-          <div class="tabs-i">
-            更多服务
-          </div>
+        <div class="s-t">
+          学校服务
         </div>
-        <div class="tabs">
-          <div class="tabs-c">
-
-          </div>
-          <div class="tabs-c">
-
+        <div class="s-c">
+          <!-- Slider main container -->
+          <div class="swiper-container service-swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <div class="item-title">
+                  授课服务（机器人和3D打印）
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-001.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  我们拥有专业的师资，为K12阶段的小朋友研发最适合他们的课程。采用国际上新颖独特的教学方法，因材施教，老师们用幽默且具有延伸性、开拓性的教学风格，让小朋友们边玩边学，真正发现STEAM教育的乐趣和意义。
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-title">
+                  共建实验室
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-002.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  围绕steam理念，以智慧课堂云端为核心，实现线上线下相结合、一对多互动分组合作学习、情景化教学，通过物联网实现教室环境智能控制等功能，打造一个真正的steam校园创客空间。
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-title">
+                  师资培训
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-004.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  为学校老师提供专业的培训和顾问，以便学校老师能更好地在课后为学生提供指导。
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-title">
+                  赛事辅导
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-005.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  在各项赛事准备期，为合作学校的学生提供专业的赛事辅导；研读赛事规则，用心指导每一个参赛学生，学习更高阶的内容，帮助他们在比赛中获取更好的成绩。
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-title">
+                  器材推荐
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-003.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  用心为学校选择价格最合适、质量最优质的器材和设备，在保证学生操作的安全性的前提下，提供一切创造性。
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination service-pag">
+            </div>
           </div>
         </div>
       </div>
@@ -854,10 +913,10 @@
   </div>
   <div id="case" class="section">
     <div class="container">
-      <div class="case-title">
+      <div class="case-title mobile-hide">
         案例
       </div>
-      <div class="case-win">
+      <div class="case-win mobile-hide">
         <ul class="case-list horizontal-ul">
           <li class="case-item active">
             <img class="bk-img" src="<%= image_path('layout/case01.png') %>" alt=""/>
@@ -873,7 +932,7 @@
           </li>
         </ul>
       </div>
-      <div class="shade-list">
+      <div class="shade-list mobile-hide">
         <div class="shade active">
           <div class="container">
             <div class="s-t">
@@ -923,23 +982,154 @@
           </div>
         </div>
       </div>
+
+      <div class="s-m-2 mobile-show">
+
+        <div class="s-t">
+          更多服务
+        </div>
+        <div class="s-c">
+          <!-- Slider main container -->
+          <div class="swiper-container more-service-swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <div class="item-title">
+                  社区授课服务
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-006.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  为小朋友提供更多接触steam教育的机会，让创客的课堂不仅仅局限于学校、也不仅仅按年龄划分，实现跨年龄段、跨地域的思维碰撞。让更多小朋友们去发现STEAM教育真正的乐趣和意义。
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-title">
+                  赛事支持
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-007.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  在上海市各大机器人相关赛事中提供志愿者、裁判的人力支持； APP和网站（www.robodou.cn）等平台上的技术支持；比赛所需器材（如自动化赛道）的设备支持；参与比赛的每个环节。
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-title">
+                  社会公益课&活动
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-008.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  在豆姆的线下合作点，不定期举办公益活动和体验课程，让一些从未接触过机器人教育的小朋友认识到什么是真正的机器人教育，并激发他们对机器人教育的兴趣和热情。
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-title">
+                  公益教育
+                </div>
+                <div class="item-img">
+                  <img src="<%= image_path('service-009.jpg') %>" alt=""/>
+                </div>
+                <div class="item-text">
+                  豆姆秉承着“让每个孩子都有自己的机器人陪伴成长”的理念，为日喀则亚东县学校的机器人提供远程教育，让那里的孩子也能接触到steam教育，丰富他们的课程体系，与国际接轨。
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination more-service-pag">
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <div id="video" class="section">
-    <div class="title">
+    <div class="title mobile-hide">
       新闻报道
     </div>
-    <video class="video-tag" src="/assets/video/video.mp4" controls="controls" preload="auto" width="640" height="480">
+    <video class="video-tag mobile-hide" src="/assets/video/video.mp4" controls="controls" preload="none" width="640" height="480">
 
     </video>
+    <div class="case-m mobile-show">
+      <div class="title">
+        案例
+      </div>
+      <div class="c-content">
+        <!-- Slider main container -->
+        <div class="swiper-container case-swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <div class="item-img">
+                <img class="bk-img" src="<%= image_path('layout/case01.png') %>" alt=""/>
+              </div>
+              <div class="item-text">
+                <p class="strong">1.实验室设计的案例</p>
+
+                <p>上海市某教育集团的学校实验室设计</p>
+
+                <p>富有科技感、现代感，打破传统的教师格局，</p>
+
+                <p>采用智能硬件和设备来控制教室</p>
+
+                <p>为学生提供一个更有氛围的学习环境。</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="item-img">
+                <img class="bk-img" src="<%= image_path('layout/case02.png') %>" alt=""/>
+              </div>
+              <div class="item-text">
+                <p class="strong">2.学校授课案例</p>
+
+                <p>上海市某中学的授课场景</p>
+
+                <p>豆姆的老师正在为他们讲授3D打印课程</p></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="item-img">
+                <img class="bk-img" src="<%= image_path('layout/case03.png') %>" alt=""/>
+              </div>
+              <div class="item-text">
+                <p class="strong">3.社区授课案例</p>
+
+                <p>上海市某社区的暑期课程</p>
+
+                <p>豆姆老师耐心为学生讲解机器人搭建和编程中的问题</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="item-img">
+                <img class="bk-img" src="<%= image_path('layout/case04.png') %>" alt=""/>
+              </div>
+              <div class="item-text">
+                <p class="strong">4.公益活动案例</p>
+
+                <p>上海市某街道邀请豆姆参与的公益活动</p>
+
+                <p>为更多小朋友普及STEAM教育。</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination case-pag">
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="partner" class="section lasted">
     <div class="container">
-      <div class="title">
+      <div class="title mobile-hide">
         <img class="logo" src="<%= image_path('layout/logo-orange.png') %>" alt=""/>
         合作伙伴
       </div>
-      <div class="content">
+      <div class="content mobile-hide">
         <div class="map-sh">
           <div class="part-icon icon01">
             <div class="name">南京西路街道办事处</div>
@@ -979,9 +1169,55 @@
           </div>
         </div>
       </div>
+      <div class="mobile-show partner-m">
+        <div class="p-m">
+          <div class="title">合作伙伴</div>
+          <div class="p-m-list">
+            <div>
+              <span>Makeblock</span>
+              <span>海芯科技</span>
+              <span>panowin</span>
+            </div>
+            <div>
+              <span>联想</span>
+              <span>苏宁</span>
+              <span>华为</span>
+              <span>百度</span>
+              <span>PPTV</span>
+            </div>
+            <div>
+              <span>清华大学</span>
+              <span>上海大学</span>
+              <span>复旦大学</span>
+              <span>同济大学</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-d">
+          <div class="title">
+            线下合作点
+          </div>
+          <div class="p-d-l">
+            <ul>
+              <li>南京西路街道办事处</li>
+              <li>天目西路街道办事处</li>
+              <li>真如镇街道办事处</li>
+              <li>五里桥街道办事处</li>
+              <li>洋泾街道办事处</li>
+              <li>上海市进才中学北校</li>
+              <li>上海台商子女学校</li>
+              <li>上海市浦明师范附属小学</li>
+              <li>上海培佳双语学校</li>
+              <li>上海市宜川中学附属学校</li>
+              <li>上海市文达学校</li>
+              <li>西藏日喀则亚东县中学</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div id="footer" class="section fp-auto-height">
+  <div id="footer" class="section fp-auto-height mobile-hide">
 
     <div class="container">
       <div class="title">
