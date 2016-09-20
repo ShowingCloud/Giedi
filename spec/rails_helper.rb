@@ -6,6 +6,12 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+  :provider => 'twitter',
+  :uid => '123545'
+})
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
