@@ -4,3 +4,15 @@ submail:
     appid: "1234"
     signature: "12345678"
     project: "3333"
+github:
+  key: xxxxxx
+  secret: xxxxxx
+weibo:
+  key: xxxxxx
+  secret: xxxxxx
+qq:
+  key: xxxxxx
+  secret: xxxxxx
+wechat:
+  key: xxxxxx
+  secret: xxxxxxx

@@ -7,7 +7,7 @@ script:
   - bundle exec rspec
 cache: bundler
 before_script:
-  - bundle install
+  # - bundle install
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 services:

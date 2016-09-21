@@ -43,6 +43,7 @@ gem 'omniauth'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-qq'
 gem 'omniauth-github'
+gem "omniauth-wechat-oauth2"
 
 #json api
 gem 'active_model_serializers', '~> 0.10.0'

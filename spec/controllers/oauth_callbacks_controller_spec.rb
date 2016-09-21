@@ -1,23 +1,23 @@
 require 'rails_helper'
-
 RSpec.describe OauthCallbacksController, type: :controller do
   describe "#create" do
     before do
-      Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
+      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
     end
 
     describe "when signed_in" do
-      include CASino::SessionsHelper
+
       before(:each) do
         @user = create(:user)
-        data = { authenticator: "active_record", user_data: { username: @user.name, extra_attributes: { guid: @user.id } } }
-        sign_in(data)
+        allow(controller).to receive(:current_user) { CASino::User.create(authenticator:"test",username: @user.name, extra_attributes: { guid: @user.id  }) }
+        allow(controller).to receive(:signed_in?) {true}
       end
 
       describe "when bound" do
         before do
           identity=Identity.find_for_oauth(OmniAuth.config.mock_auth[:github])
           identity.user = @user
+          identity.save
         end
 
         it "redirect_to profile page" do
@@ -41,20 +41,21 @@ RSpec.describe OauthCallbacksController, type: :controller do
           post :create, provider: :github
           expect(flash[:notice]).to eq "绑定成功"
         end
-
       end
     end
 
     describe "when unsigned_in" do
       describe "when user present" do
         before do
+          @user = create(:user)
           identity=Identity.find_for_oauth(OmniAuth.config.mock_auth[:github])
           identity.user = @user
+          identity.save
         end
 
         it "sign in the user" do
           post :create, provider: :github
-          expect(current_user.extra_attributes[:guid]).to eq @user.id
+          expect(response).to redirect_to '/sessions'
         end
       end
       describe "when user not present" do

@@ -18,7 +18,12 @@ class OauthCallbacksController < ApplicationController
         sign_in(data)
       else
         session["oauth2-data"] = auth
-        redirect_to '/login?'+URI.encode_www_form("service"=>params[:service]), notice: "请登录或注册，以完成绑定"
+        flash[:notice] = "请登录或注册，以完成绑定"
+        if params[:service].present?
+          redirect_to '/login?'+URI.encode_www_form("service"=>params[:service])
+        else
+          redirect_to '/login'
+        end
       end
     end
   end
