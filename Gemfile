@@ -64,6 +64,10 @@ gem 'httparty'
 
 gem "puma"
 
+#deploy
+gem 'mina', require: false
+gem 'mina-puma', require: false
+
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
