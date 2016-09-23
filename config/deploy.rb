@@ -17,12 +17,12 @@ set :repository, 'git@github.com:Bikeman18/dome-sso.git'
 set :branch, 'master'
 
 # For system-wide RVM install.
-set :rvm_path, '/usr/local/rvm/bin/rvm'
+set :rvm_path, '/usr/local/rvm/scripts/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
 set :shared_paths, ['config/settings/production.local.yml','log','tmp/sockets', 'tmp/pids']
-
+set :puma_config, -> { "#{deploy_to}/#{current_path}/config/puma_app.rb" }
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.
@@ -37,7 +37,7 @@ task :environment do
 
   # For those using RVM, use this to load an RVM version@gemset.
   # invoke :'rvm:use[ruby-1.9.3-p125@default]'
-  invoke :'rvm:use[ruby-2.3.1p112@default]'
+  invoke :'rvm:use[ruby-2.3.1@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
