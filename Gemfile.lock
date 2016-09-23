@@ -226,6 +226,8 @@ GEM
     mina-puma (0.3.1)
       mina
       puma (>= 2.13)
+    mina-sidekiq (0.4.1)
+      mina
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
@@ -435,6 +437,7 @@ DEPENDENCIES
   jwt
   mina
   mina-puma
+  mina-sidekiq
   mini_magick
   omniauth
   omniauth-github

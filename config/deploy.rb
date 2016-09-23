@@ -4,7 +4,7 @@ require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
 require 'mina/puma'
-
+require 'mina_sidekiq/tasks'
 # Basic settings:
 #   domain       - The hostname to SSH to.
 #   deploy_to    - Path to deploy into.
@@ -81,6 +81,7 @@ task :deploy => :environment do
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
+    invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
@@ -90,7 +91,7 @@ task :deploy => :environment do
 
     to :launch do
       invoke :'puma:restart'
-      # invoke :'sidekiq:restart'
+      invoke :'sidekiq:restart'
     end
   end
 end

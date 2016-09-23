@@ -67,6 +67,7 @@ gem "puma"
 #deploy
 gem 'mina', require: false
 gem 'mina-puma', require: false
+gem 'mina-sidekiq', require: false
 
 group :test do
   gem 'shoulda-matchers', require: false
