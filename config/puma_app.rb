@@ -6,7 +6,7 @@ workers 1
 
 app_name = "dome-sso"
 application_path = "/home/wht/work/#{app_name}"
-directory "#{application_path}/current"
+# directory "#{application_path}/current"
 
 pidfile "#{application_path}/shared/tmp/pids/puma.pid"
 state_path "#{application_path}/shared/tmp/sockets/puma.state"
