@@ -4,7 +4,7 @@ environment 'production'
 threads 1, 6
 workers 1
 
-app_name = "dome_sso"
+app_name = "dome-sso"
 application_path = "/home/wht/work/#{app_name}"
 directory "#{application_path}/current"
 
