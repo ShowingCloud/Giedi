@@ -18,7 +18,7 @@ set :branch, 'master'
 
 # For system-wide RVM install.
 set :rvm_path, '/usr/local/rvm/scripts/rvm'
-
+set :identity_file, 'config/deploy_id_rsa' if File.exist?('config/deploy_id_rsa')
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
 set :shared_paths, ['config/settings/production.local.yml','log','tmp/sockets', 'tmp/pids']
