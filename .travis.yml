@@ -19,7 +19,7 @@ addons:
     repo_token: 339a795b0e3010b4361e3739e3abd36ce628e3c0545615b67c47bfbe8240d929
 deploy:
   provider: script
-  script: scripts/deploy.sh
+  script: script/deploy.sh
   on:
     branch: master
 notifications:
