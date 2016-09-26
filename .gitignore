@@ -57,7 +57,7 @@ doc/app
 coverage
 
 # Don't upload precompiled assets
-pubic/assets/*
+public/assets/*
 
 # Public Cache
 public/javascripts/cache
