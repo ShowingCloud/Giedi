@@ -30,7 +30,7 @@
         <li>
           <a href="">CN</a>
         </li>
-        <% if current_user %>
+        <% if cookies[:tgt] %>
         <li><%= link_to("登出", "/logout") %></li>
         <% else %>
           <% if params[:service].present? %>
