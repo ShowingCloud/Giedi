@@ -21,7 +21,7 @@ deploy:
   provider: script
   script: scripts/deploy.sh
   on:
-    branch: main
+    branch: master
 notifications:
   email:
     recipients:
