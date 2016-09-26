@@ -22,8 +22,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pg'
 
 #CAS SSO
-gem 'casino', github: 'rbCAS/CASino'
-gem 'casino-activerecord_authenticator',github:'Bikeman18/dome-activerecord_authenticator'
+gem 'casino', git: 'https://github.com/rbCAS/CASino.git'
+gem 'casino-activerecord_authenticator', git: 'https://github.com/Bikeman18/dome-activerecord_authenticator.git'
 
 #captcha
 gem 'rucaptcha'
@@ -43,7 +43,7 @@ gem 'omniauth'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-qq'
 gem 'omniauth-github'
-gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
+gem "omniauth-wechat-oauth2", git: 'https://github.com/yangsr/omniauth-wechat-oauth2.git'
 
 #json api
 gem 'active_model_serializers', '~> 0.10.0'
