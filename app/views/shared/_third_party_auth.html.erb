@@ -1,14 +1,17 @@
-<% unless session["oauth2-data"].present? %>
-<ul class="nav navbar-nav">
-    <% if params[:service].nil? %>
-    <li><%= link_to '微博', '/auth/weibo' %></li>
-    <li><%= link_to 'QQ', '/auth/QQ' %></li>
-    <li><%= link_to '微信', '/auth/wechat' %></li>
-<% else %>
-    <% addon = URI.encode_www_form("service"=>params[:service]) %>
-    <li><%= link_to '微博', '/auth/weibo?'+addon %></li>
-    <li><%= link_to 'QQ', '/auth/QQ?'+addon %></li>
-    <li><%= link_to '微信', '/auth/wechat?'+addon %></li>
-    <% end %>
-</ul>
-<% end %>
+<div class="login-social-group">
+  <% unless session["oauth2-data"].present? %>
+  <ul class="horizontal-ul">
+      <li>第三方登录：  </li>
+      <% if params[:service].nil? %>
+      <li><%= link_to image_tag("login_weibo"), '/auth/weibo' %></li>
+      <li><%= link_to image_tag("login_qq"), '/auth/qq_connect' %></li>
+      <li><%= link_to image_tag("login_weixin"), '/auth/wechat' %></li>
+  <% else %>
+      <% addon = URI.encode_www_form("service"=>params[:service]) %>
+      <li><%= link_to image_tag("login_weibo"), '/auth/weibo?'+addon %></li>
+      <li><%= link_to image_tag("login_qq"), '/auth/QQ?'+addon %></li>
+      <li><%= link_to image_tag("login_weixin"), '/auth/wechat?'+addon %></li>
+      <% end %>
+  </ul>
+  <% end %>
+</div>
