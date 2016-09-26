@@ -1,0 +1,44 @@
+<% login_notice = t('login.notice', default: '') %>
+<div class="container">
+  <% unless login_notice.blank? %>
+      <div class="notice box">
+        <i class="icon-info"></i> <%= login_notice %>
+      </div>
+  <% end %>
+  <div id="login-page" class="page">
+    <div class="logo">
+      <img src="<%= image_path('logo-orange.png') %>" alt=""/>
+    </div>
+    <div class="title">
+      欢迎登录豆姆
+    </div>
+    <div class="like-tabs"></div>
+    <div class="login">
+      <div class="form">
+        <%= form_tag(login_path, method: :post, id: 'login-form') do %>
+            <%= hidden_field_tag :lt, CASino::LoginTicket.create.ticket %>
+            <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
+            <div class="row">
+              <%= label_tag :username, '账号' %>
+              <%= text_field_tag :username, params[:username], autofocus: true, placeholder: '手机/邮箱/昵称' %>
+            </div>
+            <div class="row">
+              <%= label_tag :password, '密码' %>
+
+              <%= password_field_tag :password %>
+              <%= link_to "忘记密码", '/password_resets/new', class: 'forget' %>
+            </div>
+            <input type="hidden" name="rememberMe" id="rememberMe" value="1"/>
+
+            <div class="row">
+              <%= button_tag '登录', :class => 'button btn-dome' %>
+            </div>
+        <% end %>
+      </div>
+      <%= render 'shared/third_party_auth' %>
+    </div>
+  </div>
+</div>
+<div class="bk">
+
+</div>

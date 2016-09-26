@@ -1,0 +1,35 @@
+zh-CN:
+  activerecord:
+    attributes:
+      user:
+        name:"用户名"
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: "密码没有填写"
+  time:
+    formats:
+      default: "%Y-%m-%d %H:%M"
+      long: "%Y-%m-%d %H:%M:%S"
+  phone_verification:
+    invalid: "无效的短信验证码"
+    blank: "短信验证码不能为空"
+  date:
+    formats:
+      long: "%Y-%m-%d"
+    order:
+      - :year
+      - :month
+      - :day
+
+  current_password:
+    wrong: "原密码错误"
+  devise:
+    sessions:
+      admin_user:
+        signed_in: "登录成功"
+    failure:
+      admin_user:
+        unauthenticated: "已登出"

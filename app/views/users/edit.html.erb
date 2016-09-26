@@ -1,0 +1,41 @@
+<h3>修改个人信息</h3>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+          <%= f.label :avatar do %>
+              <%= f.file_field :avatar %>
+              <%= f.hidden_field :avatar_cache %>
+          <% end %>
+        </div>
+        <%= f.fields_for :user_extra_attributes, @user.user_extra do |ff| %>
+            <%= ff.label :fullname %>
+            <%= ff.text_field :fullname, class: 'form-control' %>
+            <div class="field">
+              <%= ff.radio_button(:gender, "1") %>
+              <%= ff.label("男") %>
+              <%= ff.radio_button(:gender, "2") %>
+              <%= ff.label("女") %>
+            </div>
+            <%= ff.label :birthday %>
+            <%= ff.date_select(
+                        :birthday,
+                        use_month_numbers: true,
+                        start_year: 1930,
+                        end_year: Time.now.year,
+                        default: 10.years.ago,
+                        date_separator: '/',
+                        with_css_classes: true)
+            %>
+            <%= ff.label :identity_card %>
+            <%= ff.text_field :identity_card, class: 'form-control' %>
+        <% end %>
+        <%= f.submit "提交", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

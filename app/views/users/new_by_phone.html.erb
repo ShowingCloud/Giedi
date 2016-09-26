@@ -1,0 +1,66 @@
+<div class="container">
+  <div id="register-page" class="page">
+    <div class="logo">
+      <img src="<%= image_path('logo-orange.png') %>" alt=""/>
+    </div>
+    <div class="title">
+      欢迎加入豆姆
+    </div>
+    <div class="like-tabs">
+      <div class="active">
+        <%= link_to_if(params[:service].nil?, "邮箱注册", "/users/new") do
+          link_to("邮箱注册", "/users/new?service="+params[:service])
+        end %>
+      </div>
+      <div class="disabled">
+        手机注册
+      </div>
+    </div>
+    <div class="form">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for @user, :url => {:action => "new_by_phone"} do |f| %>
+            <%= render 'shared/error_messages' %>
+            <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
+
+            <div class="row">
+              <%= f.label :name, '用户名' %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+
+            <div class="row">
+              <%= f.label :phone, '手机' %>
+              <%= f.phone_field :phone, class: 'form-control' %>
+            </div>
+
+            <div class="row">
+              <%= label_tag 'captcha', '图形验证码' %>
+              <div class="input-wrapper">
+                <%= rucaptcha_input_tag(id: 'captcha', class: 'captcha-input', placeholder: '输入图形验证码') %>
+                <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+              </div>
+            </div>
+            <div class="row">
+              <%= label_tag 'pin', '短信验证码' %>
+              <%= text_field_tag :pin, params[:pin], class: 'half-input' %>
+              <%= button_tag "获取短信验证码", :type => 'button', :class => "subBtn half-btn", :id => "phone_verification" %>
+            </div>
+            <div class="row">
+              <%= f.label :password, '密码' %>
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+
+            <!-- <div class="field">
+                    <%= f.label :avatar do %>
+                    <%= f.file_field :avatar %>
+                    <%= f.hidden_field :avatar_cache %>
+                    <% end %>
+                </div> -->
+
+            <%= f.submit "创建账户", class: "button btn-dome" %>
+        <% end %>
+      </div>
+      <%= render 'shared/third_party_auth' %>
+    </div>
+  </div>
+</div>
+<div class="bk"></div>

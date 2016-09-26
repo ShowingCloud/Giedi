@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: dome_sso_development
+  pool: 5
+  username: dome_sso
+  password: lovedome
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: dome_sso_test
+  pool: 5
+  username: dome_sso
+  password: lovedome
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: dome_sso
+  pool: 5
+  username: <%= ENV['Settings.database.username'] %>
+  password: <%= ENV['Settings.database.password'] %>

@@ -1,0 +1,52 @@
+
+// Default CASino settings
+
+// $buttonColor: #0074ad;
+// $buttonSecondaryColor: #c2c2c2;
+// $linkColor: #0074ad;
+$logo: "logo.png";
+$logoRetina: "logo@2x.png";
+// $logoWidth: 146px;
+// $logoHeight: 34px;
+$font: "Sans-serif" !default;
+
+
+@import 'casino';
+.input-wrapper{
+  padding-bottom: 6px;
+}
+#captcha{
+  display: inline-block;
+  width: 70%;
+  vertical-align: middle;
+  height: 36px;
+}
+
+.captcha{
+  vertical-align: middle;
+  height: 36px;
+  width: 110px;
+}
+
+input[type=text],
+input[type=password],
+input[type=tel],
+input[type=email] {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  display: block;
+  font-size: 120%;
+  height: 36px;
+  padding: 6px;
+  width: 100%;
+
+  &:focus {
+    background: #F5F5F4;
+    border-color: #b3b3b3;
+    outline: none !important;
+  }
+}

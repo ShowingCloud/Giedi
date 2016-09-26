@@ -1,0 +1,60 @@
+<div class="container">
+  <div id="register-page" class="page">
+    <div class="logo">
+      <img src="<%= image_path('logo-orange.png') %>" alt=""/>
+    </div>
+    <div class="title">
+      欢迎加入豆姆
+    </div>
+    <div class="like-tabs">
+      <div class="disabled">
+        邮箱注册
+      </div>
+      <div class="active">
+        <%=
+            link_to_if(params[:service].nil?, "手机注册", users_new_by_phone_path) do
+              link_to("手机注册", users_new_by_phone_path(:service => params[:service]))
+            end
+        %>
+      </div>
+    </div>
+    <div class="form">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@user) do |f| %>
+            <%= render 'shared/error_messages' %>
+            <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
+            <div class="row">
+              <%= f.label :name, '用户名' %>
+              <%= f.text_field :name, class: 'form-control', placeholder: '' %>
+            </div>
+            <div class="row">
+              <%= f.label :email, '邮箱' %>
+              <%= f.email_field :email, class: 'form-control' %>
+            </div>
+            <div class="row">
+              <%= f.label :password, '密码' %>
+              <%= f.password_field :password, class: 'form-control' %>
+              <!-- <div class="field">
+                    <%= f.label :avatar do %>
+                    <%= f.file_field :avatar %>
+                    <%= f.hidden_field :avatar_cache %>
+                    <% end %>
+                </div> -->
+            </div>
+            <div class="row">
+              <%= label_tag 'captcha', '图形验证码' %>
+              <div class="input-wrapper">
+                <%= rucaptcha_input_tag(id: 'captcha', class: 'captcha-input', placeholder: '输入验证码') %>
+                <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+              </div>
+            </div>
+            <div class="row">
+              <%= f.submit "创建账户", class: "button btn-dome" %>
+            </div>
+        <% end %>
+      </div>
+      <%= render 'shared/third_party_auth' %>
+    </div>
+  </div>
+</div>
+<div class="bk"></div>

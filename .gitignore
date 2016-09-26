@@ -57,7 +57,7 @@ doc/app
 coverage
 
 # Don't upload precompiled assets
-pubic/assets/*
+public/assets/*
 
 # Public Cache
 public/javascripts/cache
@@ -126,3 +126,9 @@ jquery*.map
 
 # Ignore Byebug command history file.
 .byebug_history
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+public/assets
+/.vscode
