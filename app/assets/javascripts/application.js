@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require swiper.min
+//= require mediaelement_rails
 //= require about
 //= require_tree .

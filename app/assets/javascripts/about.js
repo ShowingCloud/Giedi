@@ -1,47 +1,66 @@
 /**
  * Created by yaolin on 16/8/25.
  */
-$(function () {
+$(function() {
+    $('video,audio').mediaelementplayer();
     sliderInit();
     historyWarp();
     serviceUpper();
     serviceLower();
     caseSlide();
 
-    bannerMobile();
+    var ie = (function() {
 
-    var hisSwiper = new Swiper('.his-swiper', {
-        speed: 400,
-        spaceBetween: 100,
-        paginationHide: false,
-        pagination: '.his-pag',
-        paginationClickable: true
-    });
+        var undef,
+            v = 3,
+            div = document.createElement('div'),
+            all = div.getElementsByTagName('i');
 
-    var serviceSwiper = new Swiper('.service-swiper',{
-        speed: 400,
-        spaceBetween: 100,
-        paginationHide: false,
-        pagination: '.service-pag',
-        paginationClickable: true
-    });
+        while (
+            div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+            all[0]
+        );
 
-    var moreServiceSwiper = new Swiper('.more-service-swiper',{
-        speed: 400,
-        spaceBetween: 100,
-        paginationHide: false,
-        pagination: '.more-service-pag',
-        paginationClickable: true
-    });
+        return v > 4 ? v : undef;
 
-    var caseSwiper = new Swiper('.case-swiper',{
-        speed: 400,
-        spaceBetween: 100,
-        paginationHide: false,
-        pagination: '.case-pag',
-        paginationClickable: true
-    });
+    }());
 
+    if (ie > 8 || !ie) {
+
+        bannerMobile();
+
+        var hisSwiper = new Swiper('.his-swiper', {
+            speed: 400,
+            spaceBetween: 100,
+            paginationHide: false,
+            pagination: '.his-pag',
+            paginationClickable: true
+        });
+
+        var serviceSwiper = new Swiper('.service-swiper', {
+            speed: 400,
+            spaceBetween: 100,
+            paginationHide: false,
+            pagination: '.service-pag',
+            paginationClickable: true
+        });
+
+        var moreServiceSwiper = new Swiper('.more-service-swiper', {
+            speed: 400,
+            spaceBetween: 100,
+            paginationHide: false,
+            pagination: '.more-service-pag',
+            paginationClickable: true
+        });
+
+        var caseSwiper = new Swiper('.case-swiper', {
+            speed: 400,
+            spaceBetween: 100,
+            paginationHide: false,
+            pagination: '.case-pag',
+            paginationClickable: true
+        });
+    }
     $('#about').fullpage({
         //Navigation
         navigation: true,
@@ -57,22 +76,22 @@ $(function () {
         //Accessibility
         keyboardScrolling: true,
 
-        afterLoad: function (anchorLink, index) {
+        afterLoad: function(anchorLink, index) {
             var loadedSection = $(this);
             if (!loadedSection.hasClass('loaded')) {
                 loadedSection.addClass('loaded');
                 if (index == 1) {
 
                     $('.gps-icon').removeClass('ready');
-                    var a1 = window.setTimeout(function () {
+                    var a1 = window.setTimeout(function() {
                         $('.mail-icon').removeClass('ready');
                     }, 600);
 
-                    var a2 = window.setTimeout(function () {
+                    var a2 = window.setTimeout(function() {
                         $('.phone-icon').removeClass('ready');
                     }, 1200);
 
-                    var a3 = window.setTimeout(function () {
+                    var a3 = window.setTimeout(function() {
                         $('.weixin-icon').removeClass('ready');
                     }, 1800);
                     fixHeight();
@@ -80,22 +99,22 @@ $(function () {
                 if (index == 2) {
                     $('.slider-section').removeClass('ready');
 
-                    var a1 = window.setTimeout(function () {
+                    var a1 = window.setTimeout(function() {
                         $('.text-animate').removeClass('ready');
                     }, 500);
                 }
                 if (index == 3) {
                     $('.list').removeClass('ready');
-                    var a1 = window.setTimeout(function () {
+                    var a1 = window.setTimeout(function() {
                         $('.center').removeClass('ready');
                     }, 500);
-                    var a2 = window.setTimeout(function () {
+                    var a2 = window.setTimeout(function() {
                         $('.warp').removeClass('ready');
                     }, 1000);
                 }
                 if (index == 4) {
                     $('.service-upper').removeClass('ready');
-                    var a1 = window.setTimeout(function () {
+                    var a1 = window.setTimeout(function() {
                         $('.service-lower').removeClass('ready');
                     }, 500);
                 }
@@ -109,7 +128,9 @@ function sliderInit() {
     var length = space.find('.slider-item').length;
     space.find('.slider-list').css('width', length * 200);
     var btn = space.find('.slider-btn');
-    btn.on('click', {space: space}, function (event) {
+    btn.on('click', {
+        space: space
+    }, function(event) {
         event.preventDefault();
         var data = event.data;
         var space = data.space;
@@ -142,7 +163,9 @@ function historyWarp() {
 
     var btn = space.find('.list-item');
 
-    btn.on('click', {space: space}, function (event) {
+    btn.on('click', {
+        space: space
+    }, function(event) {
         event.preventDefault();
         var data = event.data;
         var space = data.space;
@@ -161,7 +184,9 @@ function historyWarp() {
 function serviceUpper() {
     var space = $('#service');
     var btn = space.find('.upper-item');
-    btn.on('mouseenter', {space: space}, function (event) {
+    btn.on('mouseenter', {
+        space: space
+    }, function(event) {
         event.preventDefault();
         var data = event.data;
         var space = data.space;
@@ -177,7 +202,9 @@ function serviceUpper() {
 function serviceLower() {
     var space = $('#service');
     var btn = space.find('.tab-title>.item');
-    btn.on('mouseenter', {space: space}, function (event) {
+    btn.on('mouseenter', {
+        space: space
+    }, function(event) {
         event.preventDefault();
         var data = event.data;
         var space = data.space;
@@ -194,7 +221,9 @@ function caseSlide() {
     var space = $('#case');
     var btn = space.find('.case-item');
 
-    btn.on('mouseenter', {space: space}, function (event) {
+    btn.on('mouseenter', {
+        space: space
+    }, function(event) {
         event.preventDefault();
         var data = event.data;
         var space = data.space;
@@ -214,7 +243,9 @@ function caseSlide() {
 
 function fixHeight() {
     var h = $('.fp-tableCell').height();
-    $('.banner-contact').css({'padding-top': (h - 400) / 2 + 'px'});
+    $('.banner-contact').css({
+        'padding-top': (h - 400) / 2 + 'px'
+    });
 }
 
 function bannerMobile() {
@@ -222,13 +253,15 @@ function bannerMobile() {
     var btn = space.find('.contact-us');
     var p = space.find('.banner-contact');
     var _is_hide = false;
-    btn.on('click', function () {
+    btn.on('click', function() {
         $('.banner-contact').addClass('active');
     });
-    p.on('touchstart', function (event) {
+    p.on('touchstart', function(event) {
         event.preventDefault();
         var s_d = event.originalEvent.targetTouches[0].clientX;
-        $(this).on('touchmove', {s_d: s_d}, function (event) {
+        $(this).on('touchmove', {
+            s_d: s_d
+        }, function(event) {
             event.preventDefault();
             var data = event.data;
             var s_d = data.s_d;
@@ -238,7 +271,7 @@ function bannerMobile() {
             }
         });
     });
-    p.on('touchend', function (event) {
+    p.on('touchend', function(event) {
         event.preventDefault();
         $(this).off('touchmove');
 
