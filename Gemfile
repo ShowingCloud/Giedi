@@ -65,9 +65,9 @@ gem 'httparty'
 gem "puma"
 
 #deploy
-gem 'mina', require: false
+gem 'mina', '0.3.8'
 gem 'mina-puma', require: false
-gem 'mina-sidekiq', require: false
+gem 'mina-sidekiq', '0.4.1', require: false
 
 group :test do
   gem 'shoulda-matchers', require: false
