@@ -63,6 +63,7 @@ gem 'config'
 gem 'httparty'
 
 gem "puma"
+gem 'thin'
 
 #deploy
 gem 'mina', require: false
