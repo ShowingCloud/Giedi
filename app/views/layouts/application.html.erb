@@ -30,13 +30,17 @@
         <li>
           <a href="">CN</a>
         </li>
-        <% if params[:service].present? %>
-          <% addon = URI.encode_www_form("service"=>params[:service]) %>
-            <li><%= link_to("注册", "/users/new?"+addon) %></li>
-            <li><%= link_to("登录", "/login?"+addon) %></li>
-          <% else %>
-            <li><%= link_to("注册", "/users/new") %></li>
-            <li><%= link_to("登录", "/login") %></li>
+        <% if cookies[:tgt] %>
+        <li><%= link_to("登出", "/logout") %></li>
+        <% else %>
+          <% if params[:service].present? %>
+            <% addon = URI.encode_www_form("service"=>params[:service]) %>
+              <li><%= link_to("注册", "/users/new?"+addon) %></li>
+              <li><%= link_to("登录", "/login?"+addon) %></li>
+            <% else %>
+              <li><%= link_to("注册", "/users/new") %></li>
+              <li><%= link_to("登录", "/login") %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
