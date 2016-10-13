@@ -1,0 +1,26 @@
+.www_domelab_com{
+  .form{
+    font-weight: lighter;
+    font-size: 16px;
+    color: #0E0E0E;
+    // letter-spacing: 6px;
+
+    label{
+      font-weight: lighter;
+      font-size: 16px;
+    }
+
+    input,select{
+      border: 1px solid #979797;
+    }
+
+    .btn-orange{
+      border: 2px solid #FFA178;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #FFA178;
+      letter-spacing: 2.71px;
+      background: #FFF;
+    }
+  }
+}
