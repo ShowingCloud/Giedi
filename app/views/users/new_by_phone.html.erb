@@ -7,17 +7,16 @@
       欢迎加入豆姆
     </div>
     <div class="like-tabs">
-      <div class="active">
+      <div class="disabled">
         <%= link_to_if(params[:service].nil?, "邮箱注册", "/users/new") do
           link_to("邮箱注册", "/users/new?service="+params[:service])
         end %>
       </div>
-      <div class="disabled">
+      <div class="active">
         手机注册
       </div>
     </div>
     <div class="form">
-      <div class="col-md-6 col-md-offset-3">
         <%= form_for @user, :url => {:action => "new_by_phone"} do |f| %>
             <%= render 'shared/error_messages' %>
             <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
@@ -55,10 +54,10 @@
                     <%= f.hidden_field :avatar_cache %>
                     <% end %>
                 </div> -->
-
-            <%= f.submit "创建账户", class: "button btn-dome" %>
+            <div class="row">
+              <%= f.submit "创建账户", class: "button btn-dome" %>
+            </div>
         <% end %>
-      </div>
       <%= render 'shared/third_party_auth' %>
     </div>
   </div>
