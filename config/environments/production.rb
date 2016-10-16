@@ -79,20 +79,18 @@ Rails.application.configure do
 
   config.assets.compile = true
 
-  config.action_dispatch.default_headers = { 'X-Frame-Options' => 'ALLOWALL' }
-
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'i.s1.com'
+  host = Settings.host
   config.action_mailer.default_url_options = { host: host}
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.163.com',
-    :port           => '25',
+    :address        => Settings.email.address,
+    :port           => Settings.email.port,
     :authentication => :plain,
     :user_name      => Settings.email.account,
     :password       => Settings.email.password,
-    :domain         => Settings.email.domain
+    :domain         => Settings.email.domain,
+    :enable_starttls_auto => true
 }
-config.log_level = :debug
 end
