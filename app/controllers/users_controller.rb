@@ -104,6 +104,11 @@ class UsersController < ApplicationController
     set_user
   end
 
+  def get_avatar
+    set_user
+    send_file File.join(Rails.root,'public',@user.avatar_url), type: @user.avatar.content_type, disposition: 'inline'
+  end
+
   def resend_email
     @user = User.find_by(email: params[:email])
     if @user && !@user.confirmed
@@ -141,11 +146,13 @@ class UsersController < ApplicationController
           render "/users/notice",layout:'embedded'
         end
         format.json { head :no_content }
+        format.xml { render xml: {msg:"success"} }
       else
         # format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
         flash[:notice] = "修改失败"
         format.html { redirect_to(:back) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.xml { render xml: @user.errors, status: :unprocessable_entity }
       end
     end
   end

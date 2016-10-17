@@ -69,6 +69,8 @@ gem 'mina', '0.3.8'
 gem 'mina-puma', require: false
 gem 'mina-sidekiq', '0.4.1', require: false
 
+gem 'rack-cors', :require => 'rack/cors'
+
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
