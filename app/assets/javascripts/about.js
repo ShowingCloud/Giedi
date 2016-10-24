@@ -2,7 +2,7 @@
  * Created by yaolin on 16/8/25.
  */
 $(function() {
-    $('video,audio').mediaelementplayer();
+    $('video').mediaelementplayer();
     sliderInit();
     historyWarp();
     serviceUpper();
