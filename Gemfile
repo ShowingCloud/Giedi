@@ -64,3 +64,5 @@ gem 'sidekiq'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', require: false
 gem 'pg'
 gem 'jquery-fileupload-rails'
+
+gem 'thin'
