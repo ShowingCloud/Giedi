@@ -1,0 +1,16 @@
+<div class="user-center-tab uct">
+  <ul class="horizontal-ul profile-list">
+    <li <%= 'class=active' if action_name == 'profile' %>>
+      <a href="<%= user_profile_path %>">基本<span class="hidden-xs">信息</span></a>
+    </li>
+    <li <%= 'class=active' if action_name == 'email' %>>
+      <a href="<%= user_email_path %>">邮箱<span class="hidden-xs">更改</span></a>
+    </li>
+    <li <%= 'class=active' if action_name == 'mobile' %>>
+      <a href="<%= user_mobile_path %>">手机<span class="hidden-xs">更改</span></a>
+    </li>
+    <li <%= 'class=active' if action_name == 'passwd' %>>
+      <a href="<%= user_passwd_path %>">密码<span class="hidden-xs">更改</span></a>
+    </li>
+  </ul>
+</div>

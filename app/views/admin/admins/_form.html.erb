@@ -1,0 +1,85 @@
+<div class="panel panel-info">
+  <div class="panel-heading"><%= t('activerecord.models.admin') %></div>
+  <div class="panel-body">
+    <%= simple_form_for([:admin, @admin]) do |f| %>
+        <%= f.error_notification %>
+        <% if @admin.errors.any? %>
+            <% @admin.errors[:permissions].each do |msg| %>
+                <div class="alert alert-danger"> 权限：<%= msg %> </div>
+            <% end %>
+            <% @admin.errors[:avatar].each do |msg| %>
+                <div class="alert alert-danger"> 头像：<%= msg %></div>
+            <% end %>
+            <% @admin.errors[:teacher_avatar].each do |msg| %>
+                <div class="alert alert-danger"> 老师形象：<%= msg %></div>
+            <% end %>
+        <% end %>
+
+        <div class="form-inputs">
+          <%= f.input :job_number %>
+          <%= f.input :password %>
+          <%= f.input :name %>
+
+          <label class="control-label">权限</label>
+
+          <div class="well">
+            <%
+              permissions = @admin.permissions.try(:split, ',')
+              Admin::PERMISSIONS.each do |id, name|
+            %>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="admin[permissions][]" value="<%= id %>" <%= permissions.try(:include?, id.to_s) ? 'checked' : '' %>> <%= name %>
+                  </label>
+                </div>
+            <%
+              end
+            %>
+          </div>
+          <!--<%= f.input :permissions, :collection => Admin::PERMISSIONS, :label_method => :last, :value_method => :first, :as => :check_boxes, prompt: 1 %>-->
+          <%= f.input :position %>
+          <%= f.input :age %>
+          <%= f.input :gender, collection: Admin::GENDER.map { |key, val| [t('gender.'+key.to_s), val] } %>
+          <%= f.input :email %>
+          <%= f.input :phone %>
+          <div class="image_container">
+            <img id="preview_img" width="300" height="300" class="hide">
+          </div>
+          <% if @admin.avatar.present? %>
+              <%= image_tag(@admin.avatar_url(:middle)) %>
+              <br><br>
+          <% end %>
+          <div class="form-group">
+            <label class="text control-label" for="admin_avatar">
+              头像
+            </label>
+            <%= f.file_field :avatar, id: 'check-img-type-size' %>
+            <%= f.hidden_field :avatar_cache %>
+            <p class="help-block">格式：jpg jpeg gif png (图片大小在 1M 以内)</p>
+          </div>
+
+          <% if @admin.teacher_avatar.present? %>
+              <% @admin.teacher_avatar.each do |t| %>
+                  <%= image_tag(t.url(:middle)) %>
+              <% end %>
+              <br><br>
+          <% end %>
+
+          <div class="form-group">
+            <label class="text control-label" for="admin_avatar">
+              老师形象(2个,第一个为满分形象)
+            </label>
+            <%= f.file_field :teacher_avatar, multiple: true, id: 'check-teacher-avatar-info' %>
+            <%= f.hidden_field :teacher_avatar_cache %>
+            <p class="help-block">格式：jpg jpeg gif png (图片大小在 1M 以内)</p>
+          </div>
+
+          <%= f.input :address %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>

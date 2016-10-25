@@ -1,0 +1,49 @@
+<h1 class="page-header">
+  显示<%= t('activerecord.models.lesson_test') %>
+  <small class="pull-right">
+    <a href="<%= new_admin_lesson_test_path %>" title="新增<%= t('activerecord.models.lesson_test') %>" class="btn btn-default">
+      <i class="icon-plus icon-only"></i></a>
+    <a href="<%= edit_admin_lesson_test_path(@lesson_test) %>" title="编辑该<%= t('activerecord.models.lesson_test') %>" class="btn btn-default">
+      <i class="icon-edit icon-only"></i></a>
+    <a href="<%= admin_lesson_tests_path %>" title="列表<%= t('activerecord.models.lesson_test') %>" class="btn btn-default">
+      <i class="icon-list icon-only"></i></a>
+  </small>
+</h1>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %>
+      <button class="close" data-dismiss="alert">
+        <i class="icon-remove"></i>
+      </button>
+    </div>
+<% end %>
+
+
+<div class="profile-user-info profile-user-info-striped">
+
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.lesson_id') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= "#{@lesson_info.course_name} -- #{@lesson_info.name}" %></span>
+    </div>
+  </div>
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.name') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @lesson_test.name %></span>
+    </div>
+  </div>
+  <% ['1', '2', '3', '4'].each do |no| %>
+      <div class="profile-info-row">
+        <div class="profile-info-name"> 选项<%= no %></div>
+        <div class="profile-info-value">
+          <span class="<%= 'pink' if no == @lesson_test.answer %>"><%= @lesson_test["option_#{no}"] %></span>
+        </div>
+      </div>
+  <% end %>
+
+</div>

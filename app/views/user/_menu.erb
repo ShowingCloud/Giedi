@@ -1,0 +1,25 @@
+<div class="user-center-menu ucm">
+  <ul class="horizontal-ul ucm-list">
+    <li class="ucm-item <%= 'active' if ['profile', 'email', 'mobile', 'passwd'].include?(action_name) %>">
+      <a href="<%= user_profile_path %>">个人信息</a>
+    </li>
+    <li class="ucm-item">
+      <a href="">报名信息</a>
+    </li>
+    <li class="ucm-item">
+      <a href="">个人管理</a>
+    </li>
+    <li class="ucm-item <%= 'active' if action_name == 'opus' %>">
+      <a href="<%= user_opus_path %>">作品管理</a>
+    </li>
+    <li class="ucm-item <%= 'active' if action_name == 'notifications' %>">
+      <a href="<%= user_notifications_path %>">消息通知</a>
+    </li>
+    <li class="ucm-item">
+      <a href="">我的积分</a>
+    </li>
+    <li class="ucm-item <%= 'active' if action_name == 'consult' %>">
+      <a href="<%= user_consult_path %>">调戏小豆</a>
+    </li>
+  </ul>
+</div>
