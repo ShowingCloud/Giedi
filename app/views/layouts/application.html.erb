@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
 </head>
 <body>
 <div id="about" class="about">
@@ -222,22 +222,6 @@
               </div>
             </li>
 
-            <li class="slider-item active">
-              <div class="teacher-item">
-                <div class="img">
-                  <img data-src="<%= image_path('teacher-02.png') %>" alt=""/>
-                </div>
-                <div class="name">
-                  顾晓光
-                </div>
-                <div class="address">
-
-                </div>
-                <div class="dec">
-                  上海市科技艺术教育中心教师
-                </div>
-              </div>
-            </li>
             <li class="slider-item">
               <div class="teacher-item">
                 <div class="img">
@@ -255,6 +239,22 @@
               </div>
             </li>
 
+            <li class="slider-item active">
+              <div class="teacher-item">
+                <div class="img">
+                  <img data-src="<%= image_path('teacher-02.png') %>" alt=""/>
+                </div>
+                <div class="name">
+                  顾晓光
+                </div>
+                <div class="address">
+
+                </div>
+                <div class="dec">
+                  上海市科技艺术教育中心教师
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
         <div class="slider-btn prev"></div>
@@ -288,6 +288,13 @@
             <img data-src="<%= image_path('teacher-02.png') %>" alt=""/>
           </div>
           <div class="info">
+            <strong>葛智伟</strong>
+
+            <p>上海市科技艺术教育</p>
+
+            <p>中心教师</p>
+          </div>
+          <div class="info">
             <strong>顾晓光</strong>
 
             <p>上海市科技艺术教育 </p>
@@ -298,13 +305,6 @@
         <div class="th-m">
           <div class="icon">
             <img data-src="<%= image_path('teacher-03.png') %>" alt=""/>
-          </div>
-          <div class="info">
-            <strong>葛智伟</strong>
-
-            <p>上海市科技艺术教育</p>
-
-            <p>中心教师</p>
           </div>
         </div>
       </div>
@@ -1253,6 +1253,6 @@
     </div>
   </div>
 </div>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+<%= javascript_include_tag 'application' %>
 </body>
 </html>

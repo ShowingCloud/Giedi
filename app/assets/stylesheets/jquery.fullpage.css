@@ -188,11 +188,13 @@ html.fp-enabled,
     width: 12px;
     margin: -6px 0 0 -6px;
     border-radius: 100%;
+    behavior: url(/assets/PIE.htc);
 }
 
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
     border-radius: 50%;
+    behavior: url(/assets/PIE.htc);
     position: absolute;
     z-index: 1;
     height: 4px;

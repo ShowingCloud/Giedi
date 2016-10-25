@@ -168,6 +168,7 @@
           width: 100px;
           height: 100px;
           border-radius: 50%;
+          behavior: url(/assets/PIE.htc);
           background: #e95e21;
           transition: opacity 1s, top 1s, background-color .3s, transform .6s;
           transform: rotateY(0deg);
@@ -263,6 +264,7 @@
       position: absolute;
       top: 128px;
       border-radius: 50%;
+      behavior: url(/assets/PIE.htc);
       cursor: pointer;
       &.prev {
         left: 8%;
@@ -277,6 +279,7 @@
     height: 224px;
     background: #fff;
     border-radius: 90px;
+    behavior: url(/assets/PIE.htc);
     text-align: center;
     padding-top: 10px;
     cursor: pointer;
@@ -286,6 +289,7 @@
       background: #e95e21;
       padding: 9px;
       border-radius: 50%;
+      behavior: url(/assets/PIE.htc);
       width: 131px;
       height: 131px;
       margin: 0 auto 5px;
@@ -372,6 +376,7 @@
           width: 20px;
           height: 20px;
           border-radius: 50%;
+          behavior: url(/assets/PIE.htc);
           background: #d8d8d8;
           position: absolute;
           left: 5px;
@@ -406,6 +411,7 @@
       background: #e95e21;
       height: 420px;
       border-radius: 5px;
+      behavior: url(/assets/PIE.htc);
       padding: 35px 55px 0;
       box-shadow: 3px 3px 3px #777;
       color: #fff;
@@ -591,6 +597,7 @@
           height: 50px;
           background: #D0DBBD;
           border-radius: 50%;
+          behavior: url(/assets/PIE.htc);
           margin: 0 auto 10px;
           padding-top: 8px;
         }
@@ -617,6 +624,7 @@
             height: 40px;
             line-height: 40px;
             border-radius: 20px;
+            behavior: url(/assets/PIE.htc);
             padding: 0 20px;
             background-color: #e95e21;
             margin-bottom: 20px;
@@ -693,6 +701,7 @@
           height: 50px;
           background: #D0DBBD;
           border-radius: 50%;
+          behavior: url(/assets/PIE.htc);
           margin: 0 auto 10px;
           padding-top: 4px;
         }
@@ -831,6 +840,7 @@
         position: absolute;
         transition: all .3s;
         border-radius: 50%;
+        behavior: url(/assets/PIE.htc);
         .name {
           width: 200px;
           position: absolute;
@@ -902,6 +912,7 @@
             top: -3px;
             border: 2px solid #e95e21;
             border-radius: 50%;
+            behavior: url(/assets/PIE.htc);
           }
         }
         &:hover {
@@ -955,6 +966,7 @@
       line-height: 14px;
       position: absolute;
       border-radius: 5px;
+      behavior: url(/assets/PIE.htc);
       box-shadow: 0 0 3px 0 #ccc inset;
       padding: 10px 5px;
       .c-btn {
@@ -964,6 +976,7 @@
         border: 1px solid #fff;
         background: #fff;
         border-radius: 12px;
+        behavior: url(/assets/PIE.htc);
         box-shadow: 0 0 3px 0 #ccc inset;
       }
     }
@@ -993,6 +1006,7 @@
           height: 70px;
           background: #e95e21;
           border-radius: 50%;
+          behavior: url(/assets/PIE.htc);
           float: left;
           img {
             vertical-align: middle;
@@ -1021,11 +1035,13 @@
         padding: 11px;
         background: #fff;
         border-radius: 50px;
+        behavior: url(/assets/PIE.htc);
         margin-bottom: 15px;
         .icon {
           width: 77px;
           height: 77px;
           border-radius: 50%;
+          behavior: url(/assets/PIE.htc);
           background: #e95e21;
           padding: 4px;
           float: left;
@@ -1033,6 +1049,7 @@
             width: 69px;
             height: 69px;
             border-radius: 50%;
+            behavior: url(/assets/PIE.htc);
           }
         }
         .info {
@@ -1069,6 +1086,7 @@
         background: #e95e21;
         height: 420px;
         border-radius: 5px;
+        behavior: url(/assets/PIE.htc);
         padding: 35px 55px 0;
         box-shadow: 3px 3px 3px #777;
         color: #fff;
