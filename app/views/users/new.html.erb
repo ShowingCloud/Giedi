@@ -7,10 +7,10 @@
       欢迎加入豆姆
     </div>
     <div class="like-tabs">
-      <div class="disabled">
+      <div class="active">
         邮箱注册
       </div>
-      <div class="active">
+      <div class="disabled">
         <%=
             link_to_if(params[:service].nil?, "手机注册", users_new_by_phone_path) do
               link_to("手机注册", users_new_by_phone_path(:service => params[:service]))

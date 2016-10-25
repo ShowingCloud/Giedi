@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   attr_reader :current_service
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery unless: -> { request.format.json? }
+  protect_from_forgery unless: -> { request.format.json? || request.format.xml? }
 
   def send_sms (phone,pin)
     require 'submail'

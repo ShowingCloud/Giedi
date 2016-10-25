@@ -21,9 +21,11 @@ Rails.application.routes.draw do
   end
 
   get 'profile' => 'users#profile'
+  patch 'profile' => 'users#update'
   get 'profile/phone' => 'users#add_phone'
   get 'profile/email' => 'users#add_email'
   get 'profile/avatar' => 'users#edit_avatar'
+  get 'profile/get_avatar' => 'users#get_avatar'
   post 'profile/add_email' => 'users#add_email_sent'
   get 'profile/password' => 'users#edit_password'
 

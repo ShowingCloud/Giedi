@@ -20,7 +20,13 @@
     padding: 0 20px;
     display: inline-block;
   }
+
+  .disabled a{
+    color: darkgray;
+  }
   .active {
+    color: #e95e21;
+
     a {
       color: #e95e21;
     }
@@ -140,3 +146,7 @@
     background-color: #00A0E8 !important;
   }
 }
+
+// .login-social-group{
+//   margin-top: 20px;
+// }

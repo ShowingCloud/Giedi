@@ -17,9 +17,11 @@ addons:
   postgresql: "9.4"
   code_climate:
     repo_token: 339a795b0e3010b4361e3739e3abd36ce628e3c0545615b67c47bfbe8240d929
+before_deploy:
+  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
 deploy:
   provider: script
-  script: script/deploy.sh
+  script: rvm "$TRAVIS_RUBY_VERSION" do bundle exec mina deploy
   skip_cleanup: true
   on:
     branch: master

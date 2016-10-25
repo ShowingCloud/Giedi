@@ -7,10 +7,10 @@
       重置密码
     </div>
     <div class="like-tabs">
-      <div class="disabled">
+      <div class="active">
         邮箱重置
       </div>
-      <div class="active">
+      <div class="disabled">
         <%= link_to "手机重置", password_resets_by_phone_path %>
       </div>
     </div>
@@ -20,8 +20,9 @@
             <%= f.label :email, "邮箱" %>
             <%= f.email_field :email %>
           </div>
-
-          <%= f.submit "提交", class: "button btn-dome" %>
+          <div class="row">
+            <%= f.submit "提交", class: "button btn-dome" %>
+          </div>
       <% end %>
     </div>
   </div>
