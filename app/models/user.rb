@@ -23,6 +23,13 @@ class User < ActiveRecord::Base
   validates_processing_of :avatar
   validate :avatar_size_validation
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      user_hash = row.to_hash
+      User.create!(name: user_hash["nickname"], email: user_hash["email"], phone: user_hash["mobile"], confirmed_at: user_hash["confirmed_at"],password_digest: user_hash["encrypted_password"])
+    end
+  end
+
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
