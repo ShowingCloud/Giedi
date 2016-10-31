@@ -2,24 +2,13 @@
   <div class="sessions box">
     <%= render 'messages' %>
     <div class="info">
-      <h1><%= '你好' %></h1>
+      <h1>会话管理</h1>
       <p>
-        <%= current_user.username + '已登录' %>
+        <span class="username"><%= current_user.username  %></span>已登录
+        <%= link_to '登出', logout_path, :class => 'button btn-dome' %>
       </p>
 
-      <%= link_to '登出', logout_path, :class => 'button' %>
     </div>
-
-    <div class="logo">
-      <%= image_tag "logo.png" %>
-    </div>
-
-      <!-- <h3><%= t('two_factor_authenticators.title') %></h3>
-      <% if @two_factor_authenticators.blank? %>
-        <%= t('two_factor_authenticators.disabled') %> - <%= link_to t('two_factor_authenticators.enable'), new_two_factor_authenticator_path %>
-      <% else %>
-        <%= t('two_factor_authenticators.enabled') %> - <%= button_to t('two_factor_authenticators.disable'), two_factor_authenticator_path(@two_factor_authenticators.first.id), method: :delete %>
-      <% end %> -->
 
       <h3><%= t('sessions.your_active_sessions') %></h3>
       <table width="100%" class="tickets">

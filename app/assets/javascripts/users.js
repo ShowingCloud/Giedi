@@ -1,51 +1,56 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+function register_check() {
+    $("#user_name,#user_email").keydown(function() {
+        $(this).closest(".row").find('.msg').text("");
+    });
+    $("#user_name").blur(function() {
+        var _this = $(this);
+        var value = _this.val();
 
-// window.onload = function () {
-//   addEventListenerByClass('captcha', 'click', refreshCapture);
-//   var phone_verification = document.getElementById('phone_verification');
-//   var phone_reset = document.getElementById('phone_reset');
-//   function get_phone_verification(){
-//     var request = new XMLHttpRequest();
-//     var phone = document.getElementById('user_phone').value;
-//     var captcha = document.getElementById('captcha').value;
-//     if(phone&&captcha){
-//       var data = {phone:phone,_rucaptcha:captcha};
-//       var url = '/phone_verifications?' + Object.keys(data).map(function(k) {
-//           return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-//       }).join('&');
+        if (!value) {
+            return;
+        }
+        $.ajax({
+            url: '/check/username',
+            type: "GET",
+            data: {
+                username: value
+            },
+            complete: function() {},
+            success: function(data) {
+                if (data.available === false) {
+                    _this.closest(".row").find('.msg').text("用户名已被占用");
+                }
+            },
+            error: function() {
+                console.log("register_check ajax error!");
+            }
+        });
+    });
 
-//     }else{
-//       alert("something is missing");
-//     }
-//     request.open('POST', url, true);
-//     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-//     request.setRequestHeader('X-CSRF-Token', document.getElementsByName('csrf-token')[0].content);
-//     request.send();
-//   }
-
-//   function reset_phone_verification(){
-//     var request = new XMLHttpRequest();
-//     var phone = document.getElementById('user_phone').value;
-//     var captcha = document.getElementById('captcha').value;
-//     if(phone&&captcha){
-//       var data = {phone:phone,_rucaptcha:captcha};
-//       var url = '/password_resets_by_phone?' + Object.keys(data).map(function(k) {
-//           return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-//       }).join('&');
-
-//     }else{
-//       alert("something is missing");
-//     }
-//     request.open('POST', url, true);
-//     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-//     request.setRequestHeader('X-CSRF-Token', document.getElementsByName('csrf-token')[0].content);
-//     request.send();
-//   }
-
-//   phone_reset.addEventListener('click', reset_phone_verification, false);
-//   phone_verification.addEventListener('click', get_phone_verification, false);
-// }
+    $("#user_email").blur(function() {
+        var _this = $(this);
+        var value = _this.val();
+        if (!value) {
+            return;
+        }
+        $.ajax({
+            url: '/check/email',
+            type: "GET",
+            data: {
+                email: value
+            },
+            complete: function() {},
+            success: function(data) {
+                if (data.available === false) {
+                    _this.closest(".row").find('.msg').text("邮箱已被占用");
+                }
+            },
+            error: function() {
+                console.log("register_check ajax error!");
+            }
+        });
+    });
+}
 
 function refreshCapture(e) {
     e.target.src = e.target.src.split('?')[0] + '?' + (new Date()).getTime();
@@ -56,7 +61,7 @@ function suspend(ele, seconds) {
     var target = $(ele);
     target.prop('disabled', true);
     var timeleft = seconds;
-    var waite = setInterval(function () {
+    var waite = setInterval(function() {
         console.log(timeleft);
         if (timeleft <= 0) {
             clearInterval(waite);
@@ -87,7 +92,7 @@ function get_phone_verification() {
         url: "/phone_verifications",
         data: data,
         dataType: "JSON",
-        success: function () {
+        success: function() {
             alert("短信验证码已发送");
             suspend(_this, 30);
         }
@@ -114,7 +119,7 @@ function reset_phone_verification(e) {
         url: "/password_resets_by_phone",
         data: data,
         dataType: "JSON",
-        success: function () {
+        success: function() {
             alert("短信验证码已发送");
             suspend(_this, 30);
         }
@@ -122,13 +127,14 @@ function reset_phone_verification(e) {
 
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     $('.captcha').on('click', refreshCapture);
     $('#phone_verification').on('click', get_phone_verification);
     $('#phone_reset').on('click', reset_phone_verification);
+    register_check();
 });
 
-$(document).ajaxError(function (event, jqxhr) {
+$(document).ajaxError(function(event, jqxhr) {
     if (jqxhr.responseText) {
         var errorMsg = {
             "E000": "图形验证码无效",

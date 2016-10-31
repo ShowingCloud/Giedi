@@ -3,6 +3,34 @@
   padding-left: 120px;
 }
 
+.btn-dome {
+  font-size: 14px;
+  color: #fff;
+  background: #e95e21;
+  border: none;
+  outline: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  margin-left: 100px;
+}
+
+.info{
+  margin-bottom: 50px;
+  h1{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .username{
+    font-size: 16px;
+    font-family: monospace;
+  }
+}
+
+.msg{
+  margin-left: 100px;
+  color: red;
+}
+
 .logo {
   margin-bottom: 20px;
 }
@@ -109,16 +137,7 @@
     color: #9b9b9b;
     margin-right: 18px;
   }
-  .btn-dome {
-    font-size: 14px;
-    color: #fff;
-    background: #e95e21;
-    border: none;
-    outline: none;
-    padding: 8px 20px;
-    cursor: pointer;
-    margin-left: 100px;
-  }
+
 }
 
 .bk {
@@ -145,6 +164,10 @@
   .half-btn{
     background-color: #00A0E8 !important;
   }
+}
+
+.field_with_errors input{
+  border-color: red;
 }
 
 // .login-social-group{

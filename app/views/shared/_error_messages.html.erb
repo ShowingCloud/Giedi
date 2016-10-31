@@ -3,9 +3,9 @@
     <div class="alert alert-danger">
       出了些问题
     </div>
-    <ul>
+    <ul style="display: none;">
     <% @user.errors.each do |attr,msg| %>
-      <li><%= msg %></li>
+      <li class="<%= attr %>"><%= msg %></li>
     <% end %>
     </ul>
   </div>
