@@ -11,22 +11,22 @@ class User < ActiveRecord::Base
   validates :name, presence:  { message: "用户名没填写" },
                    length: { maximum: 20, too_long: '用户名最长20个字符' },
                    uniqueness: { message: "该用户名被使用" }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX ||= /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: { message: "邮箱地址没有填写" }, length: { maximum: 100, too_long: '邮箱地址最长100个字符' },
                     format: { with: VALID_EMAIL_REGEX, message: "非法的邮箱地址" },
                     uniqueness: { case_sensitive: false, message: "该邮箱地址被使用" },
                     unless: :phone?
-  validates :phone, phone: { types: :mobile, message: "请使用中国大陆地区的手机号" }, uniqueness: { message: "该手机已被使用" }, unless: :email?
+  validates :phone, length:{is: 11,message:"请使用11位手机号"},phone: { types: :mobile, message: "请使用中国大陆地区的手机号" }, uniqueness: { message: "该手机已被使用" }, unless: :email?
   has_secure_password
   validates :password, presence: true, length: { minimum: 6, too_short: '密码至少要6个字符' }, allow_nil: true
   validates_integrity_of  :avatar
   validates_processing_of :avatar
   validate :avatar_size_validation
 
-  def self.import(file)
+  def self.import_csv(file)
     CSV.foreach(file.path, headers: true) do |row|
       user_hash = row.to_hash
-      User.create!(name: user_hash["nickname"], email: user_hash["email"], phone: user_hash["mobile"], confirmed_at: user_hash["confirmed_at"],password_digest: user_hash["encrypted_password"])
+      User.create!(id:user_hash["id"], name: user_hash["nickname"], email: user_hash["email"], phone: user_hash["mobile"], confirmed_at: user_hash["confirmed_at"],password_digest: user_hash["encrypted_password"])
     end
   end
 

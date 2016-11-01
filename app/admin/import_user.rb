@@ -5,7 +5,7 @@ ActiveAdmin.register_page "ImportUser" do
 
   page_action :csv, method: :post do
       begin
-        User.import(params[:file])
+        User.import_csv(params[:file])
         redirect_to admin_importuser_path, notice: "用户数据已导入"
       rescue
         redirect_to admin_importuser_path, notice: "用户数据导入失败"
