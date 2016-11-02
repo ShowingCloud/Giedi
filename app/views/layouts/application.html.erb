@@ -15,10 +15,10 @@
       <span class="caret"></span>
       <ul class="hover-menu">
         <li>
-          <a href="#">Domelab</a>
+          <a href="http://www.domelab.com">Domelab</a>
         </li>
         <li>
-          <a href="#">Robodou</a>
+          <a href="http://www.robodou.cn">Robodou</a>
         </li>
       </ul>
     </div>
@@ -47,7 +47,9 @@
   </div>
 </div>
 <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+    <div class="alert">
+      <span class="<%= key %>"><%= value %></span>
+    </div>
 <% end %>
 <div id="yield">
   <%= yield %>

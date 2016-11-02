@@ -18,17 +18,22 @@
     </div>
     <div class="form">
         <%= form_for @user, :url => {:action => "new_by_phone"} do |f| %>
-            <%= render 'shared/error_messages' %>
             <%= hidden_field_tag :service, params[:service] unless params[:service].nil? %>
 
             <div class="row">
               <%= f.label :name, '用户名' %>
               <%= f.text_field :name, class: 'form-control' %>
+              <div class="msg" id="name_msg">
+                <%= @user.errors[:name][0] || "" %>
+              </div>
             </div>
 
             <div class="row">
               <%= f.label :phone, '手机' %>
               <%= f.phone_field :phone, class: 'form-control' %>
+              <div class="msg" id="phone_msg">
+                <%= @user.errors[:phone][0] || "" %>
+              </div>
             </div>
 
             <div class="row">
@@ -46,14 +51,10 @@
             <div class="row">
               <%= f.label :password, '密码' %>
               <%= f.password_field :password, class: 'form-control' %>
+              <div class="msg" id="password_msg">
+                <%= @user.errors[:password][0] || "" %>
+              </div>
             </div>
-
-            <!-- <div class="field">
-                    <%= f.label :avatar do %>
-                    <%= f.file_field :avatar %>
-                    <%= f.hidden_field :avatar_cache %>
-                    <% end %>
-                </div> -->
             <div class="row">
               <%= f.submit "创建账户", class: "button btn-dome" %>
             </div>

@@ -2,7 +2,7 @@
   <div class="logout box">
 
     <div class="info">
-      <h1><%= '再见' %></h1>
+      <h1>再见</h1>
       <p>
         <% if @url.nil? %>
           <%= '你已成功登出' %>
@@ -11,9 +11,5 @@
         <% end %>
       </p>
     </div>
-    <div class="logo">
-      <%= image_tag "logo.png" %>
-    </div>
   </div>
-  <%= render 'footer' %>
 </div>

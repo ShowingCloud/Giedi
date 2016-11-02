@@ -1,3 +1,11 @@
+html,body,{
+  height: 100%;
+}
+
+#yield{
+  min-height: 70%; 
+}
+
 body {
   background: #fff;
   color: #666;
@@ -82,4 +90,35 @@ ul {
 
 .text-center {
   text-align: center;
+}
+
+.alert{
+  color:#555;
+
+  font-family:sans-serif;font-size:11px;
+
+  margin:10px 20px;
+
+  span {
+    font-weight:bold;
+    padding:10px;
+    border-radius:10px;
+  }
+
+  .error {
+    background:#ffecec no-repeat 10px 50%;
+    border:1px solid #f5aca6;
+  }
+  .success {
+      background:#e9ffd9 no-repeat 10px 50%;
+      border:1px solid #a6ca8a;
+  }
+  .warning {
+      background:#fff8c4 no-repeat 10px 50%;
+      border:1px solid #f2c779;
+  }
+  .notice {
+      background:#e3f7fc no-repeat 10px 50%;
+      border:1px solid #8ed9f6;
+  }
 }

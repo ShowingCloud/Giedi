@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
   ActiveAdmin.routes(self)
+  get 'check/username' => 'check#username'
+  get 'check/email' => 'check#email'
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
   get 'password_resets_by_phone' => 'password_resets#new_by_phone'
   patch 'password_resets_by_phone' => 'password_resets#update_by_phone'
