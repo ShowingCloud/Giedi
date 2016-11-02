@@ -27,7 +27,8 @@ namespace :db do
       require "#{Rails.root}/app/models/user.rb"
       CSV.foreach("#{Rails.root}/db/csv/users.csv", headers: true) do |row|
         user_hash = row.to_hash
-        User.create!(id:user_hash["id"], name: user_hash["nickname"], email: user_hash["email"], phone: user_hash["mobile"], confirmed_at: user_hash["confirmed_at"],password_digest: user_hash["encrypted_password"])
+        confirmed = user_hash["confirmed_at"].present? ? true : false
+        User.create!(id:user_hash["id"], name: user_hash["nickname"], email: user_hash["email"], phone: user_hash["mobile"],confirmed:confirmed, confirmed_at: user_hash["confirmed_at"],password_digest: user_hash["encrypted_password"])
       end
     end
   end
