@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
   end
 
   def name_cant_be_phone_or_email
-    if name.present? && (Phonelib.valid?(name) || VALID_EMAIL_REGEX.match(name))
+    if name.present? && (Phonelib.parse(name).type == :mobile || VALID_EMAIL_REGEX.match(name))
       errors.add(:name, "用户名不能是电话号码或邮箱")
     end
   end
