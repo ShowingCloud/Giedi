@@ -106,7 +106,11 @@ class UsersController < ApplicationController
 
   def get_avatar
     set_user
-    send_file File.join(Rails.root,'public',@user.avatar_url), type: @user.avatar.content_type, disposition: 'inline'
+    if @user.avatar_url.present?
+      send_file File.join(Rails.root,'public',@user.avatar_url), type: @user.avatar.content_type, disposition: 'inline'
+    else
+      send_file File.join(Rails.root,'public/default_avatar.jpg'), type: 'jpg', disposition: 'inline'
+    end
   end
 
   def resend_email
