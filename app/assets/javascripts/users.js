@@ -102,7 +102,7 @@ function get_phone_verification() {
 
 function reset_phone_verification(e) {
     var _this = this;
-    var phone = document.getElementById('user_phone').value;
+    var phone = document.getElementById('password_reset_phone').value;
     var captcha = document.getElementById('captcha').value;
     if (phone && captcha) {
         var data = {

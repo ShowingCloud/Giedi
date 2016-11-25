@@ -64,7 +64,7 @@ class PasswordResetsController < ApplicationController
           if params[:password_reset][:password].empty?
               @user.errors.add(:password, "不能为空")
               render 'new_by_phone'
-          elsif @user.update_attributes(user_params)
+          elsif @user.update_attributes(phone_user_params)
               data = { authenticator: 'ActiveRecord', user_data: { username: params[:password_reset][:phone] } }
               flash[:success] = "密码已重置."
               sign_in(data)
@@ -98,6 +98,10 @@ class PasswordResetsController < ApplicationController
 
     def user_params
         params.require(:user).permit(:password, :password_confirmation)
+    end
+
+    def phone_user_params
+        params.require(:password_reset).permit(:password, :password_confirmation)
     end
 
     def check_expiration
