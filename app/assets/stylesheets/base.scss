@@ -3,7 +3,7 @@ html,body,{
 }
 
 #yield{
-  min-height: 70%; 
+  min-height: 70%;
 }
 
 body {
@@ -121,4 +121,22 @@ ul {
       background:#e3f7fc no-repeat 10px 50%;
       border:1px solid #8ed9f6;
   }
+}
+
+.hidden{
+  display: none;
+}
+
+.loading{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: image-url('loading-domelab.png');
+  background-size: 30% auto;
 }

@@ -76,10 +76,11 @@ function suspend(ele, seconds) {
 
 function get_phone_verification() {
     var _this = this;
+    var data;
     var phone = document.getElementById('user_phone').value;
     var captcha = document.getElementById('captcha').value;
     if (phone && captcha) {
-        var data = {
+        data = {
             phone: phone,
             _rucaptcha: captcha
         };
@@ -102,10 +103,11 @@ function get_phone_verification() {
 
 function reset_phone_verification(e) {
     var _this = this;
+    var data;
     var phone = document.getElementById('password_reset_phone').value;
     var captcha = document.getElementById('captcha').value;
     if (phone && captcha) {
-        var data = {
+        data = {
             phone: phone,
             _rucaptcha: captcha
         };
@@ -132,6 +134,9 @@ $(document).ready(function() {
     $('#phone_verification').on('click', get_phone_verification);
     $('#phone_reset').on('click', reset_phone_verification);
     register_check();
+    $("#login-form").submit(function() {
+        $(".loading").removeClass('hidden');
+    });
 });
 
 $(document).ajaxError(function(event, jqxhr) {
