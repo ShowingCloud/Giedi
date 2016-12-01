@@ -1,5 +1,9 @@
 $(function() {
-    $(".sign_in_link,.sign_up_link").click(function() {
+    $(".sign_in_link,.sign_up_link").click(function(e) {
+        $(".loading").removeClass('hidden');
+    });
+
+    $('#logout').on('confirm:complete', function(e, response) {
         $(".loading").removeClass('hidden');
     });
 
