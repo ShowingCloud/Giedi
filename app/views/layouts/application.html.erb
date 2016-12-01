@@ -35,10 +35,10 @@
         <% else %>
           <% if params[:service].present? %>
             <% addon = URI.encode_www_form("service"=>params[:service]) %>
-              <li><%= link_to("注册", "/users/new?"+addon) %></li>
+              <li><%= link_to("注册", "/users/new_by_phone?"+addon) %></li>
               <li><%= link_to("登录", "/login?"+addon) %></li>
             <% else %>
-              <li><%= link_to("注册", "/users/new") %></li>
+              <li><%= link_to("注册", "/users/new_by_phone") %></li>
               <li><%= link_to("登录", "/login") %></li>
           <% end %>
         <% end %>
@@ -80,14 +80,14 @@
       <div class="QR">
         <img src="<%= image_path('QRcode.png') %>" alt=""/>
       </div>
-      <div class="QR    ">
+      <div class="QR">
         <img src="<%= image_path('QRcode.png') %>" alt=""/>
       </div>
     </div>
   </div>
 </div>
 <!--<%= debug(params) if Rails.env.development? %>-->
-<div class="loading hidden">
+<div class="loading hidden"></div>
 </div>
 </body>
 </html>
