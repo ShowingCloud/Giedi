@@ -52,7 +52,7 @@ ul {
 }
 
 .container {
-  width: 1200px !important;
+  // width: 1200px !important;
   margin: 0 auto;
   padding-left: 0;
   padding-right: 0;
@@ -98,7 +98,7 @@ ul {
 
   font-family:sans-serif;font-size:11px;
 
-  margin:10px 20px;
+  margin:20px 20px 0px;
 
   span {
     font-weight:bold;
@@ -139,5 +139,5 @@ ul {
   background-repeat: no-repeat;
   background-position: center center;
   background-image: image-url('loading-domelab.png');
-  background-size: 30% auto;
+  background-size: 330px auto;
 }
