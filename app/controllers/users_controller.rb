@@ -164,7 +164,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:info])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :avatar, :avatar_cache, user_extra_attributes: [:info])
   end
 
   def user_create_params
@@ -203,7 +203,12 @@ class UsersController < ApplicationController
         guid = current_user.extra_attributes[:guid]
         session[:user_id] = guid
       else
-        redirect_to '/login'
+        if params[:iframe].present? && params[:service].present?
+          response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{params[:service]}"
+          render 'shared/unauth_in_iframe'
+        else
+          redirect_to '/login'
+        end
       end
     end
   end
@@ -235,9 +240,7 @@ class UsersController < ApplicationController
 
   def set_x_frame_option
     baseurl = session[:referrer] if session[:referrer].present?
-    if Settings.allow_from.include?(baseurl)
-      response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}"
-    end
+    response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}" if Settings.allow_from.include?(baseurl)
   end
 
   def ensure_service_allowed

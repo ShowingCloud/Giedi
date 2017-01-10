@@ -137,6 +137,25 @@ $(document).ready(function() {
     $("#login-form").submit(function() {
         $(".loading").removeClass('hidden');
     });
+
+    $("#edit_passwd_form").submit(function(){
+      var new_passwd = $("#user_password").val();
+      var new_passwd_confirm = $("#user_password_confirmation").val();
+      var current_passwd = $("#user_current_password").val();
+      if(new_passwd && new_passwd_confirm && current_passwd){
+        if(new_passwd !== new_passwd_confirm){
+          alert("新密码不一致");
+          return false;
+        }
+      }else{
+        alert("请填写完整");
+        return false;
+      }
+    });
+
+    if($("#unauth_in_iframe").length){
+      alert("需要重新登录");
+    }
 });
 
 $(document).ajaxError(function(event, jqxhr) {
@@ -156,4 +175,5 @@ $(document).ajaxError(function(event, jqxhr) {
         }
         $('.captcha').trigger('click');
     }
+
 });
