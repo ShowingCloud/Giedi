@@ -54,7 +54,7 @@ gem 'readthis'
 gem 'hiredis'
 
 #admin dashboard
-gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'activeadmin',github: 'activeadmin'
 gem 'activeadmin_json_editor', '~> 0.0.6'
 gem 'devise'
 
@@ -66,11 +66,13 @@ gem "puma"
 gem 'thin'
 
 #deploy
-gem 'mina', '0.3.8'
+gem 'mina', require: false
 gem 'mina-puma', require: false
-gem 'mina-sidekiq', '0.4.1', require: false
+gem 'mina-sidekiq', require: false
 
 gem 'rack-cors', :require => 'rack/cors'
+
+gem "brakeman", :require => false
 
 group :test do
   gem 'shoulda-matchers', require: false
@@ -94,4 +96,5 @@ group :development do
   gem 'better_errors'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'meta_request'
 end

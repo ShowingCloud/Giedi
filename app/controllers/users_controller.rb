@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  layout 'embedded', only: [:edit_password, :add_phone, :add_email]
+  layout 'embedded', only: [:edit_password, :add_phone, :add_email,:notice]
   before_action :ensure_service_allowed, only: [:new, :new_by_phone]
   before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone], unless: :format_json?
   before_action :authenticate_request!, if: :format_json?
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @token = @user.confirmation_token
       UserMailer.new_email_confirmation(@user, @token).deliver_later
       flash[:notice] = "验证邮件已发送"
-      render 'users/notice',layout:'embedded'
+      redirect_to '/notice'
     # handle_redirect_back
     else
       render :add_email,layout:'embedded'
@@ -147,7 +147,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(user_params)
         format.html do
           flash[:notice] = "修改成功"
-          render "/users/notice",layout:'embedded'
+          redirect_to '/notice'
         end
         format.json { head :no_content }
         format.xml { render xml: {msg:"success"} }
@@ -164,7 +164,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :phone, :avatar, :avatar_cache, user_extra_attributes: [:info])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :avatar, :avatar_cache, user_extra_attributes: [:info])
   end
 
   def user_create_params
@@ -199,11 +199,16 @@ class UsersController < ApplicationController
 
   def ensure_signed_in
     if session[:user_id].blank?
-      if  signed_in?
+      if signed_in?
         guid = current_user.extra_attributes[:guid]
         session[:user_id] = guid
       else
-        redirect_to '/login'
+        if params[:iframe].present? && params[:service].present?
+          response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{params[:service]}"
+          render 'shared/unauth_in_iframe'
+        else
+          redirect_to '/login'
+        end
       end
     end
   end
@@ -235,9 +240,7 @@ class UsersController < ApplicationController
 
   def set_x_frame_option
     baseurl = session[:referrer] if session[:referrer].present?
-    if Settings.allow_from.include?(baseurl)
-      response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}"
-    end
+    response.headers['X-FRAME-OPTIONS'] = "ALLOW-FROM #{baseurl}" if Settings.allow_from.include?(baseurl)
   end
 
   def ensure_service_allowed
