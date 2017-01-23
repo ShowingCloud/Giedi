@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       @user.update_attribute(:new_email, params[:user][:new_email])
       @token = @user.confirmation_token
       UserMailer.new_email_confirmation(@user, @token).deliver_later
-      flash[:notice] = "验证邮件已发送"
+      flash.now[:notice] = "验证邮件已发送"
       render 'users/notice',layout:'embedded'
     # handle_redirect_back
     else
@@ -146,14 +146,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(user_params)
         format.html do
-          flash[:notice] = "修改成功"
+          flash.now[:notice] = "修改成功"
           render "/users/notice",layout:'embedded'
         end
         format.json { head :no_content }
         format.xml { render xml: {msg:"success"} }
       else
         # format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
-        flash[:notice] = "修改失败"
+        flash.now[:notice] = "修改失败"
         format.html { redirect_to(:back) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
         format.xml { render xml: @user.errors, status: :unprocessable_entity }
@@ -199,7 +199,7 @@ class UsersController < ApplicationController
 
   def ensure_signed_in
     if session[:user_id].blank?
-      if  signed_in?
+      if signed_in?
         guid = current_user.extra_attributes[:guid]
         session[:user_id] = guid
       else
