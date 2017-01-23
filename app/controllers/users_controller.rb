@@ -25,6 +25,7 @@ class UsersController < ApplicationController
       @token = @user.confirmation_token
       UserMailer.new_email_confirmation(@user, @token).deliver_later
       flash.now[:notice] = "验证邮件已发送"
+      @notice = "验证邮件已发送"
       render 'users/notice',layout:'embedded'
     # handle_redirect_back
     else
