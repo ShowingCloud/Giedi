@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  layout 'embedded', only: [:edit_password, :add_phone, :add_email]
+  layout 'embedded', only: [:edit_password, :add_phone, :add_email,:notice]
   before_action :ensure_service_allowed, only: [:new, :new_by_phone]
   before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone], unless: :format_json?
   before_action :authenticate_request!, if: :format_json?
@@ -24,9 +24,8 @@ class UsersController < ApplicationController
       @user.update_attribute(:new_email, params[:user][:new_email])
       @token = @user.confirmation_token
       UserMailer.new_email_confirmation(@user, @token).deliver_later
-      flash.now[:notice] = "验证邮件已发送"
-      @notice = "验证邮件已发送"
-      render 'users/notice',layout:'embedded'
+      flash[:notice] = "验证邮件已发送"
+      redirect_to '/notice'
     # handle_redirect_back
     else
       render :add_email,layout:'embedded'
@@ -147,14 +146,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(user_params)
         format.html do
-          flash.now[:notice] = "修改成功"
-          render "/users/notice",layout:'embedded'
+          flash[:notice] = "修改成功"
+          redirect_to '/notice'
         end
         format.json { head :no_content }
         format.xml { render xml: {msg:"success"} }
       else
         # format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
-        flash.now[:notice] = "修改失败"
+        flash[:notice] = "修改失败"
         format.html { redirect_to(:back) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
         format.xml { render xml: @user.errors, status: :unprocessable_entity }
