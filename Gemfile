@@ -86,7 +86,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails', "~> 4.0"
-  gem "codeclimate-test-reporter", require: nil
 end
 
 group :development do

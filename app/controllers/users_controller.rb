@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  layout 'embedded', only: [:edit_password, :add_phone, :add_email,:notice]
+  layout 'embedded', only: [:edit_password, :add_phone, :add_email, :notice]
   before_action :ensure_service_allowed, only: [:new, :new_by_phone]
   before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone], unless: :format_json?
   before_action :authenticate_request!, if: :format_json?
@@ -14,8 +14,7 @@ class UsersController < ApplicationController
     set_user
   end
 
-  def add_email
-  end
+  def add_email; end
 
   def add_email_sent
     if verify_rucaptcha?
@@ -23,12 +22,13 @@ class UsersController < ApplicationController
       @user.create_new_email_digest
       @user.update_attribute(:new_email, params[:user][:new_email])
       @token = @user.confirmation_token
-      UserMailer.new_email_confirmation(@user, @token).deliver_later
-      flash[:notice] = "验证邮件已发送"
+      @service = params[:service] || nil
+      UserMailer.new_email_confirmation(@user, @token, @service).deliver_later
+      flash[:notice] = '验证邮件已发送'
       redirect_to '/notice'
     # handle_redirect_back
     else
-      render :add_email,layout:'embedded'
+      render :add_email, layout: 'embedded'
     end
   end
 
@@ -77,7 +77,7 @@ class UsersController < ApplicationController
       render('/users/new_by_phone') && return
     end
 
-    unless verify_sms? params[:user][:phone],params[:pin]
+    unless verify_sms? params[:user][:phone], params[:pin]
       @user.errors.add(:base, t('phone_verification.invalid'))
       render('/users/new_by_phone') && return
     end
@@ -107,9 +107,9 @@ class UsersController < ApplicationController
   def get_avatar
     set_user
     if @user.avatar_url.present?
-      send_file File.join(Rails.root,'public',@user.avatar_url), type: @user.avatar.content_type, disposition: 'inline'
+      send_file File.join(Rails.root, 'public', @user.avatar_url), type: @user.avatar.content_type, disposition: 'inline'
     else
-      send_file File.join(Rails.root,'public/default_avatar.jpg'), type: 'jpg', disposition: 'inline'
+      send_file File.join(Rails.root, 'public/default_avatar.jpg'), type: 'jpg', disposition: 'inline'
     end
   end
 
@@ -129,9 +129,9 @@ class UsersController < ApplicationController
   def update
     set_user
     unless params[:user][:phone].blank?
-      unless verify_sms? params[:user][:phone],params[:pin]
+      unless verify_sms? params[:user][:phone], params[:pin]
         @user.errors.add(:base, t('phone_verification.invalid'))
-        render('users/add_phone',layout:'embedded')  && return
+        render('users/add_phone', layout: 'embedded') && return
       end
     end
 
@@ -139,21 +139,21 @@ class UsersController < ApplicationController
       current_password = params[:user].delete(:current_password)
       unless @user.authenticate(current_password)
         @user.errors.add(:base, t('current_password.wrong'))
-        render('users/edit_password',layout:'embedded') && return
+        render('users/edit_password', layout: 'embedded') && return
       end
     end
 
     respond_to do |format|
       if @user.update_attributes(user_params)
         format.html do
-          flash[:notice] = "修改成功"
+          flash[:notice] = '修改成功'
           redirect_to '/notice'
         end
         format.json { head :no_content }
-        format.xml { render xml: {msg:"success"} }
+        format.xml { render xml: { msg: 'success' } }
       else
         # format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
-        flash[:notice] = "修改失败"
+        flash[:notice] = '修改失败'
         format.html { redirect_to(:back) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
         format.xml { render xml: @user.errors, status: :unprocessable_entity }
@@ -221,7 +221,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def verify_sms?(phone,pin)
+  def verify_sms?(phone, pin)
     valid = false
     verification = Rails.cache.read(phone)
     valid = verification.present? && verification[:pin] == pin
@@ -248,5 +248,4 @@ class UsersController < ApplicationController
       render 'service_not_allowed', status: :forbidden
     end
   end
-
 end
