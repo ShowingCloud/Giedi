@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   get 'profile/get_avatar' => 'users#get_avatar'
   post 'profile/add_email' => 'users#add_email_sent'
   get 'profile/password' => 'users#edit_password'
-  get 'notice' => 'users#notice',as: "notice"
+  get 'profile/bind' => 'users#bind'
+  get 'notice' => 'users#notice', as: 'notice'
 
   resources :email_confirmations, only: [:edit]
   mount CASino::Engine => '/', :as => 'casino'

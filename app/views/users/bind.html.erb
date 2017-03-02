@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>第三方账号</h1>
+    <% unless params[:iframe].present? %>
+        <%= render 'shared/center_nav' %>
+    <% end %>
+    <div class="main">
+        <ul>
+            <li><%= image_tag("login_weixin") %>微信</li>
+            <li><%= image_tag("login_qq") %>QQ</li>
+            <li><%= image_tag("login_weibo") %>微博</li>
+            <% if Rails.env.development? %>
+                <li><%= image_tag("login_weibo") %>github<a><%= @providers.include?('github') ? '解绑' : '绑定' %></a></li>
+            <% end %>
+        </ul>
+    </div>
+</div>

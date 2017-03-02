@@ -1,11 +1,14 @@
 <div class="container">
-  <div class="sessions box">
     <%= render 'messages' %>
+    <% unless params[:iframe].present? %>
+      <%= render 'shared/center_nav' %>
+    <% end %>
+  <div class="main">
     <div class="info">
-      <h1>会话管理</h1>
+
+      <h1>登陆管理</h1>
       <p>
         <span class="username"><%= current_user.username  %></span>已登录
-        <%= link_to '登出', logout_path, :class => 'button btn-dome' %>
       </p>
 
     </div>
@@ -20,7 +23,7 @@
             <th class="actions">&nbsp;</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <% @ticket_granting_tickets.each do |ticket_granting_ticket| %>
             <tr class="<%= 'highlighted' if current_ticket_granting_ticket?(ticket_granting_ticket) %>">
               <td data-label="<%= t('sessions.table.column_browser') %>">

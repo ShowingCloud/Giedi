@@ -1,27 +1,36 @@
 <div class="container">
-  <h3>添加／修改手机号</h3>
+  <% unless params[:iframe].present? %>
+    <%= render 'shared/center_nav' %>
+  <% end %>
+  <div class="main">
+    <h3>添加／修改手机号</h3>
 
-  <div class="form">
-      <%= form_for @user do |f| %>
-          <%= render 'shared/error_messages' %>
-          <div class="row">
-            <%= f.label :phone, '新手机号' %>
-            <%= f.text_field :phone, class: 'form-control' %>
-          </div>
-          <div class="row">
-            <%= label_tag 'captcha', '图形验证码' %>
-            <div class="input-wrapper">
-              <%= rucaptcha_input_tag(id: 'captcha', class: 'captcha-input', placeholder: '图形验证码') %>
-              <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+    <div class="form">
+        <%= form_for @user do |f| %>
+            <%= render 'shared/error_messages' %>
+            <div class="row">
+              <%= f.label :phone, '新手机号' %>
+              <%= f.text_field :phone, class: 'form-control' %>
             </div>
-          </div>
-          <div class="row">
-            <%= label_tag 'phone_verification', '短信验证码' %>
-            <%= text_field_tag :pin, params[:pin], placeholder: '手机验证码',class: 'half-input' %>
-            <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn half-btn", :id => "phone_verification" %>
-          </div>
+            <div class="row">
+              <%= label_tag 'captcha', '图形验证码' %>
+              <div class="input-wrapper">
+                <%= rucaptcha_input_tag(id: 'captcha', class: 'captcha-input', placeholder: '图形验证码') %>
+                <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
+              </div>
+            </div>
+            <div class="row">
+              <%= label_tag 'phone_verification', '短信验证码' %>
+              <%= text_field_tag :pin, params[:pin], placeholder: '手机验证码',class: 'half-input' %>
+              <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn half-btn", :id => "phone_verification" %>
+            </div>
 
-          <%= f.submit "添加／修改手机", class: "button btn-orange" %>
-      <% end %>
+            <%  if params[:iframe].present? %>
+              <input type="hidden" name='iframe' value="1"/>
+            <% end %>
+
+            <%= f.submit "添加／修改手机", class: "button btn-orange" %>
+        <% end %>
+    </div>
   </div>
 </div>

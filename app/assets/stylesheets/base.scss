@@ -5,6 +5,7 @@ html,body,{
 
 #yield{
   min-height: 70%;
+  padding:0 10px;
 }
 
 body {
@@ -141,3 +142,8 @@ ul {
   background-image: image-url('loading-domelab.png');
   background-size: 330px auto;
 }
+
+.main{
+  margin-left: 350px;
+}
+

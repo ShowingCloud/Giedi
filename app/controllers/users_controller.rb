@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  layout 'embedded', only: [:edit_password, :add_phone, :add_email, :notice]
+  layout :set_layout, only: [:edit_password, :add_phone, :add_email_sent, :update, :add_email, :notice]
   before_action :ensure_service_allowed, only: [:new, :new_by_phone]
   before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone], unless: :format_json?
   before_action :authenticate_request!, if: :format_json?
   before_action :set_referrer, only: [:update, :add_phone, :add_email, :edit_password], unless: :format_json?
   before_action :set_x_frame_option, unless: :format_json?
+
   def profile
     set_user
   end
@@ -24,11 +25,11 @@ class UsersController < ApplicationController
       @token = @user.confirmation_token
       @service = params[:service] || nil
       UserMailer.new_email_confirmation(@user, @token, @service).deliver_later
-      flash[:notice] = '验证邮件已发送'
-      redirect_to '/notice'
+      flash.now[:notice] = '验证邮件已发送'
+      render 'notice'
     # handle_redirect_back
     else
-      render :add_email, layout: 'embedded'
+      render :add_email
     end
   end
 
@@ -104,6 +105,15 @@ class UsersController < ApplicationController
     set_user
   end
 
+  def bind
+    set_user
+    identities = @user.identities
+    @providers = []
+    identities.each do |identity|
+      @providers.push identity.provider
+    end
+  end
+
   def get_avatar
     set_user
     if @user.avatar_url.present?
@@ -131,7 +141,7 @@ class UsersController < ApplicationController
     unless params[:user][:phone].blank?
       unless verify_sms? params[:user][:phone], params[:pin]
         @user.errors.add(:base, t('phone_verification.invalid'))
-        render('users/add_phone', layout: 'embedded') && return
+        render('users/add_phone') && return
       end
     end
 
@@ -139,15 +149,15 @@ class UsersController < ApplicationController
       current_password = params[:user].delete(:current_password)
       unless @user.authenticate(current_password)
         @user.errors.add(:base, t('current_password.wrong'))
-        render('users/edit_password', layout: 'embedded') && return
+        render('users/edit_password') && return
       end
     end
 
     respond_to do |format|
       if @user.update_attributes(user_params)
         format.html do
-          flash[:notice] = '修改成功'
-          redirect_to '/notice'
+          flash.now[:notice] = '修改成功'
+          render 'notice'
         end
         format.json { head :no_content }
         format.xml { render xml: { msg: 'success' } }
@@ -231,6 +241,10 @@ class UsersController < ApplicationController
 
   def format_json?
     request.format.json?
+  end
+
+  def set_layout
+    params[:iframe].present? ? 'embedded' : 'application'
   end
 
   # def set_referrer
