@@ -108,10 +108,16 @@ class UsersController < ApplicationController
   def bind
     set_user
     identities = @user.identities
-    @providers = []
-    identities.each do |identity|
-      @providers.push identity.provider
+    @providers = identities.map{ |x| [x.provider, x.id] }.to_h
+  end
+
+  def unbind
+    set_user
+    identity = Identity.find(params[:id])
+    if identity.user_id == @user.id
+      flash[:notice] = '解绑成功' if identity.delete
     end
+    redirect_to '/profile/bind'
   end
 
   def get_avatar

@@ -2,7 +2,7 @@
   <% unless params[:iframe].present? %>
     <%= render 'shared/center_nav' %>
   <% end %>
-  <div class="main">
+  <div class="center-main">
     <h3>添加／修改手机号</h3>
 
     <div class="form">
@@ -25,7 +25,7 @@
               <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn half-btn", :id => "phone_verification" %>
             </div>
 
-            <%  if params[:iframe].present? %>
+            <% if params[:iframe].present? %>
               <input type="hidden" name='iframe' value="1"/>
             <% end %>
 

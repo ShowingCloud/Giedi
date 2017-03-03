@@ -44,4 +44,19 @@
     background-image: image-url('loading-robodou.png');
   }
 
+  .center-nav {
+    background-color: #58759c;
+
+    li a.active{
+      background-color: #00A0E8;
+    }
+  }
+
+  .third-party{
+    background-color: #58759c;
+
+      a{
+      border: 1px solid #00A0E8;
+    }
+  }
 }

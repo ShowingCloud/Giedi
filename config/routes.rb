@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   post 'profile/add_email' => 'users#add_email_sent'
   get 'profile/password' => 'users#edit_password'
   get 'profile/bind' => 'users#bind'
+  get 'profile/unbind/:id' => 'users#unbind'
   get 'notice' => 'users#notice', as: 'notice'
 
   resources :email_confirmations, only: [:edit]

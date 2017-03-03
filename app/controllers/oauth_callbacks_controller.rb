@@ -6,11 +6,11 @@ class OauthCallbacksController < ApplicationController
     if signed_in?
       this_user = User.find(current_user.extra_attributes[:guid])
       if @identity.user == this_user
-        redirect_to '/profile', notice: '已经绑定过本帐号'
+        redirect_to '/profile/bind', notice: '已经绑定过本帐号'
       else
         @identity.user = this_user
         @identity.save
-        redirect_to '/profile', notice: '绑定成功'
+        redirect_to '/profile/bind', notice: '绑定成功'
       end
     else
       if @identity.user.present?

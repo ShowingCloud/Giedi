@@ -21,39 +21,39 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pg'
 
-#CAS SSO
+# CAS SSO
 gem 'casino', git: 'https://github.com/rbCAS/CASino.git'
 gem 'casino-activerecord_authenticator', git: 'https://github.com/Bikeman18/dome-activerecord_authenticator.git'
 
-#captcha
+# captcha
 gem 'rucaptcha'
 
-#phone validation
+# phone validation
 gem 'phonelib'
 
-#background processing
+# background processing
 gem 'sidekiq'
 
-#file uploads
+# file uploads
 gem 'carrierwave'
 gem 'mini_magick'
 
-#delegated authentication
+# delegated authentication
 gem 'omniauth'
-gem 'omniauth-weibo-oauth2'
-gem 'omniauth-qq'
 gem 'omniauth-github'
-gem "omniauth-wechat-oauth2", git: 'https://github.com/yangsr/omniauth-wechat-oauth2.git'
+gem 'omniauth-qq'
+gem 'omniauth-wechat-oauth2', git: 'https://github.com/yangsr/omniauth-wechat-oauth2.git'
+gem 'omniauth-weibo-oauth2'
 
-#json api
+# json api
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
 
-#redis
-gem 'readthis'
+# redis
 gem 'hiredis'
+gem 'readthis'
 
-#admin dashboard
+# admin dashboard
 gem 'activeadmin',github: 'activeadmin'
 gem 'activeadmin_json_editor', '~> 0.0.6'
 gem 'devise'
@@ -64,14 +64,14 @@ gem 'httparty'
 
 gem "puma"
 
-#deploy
+# deploy
 gem 'mina', require: false
 gem 'mina-puma', require: false
 gem 'mina-sidekiq', require: false
 
 gem 'rack-cors', :require => 'rack/cors'
 
-gem "brakeman", :require => false
+gem 'brakeman', :require => false
 
 group :test do
   gem 'shoulda-matchers', require: false

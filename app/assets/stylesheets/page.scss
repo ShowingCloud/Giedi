@@ -238,7 +238,7 @@
 }
 
 .center-nav{
-  margin: 10px;
+  margin: 10px 90px 10px 10px;
   padding: 0;
   width: 20%;
   background-color: #f1f1f1;
@@ -261,6 +261,38 @@
         background-color: #E16623;
         color: white;
     }
+  }
+}
+
+.center-main{
+  float: left;
+  margin-left: 10px;
+}
+
+.third-party{
+  width: 50%;
+  background-color: #f1f1f1;
+  min-width: 250px;
+  
+
+  a{
+    float: right;
+    margin-right: 20px;
+    border: 1px solid #E16623;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+
+  img{
+    width: 30px;
+    margin-right: 10px;
+  }
+
+  li{
+    padding: 10px 10px;
+    font-size: 18px;
+    vertical-align: middle;
+    border-bottom: 1px solid #444;
   }
 }
 
