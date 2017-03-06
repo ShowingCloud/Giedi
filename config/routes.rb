@@ -5,6 +5,13 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
   ActiveAdmin.routes(self)
+
+  namespace :api, default: { format: :json } do
+    namespace :v1 do
+      resources :users, only: [:show, :update]
+    end
+  end
+
   get 'check/username' => 'check#username'
   get 'check/email' => 'check#email'
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
