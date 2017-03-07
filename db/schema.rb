@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918042615) do
+ActiveRecord::Schema.define(version: 20170307045937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,12 +178,9 @@ ActiveRecord::Schema.define(version: 20160918042615) do
 
   create_table "service_permissions", force: :cascade do |t|
     t.string   "name"
-    t.integer  "fullname",      limit: 2
-    t.integer  "gender",        limit: 2
-    t.integer  "birthday",      limit: 2
-    t.integer  "identity_card", limit: 2
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.jsonb    "key_permissions"
   end
 
   add_index "service_permissions", ["name"], name: "index_service_permissions_on_name", using: :btree

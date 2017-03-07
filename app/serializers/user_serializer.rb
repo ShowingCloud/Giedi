@@ -11,7 +11,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def profile
-    object.user_extra.info
+    object.user_extra.info.slice(*@instance_options[:valid_keys])
   end
 
 end
