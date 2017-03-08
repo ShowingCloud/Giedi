@@ -58,7 +58,11 @@ class PasswordResetsController < ApplicationController
   def update_by_phone
     @user = User.find_by(phone: params[:password_reset][:phone])
     if @user
-      render('new_by_phone') && return unless params[:reset_pin] == @user.reset_pin
+      unless params[:reset_pin] == @user.reset_pin
+        @user.errors.add(:phone_verification, t('phone_verification.invalid'))
+        render('new_by_phone')
+        return
+      end
       if params[:password_reset][:password].empty?
         @user.errors.add(:password, '不能为空')
         render 'new_by_phone'
@@ -70,7 +74,7 @@ class PasswordResetsController < ApplicationController
         render 'new_by_phone'
       end
     else
-      flash.now[:danger] = '不存在的手机号'
+      flash.now[:error] = '不存在的手机号'
       render 'new_by_phone'
     end
   end

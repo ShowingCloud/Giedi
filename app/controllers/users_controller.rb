@@ -58,14 +58,19 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_create_params)
     params[:user][:register_from] = params[:service] if params[:service]
-    if verify_rucaptcha?(@user) && @user.save
-      @token = @user.confirmation_token
-      UserMailer.email_confirmation(@user, @token).deliver_later
-      @user_name = @user.name
-      @email = @user.email
-      handle_with_oauth2
-      render 'users/before_confirmed'
+    if verify_rucaptcha?(@user)
+      if @user.save
+        @token = @user.confirmation_token
+        UserMailer.email_confirmation(@user, @token).deliver_later
+        @user_name = @user.name
+        @email = @user.email
+        handle_with_oauth2
+        render 'users/before_confirmed'
+      else
+        render 'users/new'
+      end
     else
+      @user.errors.add(:captcha, t('rucaptcha.invalid'))
       render 'users/new'
     end
   end
@@ -74,12 +79,12 @@ class UsersController < ApplicationController
     params[:user][:register_from] = params[:service] if params[:service]
     @user = User.new(user_create_params)
     if params[:pin].blank?
-      @user.errors.add(:base, t('phone_verification.blank'))
+      @user.errors.add(:phone_verification, t('phone_verification.blank'))
       render('/users/new_by_phone') && return
     end
 
     unless verify_sms? params[:user][:phone], params[:pin]
-      @user.errors.add(:base, t('phone_verification.invalid'))
+      @user.errors.add(:phone_verification, t('phone_verification.invalid'))
       render('/users/new_by_phone') && return
     end
 

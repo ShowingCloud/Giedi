@@ -14,4 +14,9 @@ module ApplicationHelper
       link_to '绑定', '/auth/' + provider
     end 
   end
+
+  def error_for(model, attritube)
+    return unless model.present?
+    content_tag(:div, model.errors[attritube][0], class: "msg", id: "#{attritube}_msg")
+  end
 end
