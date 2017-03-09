@@ -22,7 +22,7 @@ RSpec.describe OauthCallbacksController, type: :controller do
 
         it "redirect_to profile page" do
           post :create, provider: :github
-          expect(response).to redirect_to '/profile'
+          expect(response).to redirect_to '/profile/bind'
         end
 
         it "show already bound message" do
@@ -34,7 +34,7 @@ RSpec.describe OauthCallbacksController, type: :controller do
       describe "when unbound" do
         it "redirect_to profile page" do
           post :create, provider: :github
-          expect(response).to redirect_to '/profile'
+          expect(response).to redirect_to '/profile/bind'
         end
 
         it "show bound successed message" do

@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "DOMELAB邮箱验证"
   end
 
-  def new_email_confirmation(user,token,service)
+  def new_email_confirmation(user, token, service = nil)
     @user = user
     @token = token
     @service = service

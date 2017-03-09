@@ -73,6 +73,9 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'brakeman', :require => false
 
+gem 'rack-mini-profiler', require: false
+
+
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'

@@ -301,6 +301,8 @@ GEM
       git-version-bump (~> 0.15)
       rack (~> 1.4)
     rack-cors (0.4.1)
+    rack-mini-profiler (0.10.2)
+      rack (>= 1.2.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -465,6 +467,7 @@ DEPENDENCIES
   phonelib
   puma
   rack-cors
+  rack-mini-profiler
   rails (~> 4.2.6)
   readthis
   rspec-rails
@@ -479,4 +482,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.13.6
+   1.13.7
