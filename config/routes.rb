@@ -5,6 +5,13 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
   ActiveAdmin.routes(self)
+
+  namespace :api, default: { format: :json } do
+    namespace :v1 do
+      resources :users, only: [:show, :update]
+    end
+  end
+
   get 'check/username' => 'check#username'
   get 'check/email' => 'check#email'
   post 'password_resets_by_phone' => 'password_resets#create_by_phone'
@@ -30,7 +37,9 @@ Rails.application.routes.draw do
   get 'profile/get_avatar' => 'users#get_avatar'
   post 'profile/add_email' => 'users#add_email_sent'
   get 'profile/password' => 'users#edit_password'
-  get 'notice' => 'users#notice',as: "notice"
+  get 'profile/bind' => 'users#bind'
+  get 'profile/unbind/:id' => 'users#unbind'
+  get 'notice' => 'users#notice', as: 'notice'
 
   resources :email_confirmations, only: [:edit]
   mount CASino::Engine => '/', :as => 'casino'

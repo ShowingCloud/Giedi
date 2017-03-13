@@ -1,0 +1,8 @@
+<h2>豆姆账号中心</h2>
+<ul class="center-nav text-center">
+    <li><a class="<%= 'active' if current_page?('/sessions') %>" href="/sessions">登陆管理</a></li>
+    <li><a class="<%= 'active' if current_page?('/profile/password') %>" href="/profile/password">帐号密码</a></li>
+    <li><a class="<%= 'active' if current_page?('/profile/email') %>" href="/profile/email">安全邮箱</a></li>
+    <li><a class="<%= 'active' if current_page?('/profile/phone') %>" href="/profile/phone">安全手机</a></li>
+    <li><a class="<%= 'active' if current_page?('/profile/bind') %>" href="/profile/bind">第三方账号</a></li>
+</ul>

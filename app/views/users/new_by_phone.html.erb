@@ -23,17 +23,13 @@
             <div class="row">
               <%= f.label :name, '用户名' %>
               <%= f.text_field :name, class: 'form-control' %>
-              <div class="msg" id="name_msg">
-                <%= @user.errors[:name][0] || "" %>
-              </div>
+              <%= error_for(@user,:name) %>
             </div>
 
             <div class="row">
               <%= f.label :phone, '手机' %>
               <%= f.phone_field :phone, class: 'form-control' %>
-              <div class="msg" id="phone_msg">
-                <%= @user.errors[:phone][0] || "" %>
-              </div>
+              <%= error_for(@user,:phone) %>
             </div>
 
             <div class="row">
@@ -47,13 +43,12 @@
               <%= label_tag 'pin', '短信验证码' %>
               <%= text_field_tag :pin, params[:pin], class: 'half-input' %>
               <%= button_tag "获取短信验证码", :type => 'button', :class => "subBtn half-btn", :id => "phone_verification" %>
+              <%= error_for(@user,:phone_verification) %>
             </div>
             <div class="row">
               <%= f.label :password, '密码' %>
               <%= f.password_field :password, class: 'form-control' %>
-              <div class="msg" id="password_msg">
-                <%= @user.errors[:password][0] || "" %>
-              </div>
+              <%= error_for(@user,:password) %>
             </div>
             <div class="row">
               <%= f.submit "创建账户", class: "button btn-dome" %>

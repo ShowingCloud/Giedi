@@ -1,17 +1,12 @@
-class UserSerializer < ActiveModel::Serializer
+class BaseUserSerializer < ActiveModel::Serializer
 
   attribute :id
   attributes :avatar, :email
   attribute :phone, key: :mobile
   attribute :name, key: :nickname
-  attribute :profile
 
   def avatar
     object.avatar.as_json[:avatar]
-  end
-
-  def profile
-    object.user_extra.info.slice(*@instance_options[:valid_keys])
   end
 
 end

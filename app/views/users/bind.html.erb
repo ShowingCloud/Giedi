@@ -1,0 +1,17 @@
+<div class="container">
+    
+    <% unless params[:iframe].present? %>
+        <%= render 'shared/center_nav' %>
+    <% end %>
+    <div class="center-main">
+        <h3>第三方账号</h3>
+        <ul class='third-party'>
+            <li><%= image_tag("login_weixin") %>微信<%= bind_link('wechat') %></li>
+            <li><%= image_tag("login_qq") %>QQ<%= bind_link('qq') %></li>
+            <li><%= image_tag("login_weibo") %>微博<%= bind_link('weibo') %></li>
+            <% if Rails.env.development? %>
+            <li><%= image_tag("login_weibo") %>Github<%= bind_link('github') %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>

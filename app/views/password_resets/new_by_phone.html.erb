@@ -20,6 +20,7 @@
           <div class="row">
             <%= f.label :phone, '手机' %>
             <%= f.phone_field :phone, class: 'form-control' %>
+            <%= error_for(@user,:phone) %>
           </div>
           <div class="row">
             <%= label_tag 'captcha', '图形验证码' %>
@@ -32,11 +33,13 @@
             <%= label_tag 'reset_pin', '短信验证码' %>
             <%= text_field_tag :reset_pin, params[:reset_pin], placeholder: '手机验证码', class: 'half-input' %>
             <%= button_tag "获取手机验证码", :type => 'button', :class => "subBtn half-btn", :id => "phone_reset" %>
+            <%= error_for(@user,:phone_verification) %>
           </div>
 
           <div class="row">
             <%= f.label :password, '密码' %>
             <%= f.password_field :password, class: 'form-control' %>
+            <%= error_for(@user,:password) %>
           </div>
           <div class="row">
             <%= f.submit "提交新密码", class: "button btn-dome" %>

@@ -1,6 +1,10 @@
 <div class="container">
+  <% unless params[:iframe].present? %>
+    <%= render 'shared/center_nav' %>
+  <% end %>
+  
+  <div class="center-main">
   <h3>修改邮箱</h3>
-
   <div class="form">
       <%= form_for :user, :url => 'add_email' do |f| %>
           <div class="row">
@@ -14,7 +18,11 @@
               <%= rucaptcha_image_tag(class: 'captcha', alt: '验证码') %>
             </div>
           </div>
+          <% if params[:iframe].present? %>
+            <input type="hidden" name='iframe' value="1"/>
+          <% end %>
             <%= f.submit "提交", class: "button btn-orange" %>
       <% end %>
+  </div>
   </div>
 </div>

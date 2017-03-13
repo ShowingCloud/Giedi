@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   include CASino::SessionsHelper
-  layout 'embedded', only: [:edit_password, :add_phone, :add_email,:notice]
+  layout :set_layout, only: [:edit_password, :add_phone, :add_email_sent, :update, :add_email, :notice]
   before_action :ensure_service_allowed, only: [:new, :new_by_phone]
   before_action :ensure_signed_in, except: [:new, :new_by_phone, :create, :create_by_phone], unless: :format_json?
   before_action :authenticate_request!, if: :format_json?
   before_action :set_referrer, only: [:update, :add_phone, :add_email, :edit_password], unless: :format_json?
   before_action :set_x_frame_option, unless: :format_json?
+
   def profile
     set_user
   end
@@ -14,8 +15,7 @@ class UsersController < ApplicationController
     set_user
   end
 
-  def add_email
-  end
+  def add_email; end
 
   def add_email_sent
     if verify_rucaptcha?
@@ -23,12 +23,13 @@ class UsersController < ApplicationController
       @user.create_new_email_digest
       @user.update_attribute(:new_email, params[:user][:new_email])
       @token = @user.confirmation_token
-      UserMailer.new_email_confirmation(@user, @token).deliver_later
-      flash[:notice] = "验证邮件已发送"
-      redirect_to '/notice'
+      @service = params[:service] || nil
+      UserMailer.new_email_confirmation(@user, @token, @service).deliver_later
+      flash.now[:notice] = '验证邮件已发送'
+      render 'notice'
     # handle_redirect_back
     else
-      render :add_email,layout:'embedded'
+      render :add_email
     end
   end
 
@@ -57,14 +58,19 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_create_params)
     params[:user][:register_from] = params[:service] if params[:service]
-    if verify_rucaptcha?(@user) && @user.save
-      @token = @user.confirmation_token
-      UserMailer.email_confirmation(@user, @token).deliver_later
-      @user_name = @user.name
-      @email = @user.email
-      handle_with_oauth2
-      render 'users/before_confirmed'
+    if verify_rucaptcha?(@user)
+      if @user.save
+        @token = @user.confirmation_token
+        UserMailer.email_confirmation(@user, @token).deliver_later
+        @user_name = @user.name
+        @email = @user.email
+        handle_with_oauth2
+        render 'users/before_confirmed'
+      else
+        render 'users/new'
+      end
     else
+      @user.errors.add(:captcha, t('rucaptcha.invalid'))
       render 'users/new'
     end
   end
@@ -73,12 +79,12 @@ class UsersController < ApplicationController
     params[:user][:register_from] = params[:service] if params[:service]
     @user = User.new(user_create_params)
     if params[:pin].blank?
-      @user.errors.add(:base, t('phone_verification.blank'))
+      @user.errors.add(:phone_verification, t('phone_verification.blank'))
       render('/users/new_by_phone') && return
     end
 
-    unless verify_sms? params[:user][:phone],params[:pin]
-      @user.errors.add(:base, t('phone_verification.invalid'))
+    unless verify_sms? params[:user][:phone], params[:pin]
+      @user.errors.add(:phone_verification, t('phone_verification.invalid'))
       render('/users/new_by_phone') && return
     end
 
@@ -104,12 +110,27 @@ class UsersController < ApplicationController
     set_user
   end
 
+  def bind
+    set_user
+    identities = @user.identities
+    @providers = identities.map{ |x| [x.provider, x.id] }.to_h
+  end
+
+  def unbind
+    set_user
+    identity = Identity.find(params[:id])
+    if identity.user_id == @user.id
+      flash[:notice] = '解绑成功' if identity.delete
+    end
+    redirect_to '/profile/bind'
+  end
+
   def get_avatar
     set_user
     if @user.avatar_url.present?
-      send_file File.join(Rails.root,'public',@user.avatar_url), type: @user.avatar.content_type, disposition: 'inline'
+      send_file File.join(Rails.root, 'public', @user.avatar_url), type: @user.avatar.content_type, disposition: 'inline'
     else
-      send_file File.join(Rails.root,'public/default_avatar.jpg'), type: 'jpg', disposition: 'inline'
+      send_file File.join(Rails.root, 'public/default_avatar.jpg'), type: 'jpg', disposition: 'inline'
     end
   end
 
@@ -129,9 +150,9 @@ class UsersController < ApplicationController
   def update
     set_user
     unless params[:user][:phone].blank?
-      unless verify_sms? params[:user][:phone],params[:pin]
+      unless verify_sms? params[:user][:phone], params[:pin]
         @user.errors.add(:base, t('phone_verification.invalid'))
-        render('users/add_phone',layout:'embedded')  && return
+        render('users/add_phone') && return
       end
     end
 
@@ -139,21 +160,21 @@ class UsersController < ApplicationController
       current_password = params[:user].delete(:current_password)
       unless @user.authenticate(current_password)
         @user.errors.add(:base, t('current_password.wrong'))
-        render('users/edit_password',layout:'embedded') && return
+        render('users/edit_password') && return
       end
     end
 
     respond_to do |format|
       if @user.update_attributes(user_params)
         format.html do
-          flash[:notice] = "修改成功"
-          redirect_to '/notice'
+          flash.now[:notice] = '修改成功'
+          render 'notice'
         end
         format.json { head :no_content }
-        format.xml { render xml: {msg:"success"} }
+        format.xml { render xml: { msg: 'success' } }
       else
         # format.html { render Rails.application.routes.recognize_path(request.referer)[:action] }
-        flash[:notice] = "修改失败"
+        flash[:notice] = '修改失败'
         format.html { redirect_to(:back) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
         format.xml { render xml: @user.errors, status: :unprocessable_entity }
@@ -221,7 +242,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def verify_sms?(phone,pin)
+  def verify_sms?(phone, pin)
     valid = false
     verification = Rails.cache.read(phone)
     valid = verification.present? && verification[:pin] == pin
@@ -231,6 +252,10 @@ class UsersController < ApplicationController
 
   def format_json?
     request.format.json?
+  end
+
+  def set_layout
+    params[:iframe].present? ? 'embedded' : 'application'
   end
 
   # def set_referrer
@@ -248,5 +273,4 @@ class UsersController < ApplicationController
       render 'service_not_allowed', status: :forbidden
     end
   end
-
 end
