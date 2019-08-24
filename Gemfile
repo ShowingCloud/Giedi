@@ -54,7 +54,7 @@ gem 'hiredis'
 gem 'readthis'
 
 # admin dashboard
-gem 'activeadmin',github: 'activeadmin'
+gem 'activeadmin', github: 'activeadmin'
 gem 'activeadmin_json_editor', '~> 0.0.6'
 gem 'devise'
 
