@@ -87,7 +87,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails'
+  #gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails', "~> 4.0"
 end
@@ -100,3 +100,5 @@ group :development do
   gem 'spring'
   gem 'meta_request'
 end
+
+gem 'newrelic_rpm'
