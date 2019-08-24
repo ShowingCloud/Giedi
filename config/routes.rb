@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   get '/news', to: 'news#index'
   get '/news/:id', to: 'news#show'
 
-  mount RuCaptcha::Engine => '/rucaptcha'
   namespace :kindeditor do
     post '/upload' => 'assets#create'
     get '/filemanager' => 'assets#list'
