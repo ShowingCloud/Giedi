@@ -1,0 +1,17 @@
+defaults: &defaults
+  site_name: 'Dome -- About Us'
+
+development:
+  <<: *defaults
+  domain: 'http://localhost:3000'
+  auth_url: 'http://i.s1.com'
+  cas_user_identifier: 'id'
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  domain: 'http://domelab-intro.scs.im'
+  auth_url: 'https://domelab-sso.scs.im'
+  cas_user_identifier: 'id'
