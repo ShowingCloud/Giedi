@@ -9,6 +9,8 @@ zh-CN:
           attributes:
             password:
               blank: "密码没有填写"
+      messages:
+        record_invalid: "交验失败: {{errors}}"
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
