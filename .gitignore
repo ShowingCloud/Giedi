@@ -122,6 +122,7 @@ config/initializers/sidekiq.rb
 config/initializers/session_store.rb
 config/config.yml
 config/application.rb
+config/newrelic.yml
 
 # test data
 db/datadump/sessions.yml
