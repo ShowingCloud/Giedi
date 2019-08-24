@@ -64,3 +64,4 @@ gem 'pg'
 gem 'jquery-fileupload-rails'
 
 gem 'thin'
+gem 'faye-websocket'
