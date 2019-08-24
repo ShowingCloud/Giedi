@@ -55,4 +55,4 @@ gem "redis-rails"
 gem 'pie-rails'
 gem "mediaelement_rails"
 
-gem "thin"
+gem 'newrelic_rpm'

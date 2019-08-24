@@ -120,6 +120,7 @@ db/data.yml
 config/cable.yml
 config/application.rb
 config/initializers/session_store.rb
+config/newrelic.yml
 
 # test data
 db/datadump/sessions.yml
