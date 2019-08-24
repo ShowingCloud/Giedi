@@ -117,6 +117,11 @@ config/initializers/app_init.rb
 config/initializers/devise.rb
 config/initializers/secret_token.rb
 db/data.yml
+config/cable.yml
+config/initializers/sidekiq.rb
+config/initializers/session_store.rb
+config/config.yml
+config/application.rb
 
 # test data
 db/datadump/sessions.yml
