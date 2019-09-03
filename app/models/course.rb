@@ -6,7 +6,7 @@ class Course < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: {maximum: 60}
   validates :cover, :status, presence: true
   validates :course_type, inclusion: {in: [0, 1]}
-  validates :english_name, :author, presence: true, if: 'course_type==1'
+  validates :english_name, :author, presence: true, if: -> {course_type==1}
 
   TYPE = {豆姆: 0, 名师: 1}
   STATUS = {待显示: 0, 显示: 1, 结束: 2}

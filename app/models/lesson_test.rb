@@ -2,7 +2,7 @@ class LessonTest < ApplicationRecord
   belongs_to :lesson
   validates :lesson_id, :name, :option_1, :option_2, :option_3, :option_4, :answer, presence: true
   after_validation :check_option
-  validate :cover_size_validation, if: 'cover?'
+  validate :cover_size_validation, if: -> {cover?}
   mount_uploaders :cover, CoverUploader
 
   private
