@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   resources :email_confirmations, only: [:edit]
   mount CASino::Engine => '/', :as => 'casino'
-  mount RuCaptcha::Engine => '/rucaptcha'
+  # mount RuCaptcha::Engine => '/rucaptcha'
 
   match 'auth/:provider/callback', to: 'oauth_callbacks#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
