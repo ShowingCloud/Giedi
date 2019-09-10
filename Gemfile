@@ -65,5 +65,6 @@ gem 'jquery-fileupload-rails'
 
 gem 'thin'
 gem 'faye-websocket'
+gem 'redis-namespace'
 
 gem 'newrelic_rpm'
