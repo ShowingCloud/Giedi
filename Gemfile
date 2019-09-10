@@ -52,6 +52,7 @@ gem 'jwt'
 # redis
 gem 'hiredis'
 gem 'readthis'
+gem 'redis-namespace'
 
 # admin dashboard
 gem 'activeadmin', github: 'activeadmin', tag: 'v1.4.3'
