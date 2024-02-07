@@ -207,7 +207,7 @@ GEM
       rake
     mini_magick (4.9.5)
     mini_mime (1.0.2)
-    mini_portile2 (2.8.2)
+    mini_portile2 (2.8.5)
     minitest (5.21.2)
     mustermann (1.0.3)
     mutex_m (0.2.0)
@@ -223,7 +223,7 @@ GEM
       net-protocol
     newrelic_rpm (6.6.0.358)
     nio4r (2.7.0)
-    nokogiri (1.16.0)
+    nokogiri (1.16.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
