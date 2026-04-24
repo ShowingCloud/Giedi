@@ -142,7 +142,7 @@ GEM
       responders
       warden (~> 1.2.3)
     drb (2.2.3)
-    erb (6.0.2)
+    erb (6.0.4)
     erubi (1.13.1)
     execjs (2.7.0)
     ffi (1.17.0)
